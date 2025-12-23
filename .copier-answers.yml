@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier
+_commit: 34d23a0
+_src_path: https://github.com/monarch-initiative/monarch-project-copier
+copyright_year: '2026'
+email: 4625870+realmarcin@users.noreply.github.com
+full_name: marcin p. joachimiak
+gh_action_docs_preview: false
+github_handle: realmarcin
+github_org: CultureBotAI
+license: BSD-3-Clause
+project_description: Agent-based system for microbial growth predictions
+project_name: MicroGrowAgents
+project_slug: microgrowagents
+
