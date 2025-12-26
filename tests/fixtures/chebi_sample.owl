@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:owl="http://www.w3.org/2002/07/owl#"
+         xmlns:obo="http://purl.obolibrary.org/obo/"
+         xmlns:oboInOwl="http://www.geneontology.org/formats/oboInOwl#">
+
+  <!-- Glucose -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_17234">
+    <rdfs:label>glucose</rdfs:label>
+    <oboInOwl:hasExactSynonym>D-glucose</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>dextrose</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasRelatedSynonym>Glc</oboInOwl:hasRelatedSynonym>
+  </owl:Class>
+
+  <!-- Sodium chloride -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_26710">
+    <rdfs:label>sodium chloride</rdfs:label>
+    <oboInOwl:hasExactSynonym>NaCl</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>table salt</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasRelatedSynonym>common salt</oboInOwl:hasRelatedSynonym>
+  </owl:Class>
+
+  <!-- Phosphate -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_18367">
+    <rdfs:label>phosphate</rdfs:label>
+    <oboInOwl:hasExactSynonym>phosphate ion</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>PO4(3-)</oboInOwl:hasExactSynonym>
+  </owl:Class>
+
+  <!-- Calcium chloride -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_3312">
+    <rdfs:label>calcium chloride</rdfs:label>
+    <oboInOwl:hasExactSynonym>CaCl2</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>calcium dichloride</oboInOwl:hasExactSynonym>
+  </owl:Class>
+
+  <!-- Magnesium sulfate -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_32599">
+    <rdfs:label>magnesium sulfate</rdfs:label>
+    <oboInOwl:hasExactSynonym>MgSO4</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>magnesium sulphate</oboInOwl:hasExactSynonym>
+  </owl:Class>
+
+  <!-- Tris (buffer) -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_9754">
+    <rdfs:label>tris</rdfs:label>
+    <oboInOwl:hasExactSynonym>Tris</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>tris(hydroxymethyl)aminomethane</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasRelatedSynonym>THAM</oboInOwl:hasRelatedSynonym>
+  </owl:Class>
+
+  <!-- Ammonium chloride -->
+  <owl:Class rdf:about="http://purl.obolibrary.org/obo/CHEBI_31206">
+    <rdfs:label>ammonium chloride</rdfs:label>
+    <oboInOwl:hasExactSynonym>NH4Cl</oboInOwl:hasExactSynonym>
+    <oboInOwl:hasExactSynonym>NH4-Cl</oboInOwl:hasExactSynonym>
+  </owl:Class>
+
+</rdf:RDF>

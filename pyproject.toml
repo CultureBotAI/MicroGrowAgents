@@ -17,11 +17,27 @@ dynamic = ["version"]
 dependencies = [
   "typer >= 0.9.0",
   "linkml-runtime >=1.9.4",
+  "linkml >= 1.9.3",
+  "click >= 8.0.0",
+  "kghub-downloader >= 0.3.0",
+  "duckdb >= 0.9.0",
+  "pandas >= 2.0.0",
+  "requests >= 2.31.0",
+  "requests-cache >= 1.1.0",
+  "pyyaml >= 6.0",
+  "numpy >= 1.24.0",
+  "scipy >= 1.10.0",
+  "matplotlib >= 3.5.0",
+  "seaborn >= 0.12.0",
+  "tqdm >= 4.65.0",
+  "beautifulsoup4 >= 4.12.0",
+  "lxml >= 4.9.0",
+  "fuzzywuzzy >= 0.18.0",
+  "python-Levenshtein >= 0.21.0",
 ]
 
 [dependency-groups]
 dev = [
-    "linkml>=1.9.3",
     "mypy>=1.17.1",
     "ruff>=0.4.8",
     "mkdocs-material>=8.2.8",
@@ -32,6 +48,7 @@ dev = [
 
 [project.scripts]
 MicroGrowAgents = "microgrowagents.cli:main"
+microgrowagents = "microgrowagents.cli:main"
 
 
 # See https://hatch.pypa.io/latest/config/build/#file-selection for how to

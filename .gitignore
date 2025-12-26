@@ -5,6 +5,12 @@ tests/*/*/output
 # temp files
 tmp/
 
+# data files (keep .gitkeep)
+data/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/cache/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

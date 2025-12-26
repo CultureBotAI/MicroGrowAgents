@@ -1,26 +1,504 @@
 
 # MicroGrowAgents
 
-Agent-based system for microbial growth predictions
+Agent-based system for microbial growth media analysis and prediction with advanced chemical property calculations.
+
+[![Tests](https://github.com/CultureBotAI/MicroGrowAgents/workflows/Tests/badge.svg)](https://github.com/CultureBotAI/MicroGrowAgents/actions)
+[![Documentation](https://img.shields.io/badge/docs-latest-blue.svg)](https://CultureBotAI.github.io/MicroGrowAgents)
+
+## Overview
+
+MicroGrowAgents is a comprehensive toolkit for analyzing microbial growth media formulations. It combines database-driven ingredient predictions with advanced chemical property calculations to provide deep insights into media composition and suitability for different microorganisms.
+
+### Key Features
+
+- 🧪 **Media Concentration Predictions**: Predict concentration ranges for media ingredients using ML-based regression
+- 🔬 **Advanced Chemistry Calculations**:
+  - **Osmotic Properties**: Osmolarity, osmolality, water activity, growth categories
+  - **Redox Properties**: Eh (redox potential), pE, electron balance, redox state classification
+  - **Nutrient Ratios**: C:N:P ratios, Redfield deviation, limiting nutrient identification, trace metal analysis
+  - **Thermodynamic Properties**: Gibbs free energy calculations (via eQuilibrator API)
+- 📊 **Sensitivity Analysis**: Sweep ingredient concentrations to determine pH and salinity effects
+- 🔍 **Media Comparison**: Compare ingredient compositions across different media
+- 🌐 **External APIs**: Integration with PubChem, ChEBI, and eQuilibrator for chemical data enrichment
+- 📈 **Visualization**: Generate plots for osmotic properties, nutrient ratios, and sensitivity analysis
+
+## Installation
+
+### Prerequisites
+
+- Python 3.10 or higher
+- [uv](https://github.com/astral-sh/uv) package manager
+
+### Quick Install
+
+```bash
+# Clone the repository
+git clone https://github.com/CultureBotAI/MicroGrowAgents.git
+cd MicroGrowAgents
+
+# Install dependencies using uv
+uv sync
+
+# Verify installation
+uv run python run.py --help
+```
+
+## Quick Start
+
+### Generate Media Concentrations
+
+Predict concentration ranges for a specific medium:
+
+```bash
+# Get MP medium concentrations
+uv run python run.py gen-media-conc "MP medium"
+
+# Get concentrations for custom ingredients
+uv run python run.py gen-media-conc "glucose,NaCl,KH2PO4" --mode ingredients
+
+# Export to JSON
+uv run python run.py gen-media-conc "MP medium" --format json --output mp_medium.json
+```
+
+### Sensitivity Analysis
+
+Analyze how ingredient concentration variations affect pH and salinity:
+
+```bash
+# Basic sensitivity analysis
+uv run python run.py sensitivity "MP medium"
+
+# With osmotic property calculations
+uv run python run.py sensitivity "MP medium" --calculate-osmotic
+
+# With all advanced properties
+uv run python run.py sensitivity "MP medium" \
+    --calculate-osmotic \
+    --calculate-redox \
+    --calculate-nutrients \
+    --plot
+
+# Custom parameters
+uv run python run.py sensitivity "glucose,NH4Cl,KH2PO4" \
+    --calculate-redox \
+    --ph 6.5 \
+    --temperature 37
+```
+
+### Advanced Chemistry Analysis
+
+Calculate osmotic properties for a medium:
+
+```python
+from microgrowagents.chemistry.osmotic_properties import (
+    calculate_osmolarity,
+    calculate_water_activity
+)
+
+ingredients = [
+    {"name": "NaCl", "concentration": 150.0, "molecular_weight": 58.44, "formula": "NaCl"},
+    {"name": "KCl", "concentration": 5.0, "molecular_weight": 74.55, "formula": "KCl"}
+]
+
+# Calculate osmolarity
+osm_result = calculate_osmolarity(ingredients, temperature=25.0)
+print(f"Osmolarity: {osm_result['osmolarity']:.1f} mOsm/L")
+
+# Calculate water activity
+aw_result = calculate_water_activity(ingredients, temperature=25.0)
+print(f"Water Activity: {aw_result['water_activity']:.4f}")
+print(f"Growth Category: {aw_result['growth_category']}")
+```
+
+## Core Capabilities
+
+### 1. Media Concentration Generation (`gen-media-conc`)
+
+Predicts LOW, DEFAULT, and HIGH concentration ranges for media ingredients:
+
+```bash
+# Query by medium name
+uv run python run.py gen-media-conc "MP medium"
+
+# Query by ingredient list
+uv run python run.py gen-media-conc "PIPES,NaCl,glucose" --mode ingredients
+
+# With chemical data enrichment
+uv run python run.py gen-media-conc "MP medium" --enrich pubchem
+```
+
+**Output includes:**
+- Predicted concentration ranges (mM)
+- Molecular weights
+- Chemical formulas
+- Confidence scores
+
+### 2. Sensitivity Analysis (`sensitivity`)
+
+Performs parameter sweep analysis by varying each ingredient between LOW and HIGH concentrations:
+
+```bash
+# Basic analysis (pH and salinity)
+uv run python run.py sensitivity "MP medium"
+
+# With advanced chemistry properties
+uv run python run.py sensitivity "MP medium" --calculate-osmotic --calculate-nutrients
+
+# Export results
+uv run python run.py sensitivity "MP medium" --format json --output results.json
+
+# Generate visualization
+uv run python run.py sensitivity "MP medium" --plot --plot-output analysis.png
+```
+
+**Calculates:**
+- pH changes
+- Salinity (TDS and NaCl-equivalent)
+- Ionic strength
+- **Optional**: Osmotic properties, redox potential, nutrient ratios
+
+### 3. Advanced Chemistry Properties
+
+#### Osmotic Properties
+
+Calculate osmolarity, osmolality, and water activity:
+
+```bash
+uv run python run.py sensitivity "MP medium" --calculate-osmotic
+```
+
+**Provides:**
+- Osmolarity (mOsm/L)
+- Osmolality (mOsm/kg)
+- Water activity (aw)
+- Growth category classification:
+  - `most_bacteria` (aw > 0.98)
+  - `halotolerant` (0.90 < aw ≤ 0.98)
+  - `halophiles` (aw ≤ 0.90)
+- Van't Hoff dissociation factors
+
+**Example output:**
+```json
+{
+  "osmotic_properties": {
+    "osmolarity": 342.5,
+    "osmolality": 339.8,
+    "water_activity": 0.9938,
+    "growth_category": "most_bacteria",
+    "confidence": {"osmolarity": 0.85, "water_activity": 0.78}
+  }
+}
+```
+
+#### Redox Properties
+
+Calculate redox potential (Eh), pE, and electron balance:
+
+```bash
+uv run python run.py sensitivity "glucose,NH4Cl" --calculate-redox --ph 7.0
+```
+
+**Calculates:**
+- Eh (redox potential in mV)
+- pE (electron activity)
+- Redox state classification (oxidizing, reducing, intermediate)
+- Electron donor/acceptor balance
+- Standard redox couples (O2/H2O, NO3-/NO2-, SO42-/H2S, etc.)
+
+**Uses Nernst equation:**
+```
+Eh = E0' + (59.16/n) × log([oxidized]/[reduced])  at 25°C
+pH correction: Eh = E0 - (59.16/n) × pH
+```
+
+**Example output:**
+```json
+{
+  "redox_properties": {
+    "eh": 245.3,
+    "pe": 4.15,
+    "redox_state": "oxidizing",
+    "electron_balance": {
+      "total_donors": 240.0,
+      "total_acceptors": 220.0,
+      "balance": 8.3
+    }
+  }
+}
+```
+
+#### Nutrient Ratios
+
+Calculate C:N:P ratios and identify limiting nutrients:
+
+```bash
+uv run python run.py sensitivity "glucose,NH4Cl,KH2PO4" --calculate-nutrients
+```
+
+**Analyzes:**
+- C:N:P molar ratios
+- Limiting nutrient prediction
+- Redfield ratio deviation (marine standard: 106:16:1)
+- Trace metal ratios (Fe:P, Mn:P, Zn:P)
+- Deficiencies and excesses
+
+**Limiting nutrient criteria:**
+- **P-limited**: C:P > 150 or N:P > 20
+- **N-limited**: C:N > 20 or N:P < 10
+- **C-limited**: C:N < 6.6
+- **Balanced**: Near Redfield ratio
+
+**Example output:**
+```json
+{
+  "nutrient_ratios": {
+    "c_mol": 60.0,
+    "n_mol": 9.0,
+    "p_mol": 0.6,
+    "c_n_ratio": 6.67,
+    "c_p_ratio": 100.0,
+    "n_p_ratio": 15.0,
+    "limiting_nutrient": "balanced",
+    "redfield_deviation": 3.2,
+    "trace_metals": {
+      "fe_p_ratio": 0.015,
+      "deficiencies": ["Co", "Mo"],
+      "excesses": []
+    }
+  }
+}
+```
+
+### 4. Media Comparison
+
+Compare ingredient compositions between two media:
+
+```bash
+uv run python run.py compare-media "MP medium" "LB medium"
+```
+
+**Shows:**
+- Common ingredients
+- Unique ingredients to each medium
+- Concentration differences
+
+### 5. Integration Scripts
+
+Standalone integration scripts for specific analyses:
+
+```bash
+# MP medium with osmotic properties
+uv run python scripts/analyze_mp_medium_osmotic.py --plot --output-json results.json
+
+# Generate visualization plots
+uv run python scripts/analyze_mp_medium_osmotic.py --plot --plot-output mp_osmotic.png
+```
+
+## Advanced Usage
+
+### Combining Multiple Property Calculations
+
+Calculate all advanced properties simultaneously:
+
+```bash
+uv run python run.py sensitivity "MP medium" \
+    --calculate-osmotic \
+    --calculate-redox \
+    --calculate-nutrients \
+    --ph 7.0 \
+    --temperature 30 \
+    --format json \
+    --output complete_analysis.json
+```
+
+### Pipeline Mode
+
+Use `gen-media-conc` output as input to `sensitivity`:
+
+```bash
+# Step 1: Generate concentration predictions
+uv run python run.py gen-media-conc "MP medium" --format json > predictions.json
+
+# Step 2: Run sensitivity analysis on predictions
+uv run python run.py sensitivity --input-file predictions.json --calculate-osmotic
+```
+
+### Python API
+
+Use MicroGrowAgents programmatically:
+
+```python
+from microgrowagents.agents.sensitivity_analysis_agent import SensitivityAnalysisAgent
+
+# Initialize agent
+agent = SensitivityAnalysisAgent(db_path="data/microgrowdb.db")
+
+# Run analysis with advanced properties
+result = agent.run(
+    query="MP medium",
+    mode="medium",
+    calculate_osmotic=True,
+    calculate_redox=True,
+    calculate_nutrients=True,
+    temperature=37.0
+)
+
+# Access results
+baseline = result["baseline"]
+print(f"pH: {baseline['ph']}")
+print(f"Osmolarity: {baseline['osmotic_properties']['osmolarity']} mOsm/L")
+print(f"Limiting nutrient: {baseline['nutrient_ratios']['limiting_nutrient']}")
+```
+
+## Chemistry Modules
+
+### Osmotic Properties
+
+Module: `microgrowagents.chemistry.osmotic_properties`
+
+**Functions:**
+- `calculate_osmolarity(ingredients, temperature=25.0)` - Calculate osmolarity and osmolality
+- `calculate_water_activity(ingredients, temperature=25.0, method="raoult")` - Calculate water activity
+- `estimate_van_hoff_factor(formula, charge, name)` - Estimate dissociation factor
+
+**Methods:**
+- Raoult's law (dilute solutions)
+- Robinson-Stokes (concentrated solutions)
+- Bromley equation (high ionic strength)
+
+### Redox Properties
+
+Module: `microgrowagents.chemistry.redox_properties`
+
+**Functions:**
+- `calculate_redox_potential(ingredients, ph, temperature=25.0)` - Calculate Eh and pE
+- `calculate_electron_balance(ingredients)` - Calculate electron donor/acceptor balance
+
+**Constants:**
+- Standard redox potentials (E0' at pH 7)
+- Electron equivalents for common compounds
+
+### Nutrient Ratios
+
+Module: `microgrowagents.chemistry.nutrient_ratios`
+
+**Functions:**
+- `calculate_cnp_ratios(ingredients)` - Calculate C:N:P ratios and limiting nutrients
+- `calculate_trace_metal_ratios(ingredients)` - Calculate trace metal requirements
+- `parse_elemental_composition(formula)` - Parse chemical formulas
+
+**References:**
+- Redfield ratio (marine): C:N:P = 106:16:1
+- Terrestrial microbes: C:N:P ≈ 60:7:1
+
+### Thermodynamic Properties
+
+Module: `microgrowagents.chemistry.thermodynamic_properties`
+
+**Functions:**
+- `calculate_gibbs_free_energy(reactants, products, ph=7.0)` - Calculate ΔG
+- `calculate_formation_energy(compound)` - Calculate ΔGf°
+
+**Data Sources:**
+- eQuilibrator API (biochemical thermodynamics)
+- Component Contribution method
+- pH and ionic strength corrections
+
+## Repository Structure
+
+* [docs/](docs/) - MkDocs documentation
+* [src/microgrowagents/](src/microgrowagents/) - Source code
+  * [agents/](src/microgrowagents/agents/) - Agent implementations
+  * [chemistry/](src/microgrowagents/chemistry/) - Chemistry calculation modules
+  * [database/](src/microgrowagents/database/) - Database utilities
+  * [api_clients/](src/microgrowagents/chemistry/api_clients/) - External API clients
+* [tests/](tests/) - Pytest test suite (86 tests, >90% coverage)
+* [scripts/](scripts/) - Integration and analysis scripts
+* [data/](data/) - Database and cache files
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+just test
+
+# Run specific test file
+uv run pytest tests/test_chemistry/test_osmotic_properties.py -v
+
+# Run with coverage
+uv run pytest --cov=microgrowagents --cov-report=html
+```
+
+### Type Checking
+
+```bash
+just mypy
+```
+
+### Code Formatting
+
+```bash
+just format
+```
+
+### Documentation
+
+```bash
+# Serve documentation locally
+just _serve
+
+# Build documentation
+mkdocs build
+```
 
 ## Documentation Website
 
 [https://CultureBotAI.github.io/MicroGrowAgents](https://CultureBotAI.github.io/MicroGrowAgents)
 
-## Repository Structure
+## Test Coverage
 
-* [docs/](docs/) - mkdocs-managed documentation
-* [project/](project/) - project files (these files are auto-generated, do not edit)
-* [src/](src/) - source files (edit these)
-  * [microgrowagents](src/microgrowagents)
-* [tests/](tests/) - Python tests
-  * [data/](tests/data) - Example data
+- **Osmotic Properties**: 21/21 tests, 20 doctests
+- **Redox Properties**: 27/27 tests
+- **Nutrient Ratios**: 27/27 tests
+- **Sensitivity Analysis**: 11/11 integration tests
+- **Total**: 86 tests passing across all modules
 
-## Developer Tools
+## External Dependencies
 
-There are several pre-defined command-recipes available.
-They are written for the command runner [just](https://github.com/casey/just/). To list all pre-defined commands, run `just` or `just --list`.
+- **PubChem**: Chemical structure and property data
+- **ChEBI**: Ontology-based chemical enrichment
+- **eQuilibrator**: Biochemical thermodynamic calculations
+- **NIST WebBook**: Inorganic thermodynamic data (planned)
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Write tests for new functionality
+4. Ensure all tests pass (`just test`)
+5. Submit a pull request
+
+## License
+
+[Add license information]
 
 ## Credits
 
 This project uses the template [monarch-project-copier](https://github.com/monarch-initiative/monarch-project-copier)
+
+## Citation
+
+If you use MicroGrowAgents in your research, please cite:
+
+```
+[Add citation information]
+```
+
+## Contact
+
+For questions or issues, please open an issue on GitHub or contact [add contact information].
