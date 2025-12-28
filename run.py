@@ -621,5 +621,339 @@ def _print_sensitivity_table(result: dict) -> None:
     click.echo(f"  Ingredients analyzed: {summary['ingredients_analyzed']}\n")
 
 
+@cli.command()
+@click.argument("query")
+@click.option("--db-path", "-d", default="data/processed/microgrow.duckdb")
+@click.option("--max-hops", default=5, type=int, help="Maximum path length for path queries")
+@click.option("--limit", default=100, type=int, help="Maximum results to return")
+@click.option("--algorithm", type=click.Choice(["betweenness", "closeness", "pagerank", "degree", "harmonic"]), help="Algorithm for centrality queries")
+@click.option("--radius", default=2, type=int, help="Radius for subgraph extraction")
+@click.option("--format", "-f", default="table", type=click.Choice(["table", "json", "yaml"]))
+@click.option("--output", "-o", type=click.Path(), help="Output file path")
+def kg_query(query: str, db_path: str, max_hops: int, limit: int, algorithm: str, radius: int, format: str, output: str) -> None:
+    """
+    Execute Knowledge Graph reasoning query.
+
+    QUERY format: "<type> <args>"
+
+    Query types:
+        lookup <node_id>              - Get node details
+        neighbors <node_id> [pred]    - Get adjacent nodes (optionally filtered by predicate)
+        path <source> <target>        - Find shortest path between nodes
+        filter <category>             - Filter nodes by biolink category
+        enzymes_using <substrate_id>  - Find enzymes using substrate (USE CASE 3)
+        media_ingredients <media_id>  - Get media ingredients pathway (USE CASE 1)
+        phenotype_media <phenotype>   - Find media for phenotypes (USE CASE 2)
+        centrality <category>         - Calculate graph centrality (requires --algorithm)
+        subgraph <node_ids>           - Extract neighborhood subgraph
+
+    Examples:
+        # Lookup node
+        python run.py kg-query "lookup CHEBI:16828"
+
+        # Find neighbors
+        python run.py kg-query "neighbors CHEBI:16828"
+        python run.py kg-query "neighbors CHEBI:16828 biolink:subclass_of"
+
+        # Find shortest path
+        python run.py kg-query "path NCBITaxon:562 CHEBI:16828" --max-hops 5
+
+        # Find enzymes using substrate
+        python run.py kg-query "enzymes_using CHEBI:16828" --limit 20
+
+        # Get media ingredients
+        python run.py kg-query "media_ingredients METPO:2000517"
+
+        # Find media for phenotype
+        python run.py kg-query "phenotype_media METPO:2000303"
+
+        # Calculate centrality
+        python run.py kg-query "centrality biolink:ChemicalSubstance" --algorithm pagerank
+
+        # Extract subgraph
+        python run.py kg-query "subgraph CHEBI:16828,CHEBI:15841" --radius 2
+
+        # Filter by category
+        python run.py kg-query "filter biolink:ChemicalSubstance" --limit 50
+
+        # Output formats
+        python run.py kg-query "lookup CHEBI:16828" --format json
+        python run.py kg-query "path NCBITaxon:562 CHEBI:16828" --format yaml --output path.yaml
+    """
+    from pathlib import Path
+    from microgrowagents.agents.kg_reasoning_agent import KGReasoningAgent
+    from microgrowagents.kg.graph_builder import GRAPE_AVAILABLE
+    import json
+    import yaml
+
+    # Check if GRAPE is available for graph-based queries
+    graph_queries = ["path", "centrality", "subgraph"]
+    query_type = query.split()[0].lower() if query else ""
+
+    if query_type in graph_queries and not GRAPE_AVAILABLE:
+        click.echo(
+            f"Error: Query type '{query_type}' requires GRAPE, which is not available on this system.\n"
+            f"See docs/grape_installation.md for installation instructions.\n"
+            f"Supported queries without GRAPE: lookup, neighbors, filter, enzymes_using, "
+            f"media_ingredients, phenotype_media",
+            err=True
+        )
+        return
+
+    # Initialize agent
+    try:
+        agent = KGReasoningAgent(db_path=Path(db_path))
+    except Exception as e:
+        click.echo(f"Error initializing KG agent: {e}", err=True)
+        click.echo(f"Make sure database exists at {db_path}. Run 'python run.py load-data' first.", err=True)
+        return
+
+    # Execute query
+    result = agent.run(
+        query,
+        max_hops=max_hops,
+        limit=limit,
+        algorithm=algorithm,
+        radius=radius
+    )
+
+    # Handle errors
+    if not result["success"]:
+        click.echo(f"Error: {result['error']}", err=True)
+        return
+
+    # Format output
+    output_str = None
+
+    if format == "json":
+        # Remove non-JSON-serializable objects (like GRAPE Graph)
+        result_copy = dict(result)
+        if "subgraph" in result_copy:
+            result_copy["subgraph"] = f"<Graph: {result_copy.get('node_count', 0)} nodes, {result_copy.get('edge_count', 0)} edges>"
+
+        output_str = json.dumps(result_copy, indent=2)
+
+    elif format == "yaml":
+        # Remove non-YAML-serializable objects
+        result_copy = dict(result)
+        if "subgraph" in result_copy:
+            result_copy["subgraph"] = f"<Graph: {result_copy.get('node_count', 0)} nodes, {result_copy.get('edge_count', 0)} edges>"
+
+        output_str = yaml.dump(result_copy, default_flow_style=False)
+
+    else:  # table
+        output_str = _format_kg_result_table(result)
+
+    # Output results
+    if output:
+        with open(output, 'w') as f:
+            f.write(output_str)
+        click.echo(f"Saved output to: {output}")
+    else:
+        click.echo(output_str)
+
+
+@cli.command()
+@click.argument("organism_id")
+@click.option("--db-path", "-d", default="data/processed/microgrow.duckdb")
+@click.option("--format", "-f", default="table", type=click.Choice(["table", "json", "yaml", "tsv"]))
+@click.option("--output", "-o", type=click.Path(), help="Output file path")
+def kg_pathway(organism_id: str, db_path: str, format: str, output: str) -> None:
+    """
+    Get full pathway from organism to media to ingredients.
+
+    Traces the complete pathway: organism → media (where it grows) → ingredients → chemical properties.
+    This corresponds to USE CASE 1 from the KG reasoning agent.
+
+    ORGANISM_ID should be an NCBITaxon ID (e.g., "NCBITaxon:562" for E. coli).
+
+    Examples:
+        # Get pathway for E. coli
+        python run.py kg-pathway "NCBITaxon:562"
+
+        # Export as JSON
+        python run.py kg-pathway "NCBITaxon:562" --format json --output ecoli_pathway.json
+
+        # Export as TSV
+        python run.py kg-pathway "NCBITaxon:562" --format tsv --output ecoli_pathway.tsv
+
+        # Show as YAML
+        python run.py kg-pathway "NCBITaxon:562" --format yaml
+    """
+    from pathlib import Path
+    from microgrowagents.kg.query_patterns import QueryPatterns
+    import json
+    import yaml
+    import pandas as pd
+
+    # Initialize query patterns
+    try:
+        patterns = QueryPatterns(Path(db_path))
+    except Exception as e:
+        click.echo(f"Error connecting to database: {e}", err=True)
+        click.echo(f"Make sure database exists at {db_path}. Run 'python run.py load-data' first.", err=True)
+        return
+
+    # Get pathway
+    try:
+        pathway_df = patterns.organism_to_media_pathway(organism_id)
+    except Exception as e:
+        click.echo(f"Error querying pathway: {e}", err=True)
+        return
+
+    if pathway_df.empty:
+        click.echo(f"No pathway found for organism: {organism_id}", err=True)
+        return
+
+    # Format output
+    output_str = None
+
+    if format == "json":
+        output_str = pathway_df.to_json(orient="records", indent=2)
+
+    elif format == "yaml":
+        records = pathway_df.to_dict(orient="records")
+        output_str = yaml.dump(records, default_flow_style=False)
+
+    elif format == "tsv":
+        output_str = pathway_df.to_csv(sep="\t", index=False)
+
+    else:  # table
+        click.echo(f"\n=== Organism to Media Pathway: {organism_id} ===\n")
+
+        # Group by media
+        media_groups = pathway_df.groupby(["media_id", "media_name"])
+
+        for (media_id, media_name), group in media_groups:
+            click.echo(f"Medium: {media_name} ({media_id})")
+            click.echo(f"  Ingredients ({len(group)}):")
+
+            for _, row in group.iterrows():
+                click.echo(f"    - {row['ingredient_name']} ({row['ingredient_id']})")
+                click.echo(f"      Category: {row['ingredient_category']}")
+            click.echo()
+
+        output_str = f"\nTotal: {len(pathway_df)} ingredient-media associations across {pathway_df['media_id'].nunique()} media"
+
+    # Output results
+    if output:
+        with open(output, 'w') as f:
+            f.write(output_str)
+        click.echo(f"Saved output to: {output}")
+    else:
+        click.echo(output_str)
+
+
+def _format_kg_result_table(result: dict) -> str:
+    """Format KG query result as human-readable table."""
+    import pandas as pd
+    from io import StringIO
+
+    output = StringIO()
+    query_type = result.get("query_type", "unknown")
+
+    output.write(f"\n=== KG Query Result: {query_type} ===\n\n")
+
+    if query_type == "lookup":
+        # Format node details
+        output.write(f"Node ID: {result['node_id']}\n")
+        output.write(f"Name: {result.get('name', 'N/A')}\n")
+        output.write(f"Category: {result.get('category', 'N/A')}\n")
+        if result.get('description'):
+            output.write(f"Description: {result['description']}\n")
+        if result.get('xref'):
+            output.write(f"Cross-references: {result['xref']}\n")
+
+    elif query_type == "neighbors":
+        # Format neighbors as table
+        if result['neighbors']:
+            df = pd.DataFrame(result['neighbors'])
+            output.write(f"Node: {result['node_id']}\n")
+            output.write(f"Neighbors ({len(result['neighbors'])}):\n\n")
+            output.write(df.to_string(index=False))
+        else:
+            output.write(f"No neighbors found for {result['node_id']}")
+
+    elif query_type == "path":
+        # Format path
+        output.write(f"Source: {result['source']}\n")
+        output.write(f"Target: {result['target']}\n")
+        output.write(f"Path length: {result['length']} hops\n\n")
+        output.write("Path:\n")
+        for i, node in enumerate(result['path']):
+            output.write(f"  {i}. {node}\n")
+
+    elif query_type == "filter":
+        # Format filtered nodes as table
+        if result['nodes']:
+            df = pd.DataFrame(result['nodes'])
+            output.write(f"Category: {result['category']}\n")
+            output.write(f"Results ({result['count']}):\n\n")
+            output.write(df.to_string(index=False))
+        else:
+            output.write(f"No nodes found for category: {result['category']}")
+
+    elif query_type == "enzymes_using":
+        # Format enzymes as table
+        if result['enzymes']:
+            df = pd.DataFrame(result['enzymes'])
+            output.write(f"Substrate: {result['substrate_id']}\n")
+            output.write(f"Enzymes found ({result['count']}):\n\n")
+            output.write(df.to_string(index=False))
+        else:
+            output.write(f"No enzymes found using substrate: {result['substrate_id']}")
+
+    elif query_type == "media_ingredients":
+        # Format media ingredients
+        media_info = result['media_info']
+        if media_info:
+            output.write(f"Medium: {media_info['media_name']} ({media_info['media_id']})\n")
+            output.write(f"Category: {media_info['category']}\n\n")
+
+            if result['ingredients']:
+                output.write(f"Ingredients ({result['ingredient_count']}):\n\n")
+                df = pd.DataFrame(result['ingredients'])
+                output.write(df.to_string(index=False))
+            else:
+                output.write("No ingredients found")
+        else:
+            output.write("Media not found")
+
+    elif query_type == "phenotype_media":
+        # Format recommended media
+        if result['recommended_media']:
+            df = pd.DataFrame(result['recommended_media'])
+            output.write(f"Phenotypes: {', '.join(result['phenotype_ids'])}\n")
+            output.write(f"Recommended media ({result['count']}):\n\n")
+            output.write(df.to_string(index=False))
+        else:
+            output.write(f"No media found for phenotypes: {', '.join(result['phenotype_ids'])}")
+
+    elif query_type == "centrality":
+        # Format centrality scores
+        output.write(f"Category: {result['category']}\n")
+        output.write(f"Algorithm: {result['algorithm']}\n\n")
+        output.write("Top 20 nodes by centrality:\n\n")
+
+        # Sort by score and take top 20
+        scores = sorted(result['centrality_scores'].items(), key=lambda x: x[1], reverse=True)[:20]
+        df = pd.DataFrame(scores, columns=["Node ID", "Score"])
+        output.write(df.to_string(index=False))
+
+    elif query_type == "subgraph":
+        # Format subgraph info
+        output.write(f"Center nodes: {', '.join(result['center_nodes'])}\n")
+        output.write(f"Radius: {result['radius']} hops\n\n")
+        output.write(f"Subgraph:\n")
+        output.write(f"  Nodes: {result['node_count']}\n")
+        output.write(f"  Edges: {result['edge_count']}\n")
+
+    else:
+        # Generic output
+        output.write(str(result))
+
+    return output.getvalue()
+
+
 if __name__ == "__main__":
     cli()

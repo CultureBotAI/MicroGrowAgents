@@ -7,6 +7,7 @@ This module contains specialized agents for media prediction:
 - ChemistryAgent: Chemical calculations and API integration
 - GenMediaConcAgent: Media ingredient concentration prediction
 - SensitivityAnalysisAgent: Sensitivity analysis for media formulations
+- KGReasoningAgent: Knowledge Graph reasoning and pathway discovery
 - TableAgent: Table creation from literature
 - AgentOrchestrator: Multi-agent coordination
 """
@@ -14,6 +15,7 @@ This module contains specialized agents for media prediction:
 from microgrowagents.agents.base_agent import BaseAgent
 from microgrowagents.agents.chemistry_agent import ChemistryAgent
 from microgrowagents.agents.gen_media_conc_agent import GenMediaConcAgent
+from microgrowagents.agents.kg_reasoning_agent import KGReasoningAgent
 from microgrowagents.agents.literature_agent import LiteratureAgent
 from microgrowagents.agents.sensitivity_analysis_agent import SensitivityAnalysisAgent
 from microgrowagents.agents.sql_agent import SQLAgent
@@ -22,6 +24,7 @@ __all__ = [
     "BaseAgent",
     "ChemistryAgent",
     "GenMediaConcAgent",
+    "KGReasoningAgent",
     "LiteratureAgent",
     "SensitivityAnalysisAgent",
     "SQLAgent",
