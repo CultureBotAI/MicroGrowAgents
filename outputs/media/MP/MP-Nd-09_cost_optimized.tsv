@@ -1,0 +1,33 @@
+Medium_ID	MP-Nd-09
+Medium_Name	Cost-Optimized Minimal
+Strategy	Cost reduction
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Minimize ingredient cost while maintaining acceptable performance
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.5	mM	Phosphorus source / Buffer
+Magnesium sulfate heptahydrate	MgSO4·7H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	0	μM	Trace from salts only
+Neodymium chloride hexahydrate	NdCl3·6H2O	2	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	8	μM	Trace element
+Thiamin (Vitamin B1)	C12H17ClN4OS	1	μg/mL	Essential vitamin
+Biotin (Vitamin H)	C10H16N2O3S	0.1	μg/mL	Essential vitamin
+
+pH	7.0
+Buffer_Type	Phosphate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.0-1.2
+Expected_Nd_Depletion	55-65%
+Cost_Reduction	~40% vs MP-Nd-02
+Key_Feature	Good performance/cost ratio
+
+Rationale	Minimal ingredient formulation for cost-sensitive applications. Omits expensive PQQ (relies on biosynthesis). Uses MgSO₄ instead of chloride. Trace Ca from salts sufficient for lanthanide switch. Essential vitamins only (thiamin/biotin for M. extorquens auxotrophy).
+
+Supporting_DOI_1	10.1371/journal.pone.0005584
+Supporting_DOI_2	10.1371/journal.pone.0050480

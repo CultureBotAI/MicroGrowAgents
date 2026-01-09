@@ -1,0 +1,32 @@
+Medium_ID	MP-Nd-08
+Medium_Name	Citrate Buffer (Precipitation-Resistant)
+Strategy	Precipitation prevention
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Enable high Nd concentration without precipitation
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	0.5	mM	Phosphorus source (minimal)
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	10	μM	Essential macronutrient
+Neodymium chloride hexahydrate	NdCl3·6H2O	4	μM	Rare earth element / XoxF cofactor (high)
+Iron citrate complex	Fe-citrate	8	μM	Trace element (stabilized)
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.0	mg/L	Cofactor for XoxF-MDH
+Sodium citrate dihydrate	C6H5Na3O7·2H2O	15	mM	Buffer / Chelator
+
+pH	7.0
+Buffer_Type	Citrate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.1-1.3
+Expected_Nd_Depletion	75-80%
+Key_Feature	No precipitation at high Nd
+
+Rationale	Citrate buffer prevents Nd-phosphate precipitation (solubility product Ksp = 10⁻²³). Reduced phosphate (0.5 mM) minimizes precipitation risk while maintaining essential P. Fe supplied as citrate complex for stability. Enables high Nd (4 μM) without turbidity.
+
+Supporting_DOI_1	10.1038/nchembio.1947
+Supporting_DOI_2	10.1016/j.seppur.2025.131701

@@ -1,0 +1,33 @@
+Medium_ID	MP-Nd-03
+Medium_Name	Ultra-Low Ca (XoxF Exclusive)
+Strategy	XoxF-exclusive metabolism
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Force exclusive XoxF-dependent growth
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.5	mM	Phosphorus source
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	1	μM	Trace only (suppresses MxaF)
+Neodymium chloride hexahydrate	NdCl3·6H2O	2	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	10	μM	Trace element
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.0	mg/L	Cofactor for XoxF-MDH
+PIPES	C8H18N2O6S2	20	mM	Buffer
+
+pH	7.0
+Buffer_Type	PIPES
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.2-1.4
+Expected_Nd_Depletion	65-75%
+Key_Feature	Pure XoxF-dependent metabolism
+
+Rationale	Calcium minimization (<1 μM) completely shuts off MxaF expression, forcing exclusive XoxF-dependent growth. PIPES buffer avoids phosphate precipitation with Nd. PQQ supplementation ensures XoxF has adequate cofactor.
+
+Supporting_DOI_1	10.1371/journal.pone.0050480
+Supporting_DOI_2	10.1128/AEM.00572-11
+Supporting_DOI_3	10.1038/s41598-019-41043-1

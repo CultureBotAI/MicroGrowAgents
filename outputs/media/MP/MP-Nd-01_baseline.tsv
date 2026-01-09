@@ -1,0 +1,30 @@
+Medium_ID	MP-Nd-01
+Medium_Name	Baseline MP + Minimal Nd
+Strategy	Baseline control
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Baseline control for XoxF activity assessment
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.5	mM	Phosphorus source / Buffer
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	100	μM	Essential macronutrient / MxaF cofactor
+Neodymium chloride hexahydrate	NdCl3·6H2O	0.5	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	10	μM	Trace element
+
+pH	7.0
+Buffer_Type	Phosphate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	0.8-1.0
+Expected_Nd_Depletion	30-40%
+Key_Feature	Mixed XoxF/MxaF activity
+
+Rationale	Standard MP medium with minimal Nd supplementation. Serves as control to assess baseline XoxF activity with low Nd availability. Moderate Ca²⁺ allows MxaF co-expression.
+
+Supporting_DOI_1	10.1371/journal.pone.0050480
+Supporting_DOI_2	10.1038/nature16174

@@ -1,0 +1,39 @@
+Medium_ID	MP-Nd-10
+Medium_Name	High-Performance Combined
+Strategy	Combined multi-factor optimization
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Maximum Nd depletion + good growth (RECOMMENDED)
+Recommended	TRUE
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	188	mM	Carbon source
+Methanol	CH3OH	0.75	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	12	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	0.8	mM	Phosphorus source
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.8	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	3	μM	Essential macronutrient (ultra-low)
+Neodymium chloride hexahydrate	NdCl3·6H2O	3	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	1	μM	Trace element (low for methylolanthanin)
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.5	mg/L	Cofactor for XoxF-MDH
+Sodium citrate dihydrate	C6H5Na3O7·2H2O	12	mM	Buffer / Chelator
+Thiamin (Vitamin B1)	C12H17ClN4OS	1	μg/mL	Essential vitamin
+Biotin (Vitamin H)	C10H16N2O3S	0.1	μg/mL	Essential vitamin
+
+pH	7.0
+Buffer_Type	Citrate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.5-1.8
+Expected_Nd_Depletion	85-92%
+Key_Feature	Best overall performance, recommended for REE recovery
+
+Optimization_Strategies	(1) Low Ca for XoxF dominance, (2) Low Fe for methylolanthanin induction, (3) Citrate buffer for Nd solubility, (4) Moderate-high methanol for growth, (5) PQQ supplementation
+
+Rationale	Combined optimization strategy incorporating: (1) Low Ca for XoxF dominance, (2) Low Fe for methylolanthanin induction, (3) Citrate buffer for Nd solubility, (4) Moderate-high methanol for good growth, (5) PQQ supplementation for XoxF activity. Balanced for maximum Nd depletion + good growth.
+
+Supporting_DOI_1	10.1038/nature16174
+Supporting_DOI_2	10.1073/pnas.1600558113
+Supporting_DOI_3	10.1038/s41586-018-0285-7
+Supporting_DOI_4	10.3389/fbioe.2023.1130939

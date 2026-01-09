@@ -1,0 +1,32 @@
+Medium_ID	MP-Nd-06
+Medium_Name	Low Methanol (Controlled Growth)
+Strategy	Extended uptake phase
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Extend Nd uptake phase through methanol limitation
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	62	mM	Carbon source (limited)
+Methanol	CH3OH	0.25	% v/v	Carbon source (limited)
+Ammonium sulfate	(NH4)2SO4	8	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.0	mM	Phosphorus source
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.4	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	10	μM	Essential macronutrient
+Neodymium chloride hexahydrate	NdCl3·6H2O	3	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	5	μM	Trace element
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.0	mg/L	Cofactor for XoxF-MDH
+Sodium citrate dihydrate	C6H5Na3O7·2H2O	10	mM	Buffer / Chelator
+
+pH	6.8
+Buffer_Type	Citrate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	72 hours
+
+Expected_Growth_OD600	0.7-0.9
+Expected_Nd_Depletion	80-90%
+Key_Feature	Highest Nd per cell ratio, extended 72h
+
+Rationale	Methanol limitation (0.25%) slows growth rate but extends Nd uptake phase. Lower pH (6.8) increases Nd solubility. Citrate buffer prevents precipitation during extended incubation. Nd:biomass ratio optimized for active bioaccumulation.
+
+Supporting_DOI_1	10.1038/s41586-018-0285-7
+Supporting_DOI_2	10.3389/fbioe.2023.1130939

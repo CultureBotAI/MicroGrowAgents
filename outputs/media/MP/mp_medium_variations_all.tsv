@@ -1,0 +1,29 @@
+Ingredient	Unit	MP-Nd-01	MP-Nd-02	MP-Nd-03	MP-Nd-04	MP-Nd-05	MP-Nd-06	MP-Nd-07	MP-Nd-08	MP-Nd-09	MP-Nd-10
+Variation_Name	-	Baseline MP + Minimal Nd	High Nd Optimized	Ultra-Low Ca (XoxF Exclusive)	Low Fe (Methylolanthanin Inducer)	High Methanol (Growth Optimized)	Low Methanol (Controlled Growth)	PQQ-Supplemented (XoxF Activity Max)	Citrate Buffer (Precipitation-Resistant)	Cost-Optimized Minimal	High-Performance Combined
+Methanol	mM	125	188	125	125	250	62	125	125	125	188
+Methanol	% v/v	0.5	0.75	0.5	0.5	1.0	0.25	0.5	0.5	0.5	0.75
+(NH4)2SO4	mM	10	12	10	10	15	8	10	10	10	12
+K2HPO4	mM	1.5	1.0	1.5	1.5	2.0	1.0	1.5	0.5	1.5	0.8
+MgCl2	mM	0.5	0.8	0.5	0.5	1.0	0.4	0.5	0.5	0.5	0.8
+MgSO4	mM	0	0	0	0	0	0	0	0	0.5	0
+CaCl2	μM	100	5	1	10	10	10	5	10	0	3
+NdCl3·6H2O	μM	0.5	5	2	2	2	3	2	4	2	3
+FeSO4·7H2O	μM	10	8	10	0.5	12	5	8	8	8	1
+Fe-citrate	μM	0	0	0	0	0	0	0	8	0	0
+PQQ	mg/L	0	1.0	1.0	1.0	1.5	1.0	2.0	1.0	0	1.5
+Citrate	mM	0	10	0	0.05	0	10	0	15	0	12
+Thiamin	μg/mL	0	0	0	0	0	0	0	0	1	1
+Biotin	μg/mL	0	0	0	0	0	0	0	0	0.1	0.1
+Buffer_Type	-	Phosphate	Citrate	PIPES	Phosphate	Phosphate	Citrate	PIPES	Citrate	Phosphate	Citrate
+Buffer_Concentration	mM	-	10	20	-	-	10	20	15	-	12
+pH	-	7.0	7.0	7.0	7.0	7.0	6.8	7.0	7.0	7.0	7.0
+Expected_Growth_OD600	-	0.8-1.0	1.3-1.5	1.2-1.4	0.9-1.1	1.8-2.2	0.7-0.9	1.4-1.6	1.1-1.3	1.0-1.2	1.5-1.8
+Expected_Nd_Depletion	%	30-40	70-80	65-75	75-85	60-70	80-90	70-75	75-80	55-65	85-92
+Incubation_Time	hours	48	48	48	48	48	72	48	48	48	48
+Primary_Optimization	-	Baseline control	High Nd bioaccumulation	XoxF-exclusive	Methylolanthanin production	Maximum biomass	Extended uptake	XoxF activity	Precipitation prevention	Cost reduction	Combined strategies
+Key_Feature	-	Mixed XoxF/MxaF	Citrate + high Nd	Ultra-low Ca	Fe starvation	High carbon flux	Methanol limitation	PQQ saturation	Citrate chelation	Minimal ingredients	Multi-factor optimization
+Supporting_DOI_1	-	10.1371/journal.pone.0050480	10.1038/s41586-018-0285-7	10.1371/journal.pone.0050480	10.1038/nature16174	10.1371/journal.pone.0005584	10.1038/s41586-018-0285-7	10.1021/jacs.0c11414	10.1038/nchembio.1947	10.1371/journal.pone.0005584	10.1038/nature16174
+Supporting_DOI_2	-	10.1038/nature16174	10.1038/nchembio.1947	10.1128/AEM.00572-11	10.1073/pnas.1600558113	10.1074/jbc.ra120.013227	10.3389/fbioe.2023.1130939	10.1074/jbc.ra120.013227	10.1016/j.seppur.2025.131701	10.1371/journal.pone.0050480	10.1073/pnas.1600558113
+Supporting_DOI_3	-	-	10.3389/fbioe.2023.1130939	10.1038/s41598-019-41043-1	10.3389/fmicb.2022.921635	-	-	10.1371/journal.pone.0050480	-	-	10.1038/s41586-018-0285-7
+Supporting_DOI_4	-	-	-	-	-	-	-	-	-	-	10.3389/fbioe.2023.1130939
+Rationale	-	Standard MP medium with minimal Nd supplementation. Serves as control to assess baseline XoxF activity with low Nd availability. Moderate Ca²⁺ allows MxaF co-expression.	Maximum Nd depletion via high concentration + citrate buffer to prevent precipitation. Low Ca forces XoxF-dependent growth. Moderate Fe supports enzyme synthesis while allowing some methylolanthanin production.	Calcium minimization (<1 μM) completely shuts off MxaF expression, forcing exclusive XoxF-dependent growth. PIPES buffer avoids phosphate precipitation with Nd. PQQ supplementation ensures XoxF has adequate cofactor.	Iron starvation (<1 μM) triggers lanthanophore (methylolanthanin) production in M. extorquens, increasing Nd uptake by 10-100×. Low citrate provides Fe³⁺ chelation without excess metal buffering.	Elevated methanol (1%) provides maximum carbon flux for rapid growth and high biomass production. Increased N, P, Mg support enhanced metabolism. Higher Fe ensures robust enzyme synthesis. Optimized for maximum biomass-based Nd biosorption.	Methanol limitation (0.25%) slows growth rate but extends Nd uptake phase. Lower pH (6.8) increases Nd solubility. Citrate buffer prevents precipitation during extended incubation. Nd:biomass ratio optimized for active bioaccumulation.	High PQQ supplementation (2 mg/L) ensures XoxF-MDH is never cofactor-limited. Critical for strains with low PQQ biosynthesis. PIPES buffer avoids phosphate/Nd precipitation. Minimized Ca ensures lanthanide switch activation.	Citrate buffer prevents Nd-phosphate precipitation (solubility product Ksp = 10⁻²³). Reduced phosphate (0.5 mM) minimizes precipitation risk while maintaining essential P. Fe supplied as citrate complex for stability. Enables high Nd (4 μM) without turbidity.	Minimal ingredient formulation for cost-sensitive applications. Omits expensive PQQ (relies on biosynthesis). Uses MgSO₄ instead of chloride. Trace Ca from salts sufficient for lanthanide switch. Essential vitamins only (thiamin/biotin for M. extorquens auxotrophy).	Combined optimization: (1) Low Ca for XoxF dominance, (2) Low Fe for methylolanthanin induction, (3) Citrate buffer for Nd solubility, (4) Moderate-high methanol for growth, (5) PQQ supplementation. Balanced for maximum Nd depletion + good growth.

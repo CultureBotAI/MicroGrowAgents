@@ -1,0 +1,31 @@
+Medium_ID	MP-Nd-05
+Medium_Name	High Methanol (Growth Optimized)
+Strategy	Maximum biomass
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Maximize biomass for passive Nd biosorption
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	250	mM	Carbon source
+Methanol	CH3OH	1.0	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	15	mM	Nitrogen source (increased)
+Potassium phosphate dibasic	K2HPO4	2.0	mM	Phosphorus source / Buffer
+Magnesium chloride hexahydrate	MgCl2·6H2O	1.0	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	10	μM	Essential macronutrient
+Neodymium chloride hexahydrate	NdCl3·6H2O	2	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	12	μM	Trace element (elevated)
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.5	mg/L	Cofactor for XoxF-MDH
+
+pH	7.0
+Buffer_Type	Phosphate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.8-2.2
+Expected_Nd_Depletion	60-70%
+Key_Feature	Maximum biomass for passive biosorption
+
+Rationale	Elevated methanol (1%) provides maximum carbon flux for rapid growth and high biomass production. Increased N, P, Mg support enhanced metabolism. Higher Fe ensures robust enzyme synthesis. Optimized for maximum biomass-based Nd biosorption.
+
+Supporting_DOI_1	10.1371/journal.pone.0005584
+Supporting_DOI_2	10.1074/jbc.ra120.013227

@@ -1,0 +1,34 @@
+Medium_ID	MP-Nd-04
+Medium_Name	Low Fe (Methylolanthanin Inducer)
+Strategy	Methylolanthanin production
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Trigger lanthanophore production through Fe starvation
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.5	mM	Phosphorus source / Buffer
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	10	μM	Essential macronutrient
+Neodymium chloride hexahydrate	NdCl3·6H2O	2	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	0.5	μM	Trace element (severely limited)
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	1.0	mg/L	Cofactor for XoxF-MDH
+Sodium citrate dihydrate	C6H5Na3O7·2H2O	0.05	mM	Fe chelator (low)
+
+pH	7.0
+Buffer_Type	Phosphate
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	0.9-1.1
+Expected_Nd_Depletion	75-85%
+Key_Feature	Highest lanthanophore production
+Special_Note	Slower lag phase expected
+
+Rationale	Iron starvation (<1 μM) triggers lanthanophore (methylolanthanin) production in M. extorquens, increasing Nd uptake by 10-100×. Low citrate provides Fe³⁺ chelation without excess metal buffering.
+
+Supporting_DOI_1	10.1038/nature16174
+Supporting_DOI_2	10.1073/pnas.1600558113
+Supporting_DOI_3	10.3389/fmicb.2022.921635

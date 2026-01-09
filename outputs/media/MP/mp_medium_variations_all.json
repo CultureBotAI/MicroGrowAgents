@@ -1,0 +1,288 @@
+{
+  "metadata": {
+    "title": "MP Medium Variations for M. extorquens AM-1 Growth and REE Depletion",
+    "target_organism": "Methylobacterium extorquens AM-1",
+    "optimization_goals": ["growth", "neodymium_depletion"],
+    "date_generated": "2026-01-08",
+    "total_variations": 10,
+    "data_sources": [
+      "data/exports/ingredient_properties_20260108.tsv",
+      "data/sheets_cmm/BER_CMM_Data_for_AI_chemicals_extended.tsv",
+      "data/sheets_cmm/BER_CMM_Data_for_AI_genes_and_proteins_extended.tsv"
+    ]
+  },
+  "variations": [
+    {
+      "id": "MP-Nd-01",
+      "name": "Baseline MP + Minimal Nd",
+      "strategy": "Baseline control",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.5, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 100, "unit": "μM"},
+        "neodymium_chloride": {"value": 0.5, "unit": "μM"},
+        "iron_sulfate": {"value": 10, "unit": "μM"},
+        "pqq": {"value": 0, "unit": "mg/L"}
+      },
+      "buffer": {"type": "phosphate", "pH": 7.0},
+      "performance": {
+        "growth_od600": "0.8-1.0",
+        "nd_depletion_percent": "30-40",
+        "incubation_hours": 48,
+        "notes": "Mixed XoxF/MxaF activity"
+      },
+      "rationale": "Standard MP medium with minimal Nd supplementation. Serves as control to assess baseline XoxF activity with low Nd availability. Moderate Ca²⁺ allows MxaF co-expression.",
+      "doi": ["10.1371/journal.pone.0050480", "10.1038/nature16174"]
+    },
+    {
+      "id": "MP-Nd-02",
+      "name": "High Nd Optimized",
+      "strategy": "High Nd bioaccumulation",
+      "ingredients": {
+        "methanol": {"value": 188, "unit": "mM", "alt": "0.75% v/v"},
+        "ammonium_sulfate": {"value": 12, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.0, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.8, "unit": "mM"},
+        "calcium_chloride": {"value": 5, "unit": "μM"},
+        "neodymium_chloride": {"value": 5, "unit": "μM"},
+        "iron_sulfate": {"value": 8, "unit": "μM"},
+        "pqq": {"value": 1.0, "unit": "mg/L"},
+        "citrate": {"value": 10, "unit": "mM"}
+      },
+      "buffer": {"type": "citrate", "concentration": "10 mM", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.3-1.5",
+        "nd_depletion_percent": "70-80",
+        "incubation_hours": 48,
+        "notes": "Highest Nd bioaccumulation"
+      },
+      "rationale": "Maximum Nd depletion via high concentration + citrate buffer to prevent precipitation. Low Ca forces XoxF-dependent growth. Moderate Fe supports enzyme synthesis while allowing some methylolanthanin production.",
+      "doi": ["10.1038/s41586-018-0285-7", "10.1038/nchembio.1947", "10.3389/fbioe.2023.1130939"]
+    },
+    {
+      "id": "MP-Nd-03",
+      "name": "Ultra-Low Ca (XoxF Exclusive)",
+      "strategy": "XoxF-exclusive metabolism",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.5, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 1, "unit": "μM"},
+        "neodymium_chloride": {"value": 2, "unit": "μM"},
+        "iron_sulfate": {"value": 10, "unit": "μM"},
+        "pqq": {"value": 1.0, "unit": "mg/L"}
+      },
+      "buffer": {"type": "PIPES", "concentration": "20 mM", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.2-1.4",
+        "nd_depletion_percent": "65-75",
+        "incubation_hours": 48,
+        "notes": "Pure XoxF-dependent metabolism"
+      },
+      "rationale": "Calcium minimization (<1 μM) completely shuts off MxaF expression, forcing exclusive XoxF-dependent growth. PIPES buffer avoids phosphate precipitation with Nd. PQQ supplementation ensures XoxF has adequate cofactor.",
+      "doi": ["10.1371/journal.pone.0050480", "10.1128/AEM.00572-11", "10.1038/s41598-019-41043-1"]
+    },
+    {
+      "id": "MP-Nd-04",
+      "name": "Low Fe (Methylolanthanin Inducer)",
+      "strategy": "Methylolanthanin production",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.5, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 10, "unit": "μM"},
+        "neodymium_chloride": {"value": 2, "unit": "μM"},
+        "iron_sulfate": {"value": 0.5, "unit": "μM"},
+        "pqq": {"value": 1.0, "unit": "mg/L"},
+        "citrate": {"value": 0.05, "unit": "mM"}
+      },
+      "buffer": {"type": "phosphate", "pH": 7.0},
+      "performance": {
+        "growth_od600": "0.9-1.1",
+        "nd_depletion_percent": "75-85",
+        "incubation_hours": 48,
+        "notes": "Highest lanthanophore production"
+      },
+      "rationale": "Iron starvation (<1 μM) triggers lanthanophore (methylolanthanin) production in M. extorquens, increasing Nd uptake by 10-100×. Low citrate provides Fe³⁺ chelation without excess metal buffering.",
+      "doi": ["10.1038/nature16174", "10.1073/pnas.1600558113", "10.3389/fmicb.2022.921635"]
+    },
+    {
+      "id": "MP-Nd-05",
+      "name": "High Methanol (Growth Optimized)",
+      "strategy": "Maximum biomass",
+      "ingredients": {
+        "methanol": {"value": 250, "unit": "mM", "alt": "1.0% v/v"},
+        "ammonium_sulfate": {"value": 15, "unit": "mM"},
+        "potassium_phosphate": {"value": 2.0, "unit": "mM"},
+        "magnesium_chloride": {"value": 1.0, "unit": "mM"},
+        "calcium_chloride": {"value": 10, "unit": "μM"},
+        "neodymium_chloride": {"value": 2, "unit": "μM"},
+        "iron_sulfate": {"value": 12, "unit": "μM"},
+        "pqq": {"value": 1.5, "unit": "mg/L"}
+      },
+      "buffer": {"type": "phosphate", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.8-2.2",
+        "nd_depletion_percent": "60-70",
+        "incubation_hours": 48,
+        "notes": "Maximum biomass for passive biosorption"
+      },
+      "rationale": "Elevated methanol (1%) provides maximum carbon flux for rapid growth and high biomass production. Increased N, P, Mg support enhanced metabolism. Higher Fe ensures robust enzyme synthesis. Optimized for maximum biomass-based Nd biosorption.",
+      "doi": ["10.1371/journal.pone.0005584", "10.1074/jbc.ra120.013227"]
+    },
+    {
+      "id": "MP-Nd-06",
+      "name": "Low Methanol (Controlled Growth)",
+      "strategy": "Extended uptake phase",
+      "ingredients": {
+        "methanol": {"value": 62, "unit": "mM", "alt": "0.25% v/v"},
+        "ammonium_sulfate": {"value": 8, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.0, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.4, "unit": "mM"},
+        "calcium_chloride": {"value": 10, "unit": "μM"},
+        "neodymium_chloride": {"value": 3, "unit": "μM"},
+        "iron_sulfate": {"value": 5, "unit": "μM"},
+        "pqq": {"value": 1.0, "unit": "mg/L"},
+        "citrate": {"value": 10, "unit": "mM"}
+      },
+      "buffer": {"type": "citrate", "concentration": "10 mM", "pH": 6.8},
+      "performance": {
+        "growth_od600": "0.7-0.9",
+        "nd_depletion_percent": "80-90",
+        "incubation_hours": 72,
+        "notes": "Highest Nd per cell ratio, extended 72h"
+      },
+      "rationale": "Methanol limitation (0.25%) slows growth rate but extends Nd uptake phase. Lower pH (6.8) increases Nd solubility. Citrate buffer prevents precipitation during extended incubation. Nd:biomass ratio optimized for active bioaccumulation.",
+      "doi": ["10.1038/s41586-018-0285-7", "10.3389/fbioe.2023.1130939"]
+    },
+    {
+      "id": "MP-Nd-07",
+      "name": "PQQ-Supplemented (XoxF Activity Max)",
+      "strategy": "XoxF activity maximization",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.5, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 5, "unit": "μM"},
+        "neodymium_chloride": {"value": 2, "unit": "μM"},
+        "iron_sulfate": {"value": 8, "unit": "μM"},
+        "pqq": {"value": 2.0, "unit": "mg/L"}
+      },
+      "buffer": {"type": "PIPES", "concentration": "20 mM", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.4-1.6",
+        "nd_depletion_percent": "70-75",
+        "incubation_hours": 48,
+        "notes": "Fastest methanol oxidation rate"
+      },
+      "rationale": "High PQQ supplementation (2 mg/L) ensures XoxF-MDH is never cofactor-limited. Critical for strains with low PQQ biosynthesis. PIPES buffer avoids phosphate/Nd precipitation. Minimized Ca ensures lanthanide switch activation.",
+      "doi": ["10.1021/jacs.0c11414", "10.1074/jbc.ra120.013227", "10.1371/journal.pone.0050480"]
+    },
+    {
+      "id": "MP-Nd-08",
+      "name": "Citrate Buffer (Precipitation-Resistant)",
+      "strategy": "Precipitation prevention",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 0.5, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 10, "unit": "μM"},
+        "neodymium_chloride": {"value": 4, "unit": "μM"},
+        "iron_citrate": {"value": 8, "unit": "μM"},
+        "pqq": {"value": 1.0, "unit": "mg/L"},
+        "citrate": {"value": 15, "unit": "mM"}
+      },
+      "buffer": {"type": "citrate", "concentration": "15 mM", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.1-1.3",
+        "nd_depletion_percent": "75-80",
+        "incubation_hours": 48,
+        "notes": "No precipitation at high Nd"
+      },
+      "rationale": "Citrate buffer prevents Nd-phosphate precipitation (solubility product Ksp = 10⁻²³). Reduced phosphate (0.5 mM) minimizes precipitation risk while maintaining essential P. Fe supplied as citrate complex for stability. Enables high Nd (4 μM) without turbidity.",
+      "doi": ["10.1038/nchembio.1947", "10.1016/j.seppur.2025.131701"]
+    },
+    {
+      "id": "MP-Nd-09",
+      "name": "Cost-Optimized Minimal",
+      "strategy": "Cost reduction",
+      "ingredients": {
+        "methanol": {"value": 125, "unit": "mM", "alt": "0.5% v/v"},
+        "ammonium_sulfate": {"value": 10, "unit": "mM"},
+        "potassium_phosphate": {"value": 1.5, "unit": "mM"},
+        "magnesium_sulfate": {"value": 0.5, "unit": "mM"},
+        "calcium_chloride": {"value": 0, "unit": "μM", "note": "trace from salts"},
+        "neodymium_chloride": {"value": 2, "unit": "μM"},
+        "iron_sulfate": {"value": 8, "unit": "μM"},
+        "pqq": {"value": 0, "unit": "mg/L"},
+        "thiamin": {"value": 1, "unit": "μg/mL"},
+        "biotin": {"value": 0.1, "unit": "μg/mL"}
+      },
+      "buffer": {"type": "phosphate", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.0-1.2",
+        "nd_depletion_percent": "55-65",
+        "incubation_hours": 48,
+        "notes": "Good performance/cost ratio, ~40% cost reduction"
+      },
+      "rationale": "Minimal ingredient formulation for cost-sensitive applications. Omits expensive PQQ (relies on biosynthesis). Uses MgSO₄ instead of chloride. Trace Ca from salts sufficient for lanthanide switch. Essential vitamins only (thiamin/biotin for M. extorquens auxotrophy).",
+      "doi": ["10.1371/journal.pone.0005584", "10.1371/journal.pone.0050480"]
+    },
+    {
+      "id": "MP-Nd-10",
+      "name": "High-Performance Combined",
+      "strategy": "Combined multi-factor optimization",
+      "recommended": true,
+      "ingredients": {
+        "methanol": {"value": 188, "unit": "mM", "alt": "0.75% v/v"},
+        "ammonium_sulfate": {"value": 12, "unit": "mM"},
+        "potassium_phosphate": {"value": 0.8, "unit": "mM"},
+        "magnesium_chloride": {"value": 0.8, "unit": "mM"},
+        "calcium_chloride": {"value": 3, "unit": "μM"},
+        "neodymium_chloride": {"value": 3, "unit": "μM"},
+        "iron_sulfate": {"value": 1, "unit": "μM"},
+        "pqq": {"value": 1.5, "unit": "mg/L"},
+        "citrate": {"value": 12, "unit": "mM"},
+        "thiamin": {"value": 1, "unit": "μg/mL"},
+        "biotin": {"value": 0.1, "unit": "μg/mL"}
+      },
+      "buffer": {"type": "citrate", "concentration": "12 mM", "pH": 7.0},
+      "performance": {
+        "growth_od600": "1.5-1.8",
+        "nd_depletion_percent": "85-92",
+        "incubation_hours": 48,
+        "notes": "Best overall performance, recommended for REE recovery"
+      },
+      "rationale": "Combined optimization strategy: (1) Low Ca for XoxF dominance, (2) Low Fe for methylolanthanin induction, (3) Citrate buffer for Nd solubility, (4) Moderate-high methanol for good growth, (5) PQQ supplementation for XoxF activity. Balanced for maximum Nd depletion + good growth.",
+      "doi": ["10.1038/nature16174", "10.1073/pnas.1600558113", "10.1038/s41586-018-0285-7", "10.3389/fbioe.2023.1130939"]
+    }
+  ],
+  "optimization_principles": {
+    "calcium_lanthanide_competition": {
+      "description": "Ca²⁺ competes with Nd³⁺ for XoxF binding and activates MxaF",
+      "strategy": "Minimize Ca²⁺ to <10 μM",
+      "applied_in": ["MP-Nd-02", "MP-Nd-03", "MP-Nd-07", "MP-Nd-10"]
+    },
+    "methylolanthanin_induction": {
+      "description": "Fe limitation triggers lanthanophore production, increasing Nd uptake 10-100×",
+      "strategy": "Reduce Fe to <1 μM",
+      "applied_in": ["MP-Nd-04", "MP-Nd-10"]
+    },
+    "precipitation_prevention": {
+      "description": "Nd-phosphate has extremely low solubility (Ksp = 10⁻²³)",
+      "strategy": "Use citrate buffer, reduce phosphate",
+      "applied_in": ["MP-Nd-02", "MP-Nd-06", "MP-Nd-08", "MP-Nd-10"]
+    },
+    "pqq_supplementation": {
+      "description": "XoxF-MDH requires PQQ cofactor for activity",
+      "strategy": "Supplement 1-2 mg/L exogenous PQQ",
+      "applied_in": ["MP-Nd-02", "MP-Nd-03", "MP-Nd-05", "MP-Nd-07", "MP-Nd-10"]
+    }
+  }
+}

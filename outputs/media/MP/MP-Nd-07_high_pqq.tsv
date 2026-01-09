@@ -1,0 +1,33 @@
+Medium_ID	MP-Nd-07
+Medium_Name	PQQ-Supplemented (XoxF Activity Max)
+Strategy	XoxF activity maximization
+Target_Organism	Methylobacterium extorquens AM-1
+Optimization_Goal	Ensure XoxF-MDH is never PQQ-limited
+
+Ingredient	Chemical_Formula	Concentration	Unit	Role
+Methanol	CH3OH	125	mM	Carbon source
+Methanol	CH3OH	0.5	% v/v	Carbon source
+Ammonium sulfate	(NH4)2SO4	10	mM	Nitrogen source
+Potassium phosphate dibasic	K2HPO4	1.5	mM	Phosphorus source
+Magnesium chloride hexahydrate	MgCl2·6H2O	0.5	mM	Essential macronutrient
+Calcium chloride dihydrate	CaCl2·2H2O	5	μM	Essential macronutrient (minimized)
+Neodymium chloride hexahydrate	NdCl3·6H2O	2	μM	Rare earth element / XoxF cofactor
+Iron sulfate heptahydrate	FeSO4·7H2O	8	μM	Trace element
+Pyrroloquinoline quinone (PQQ)	C14H6N2O8	2.0	mg/L	Cofactor for XoxF-MDH (saturating)
+PIPES	C8H18N2O6S2	20	mM	Buffer
+
+pH	7.0
+Buffer_Type	PIPES
+Temperature	30°C
+Agitation	150-200 rpm
+Incubation_Time	48 hours
+
+Expected_Growth_OD600	1.4-1.6
+Expected_Nd_Depletion	70-75%
+Key_Feature	Fastest methanol oxidation rate
+
+Rationale	High PQQ supplementation (2 mg/L) ensures XoxF-MDH is never cofactor-limited. Critical for strains with low PQQ biosynthesis. PIPES buffer avoids phosphate/Nd precipitation. Minimized Ca ensures lanthanide switch activation.
+
+Supporting_DOI_1	10.1021/jacs.0c11414
+Supporting_DOI_2	10.1074/jbc.ra120.013227
+Supporting_DOI_3	10.1371/journal.pone.0050480
