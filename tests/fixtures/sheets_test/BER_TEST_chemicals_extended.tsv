@@ -1,0 +1,6 @@
+chemical_id	chemical_name	compound_type	molecular_formula	molecular_weight	role_in_bioprocess	chebi_id	pubchem_id	URL	source
+CHEBI:52927	Europium(III) cation	Lanthanide ion	Eu3+	151.964	TRL assay probe for REE detection	CHEBI:52927	91093730	https://pubmed.ncbi.nlm.nih.gov/24816778/	CMM Project
+CHEBI:33404	Terbium(III) cation	Lanthanide ion	Tb3+	158.925	Luminescence probe	CHEBI:33404	105026	https://doi.org/10.1038/nature16174	CMM Project
+custom_lanthanum	Lanthanum chloride	Lanthanide salt	LaCl3	245.264	REE supplementation	CHEBI:30182	24942	https://pmc.ncbi.nlm.nih.gov/articles/PMC6764073/	CMM Project
+CHEBI:36407	Neodymium(III) cation	Lanthanide ion	Nd3+	144.242	REE cofactor	CHEBI:36407	105027	https://doi.org/10.1021/jacs.9b12179	CMM Project
+CHEBI:33109	PQQ	Cofactor	C14H6N2O8	330.206	Methanol dehydrogenase cofactor	CHEBI:33109	1024	https://pubmed.ncbi.nlm.nih.gov/28876334/	CMM Project

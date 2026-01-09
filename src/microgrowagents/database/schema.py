@@ -3,7 +3,7 @@ DuckDB schema for microbial growth media data and KG-Microbe integration.
 
 This module defines the database schema for storing and querying
 microbial growth media, ingredients, organisms, and their relationships,
-plus Knowledge Graph (KG-Microbe) data.
+plus Knowledge Graph (KG-Microbe) data and genome annotations.
 
 Core Media Tables:
 1. media - Growth media definitions
@@ -12,13 +12,17 @@ Core Media Tables:
 4. organisms - NCBITaxon organisms
 5. organism_media - Many-to-many growth associations
 6. chemical_properties - pH, pKa, solubility from MicroMediaParam
-7. ingredient_effects - Effects from MP medium template + literature
+7. ingredient_effects - Effects with evidence (DOI, organism, snippets, cellular role, toxicity)
+
+Genome Annotation Tables:
+8. genome_metadata - Genome assembly and annotation metadata (57 genomes)
+9. genome_annotations - Gene annotations from Bakta GFF3 files (~250k annotations)
 
 Knowledge Graph Tables (KG-Microbe):
-8. kg_nodes - 1.5M nodes (biolink:OrganismTaxon, ChemicalSubstance, etc.)
-9. kg_edges - 5.1M edges (biolink:subclass_of, has_phenotype, METPO predicates)
-10. kg_hierarchies - Materialized transitive closure for fast ontology queries
-11. kg_predicate_index - Edge type statistics and metadata
+10. kg_nodes - 1.5M nodes (biolink:OrganismTaxon, ChemicalSubstance, etc.)
+11. kg_edges - 5.1M edges (biolink:subclass_of, has_phenotype, METPO predicates)
+12. kg_hierarchies - Materialized transitive closure for fast ontology queries
+13. kg_predicate_index - Edge type statistics and metadata
 """
 
 SCHEMA_SQL = """
@@ -82,7 +86,8 @@ CREATE TABLE IF NOT EXISTS chemical_properties (
     anhydrous_chebi VARCHAR,                   -- For hydrates
     molecular_weight DOUBLE,
     pka_values TEXT,                           -- JSON array of pKa values
-    solubility TEXT                            -- Solubility info
+    solubility TEXT,                           -- Solubility info
+    solubility_doi VARCHAR                     -- DOI citation for solubility data
 );
 
 -- Ingredient effects (from MP medium template and literature)
@@ -95,8 +100,138 @@ CREATE TABLE IF NOT EXISTS ingredient_effects (
     unit VARCHAR,
     effect_type VARCHAR,                       -- growth, pH_buffering, osmotic, etc.
     effect_description TEXT,
-    evidence TEXT,                             -- Literature citation
-    source VARCHAR                             -- MP_medium, PubMed:12345, etc.
+    evidence TEXT,                             -- Literature citation (DOI)
+    evidence_organism VARCHAR,                 -- Organism(s) relevant to this evidence
+    evidence_snippet TEXT,                     -- Supporting text from paper
+    source VARCHAR,                            -- MP_medium, PubMed:12345, etc.
+    cellular_role VARCHAR,                     -- Cellular role/function
+    cellular_requirements TEXT,                -- Specific cellular requirements
+    toxicity_value DOUBLE,                     -- Minimal/observed concentration eliciting toxicity
+    toxicity_unit VARCHAR,                     -- Unit for toxicity value
+    toxicity_species_specific BOOLEAN,         -- Whether toxicity is species-specific
+    toxicity_cellular_effects TEXT,            -- Description of cellular effects at toxic levels
+    toxicity_evidence TEXT,                    -- DOI/citation for toxicity data
+    toxicity_evidence_snippet TEXT             -- Supporting text for toxicity claim
+);
+
+-- ============================================================================
+-- Genome Annotation Tables (Bakta GFF3 files)
+-- ============================================================================
+
+-- Genome metadata (57 bacterial genomes)
+CREATE TABLE IF NOT EXISTS genome_metadata (
+    genome_id VARCHAR PRIMARY KEY,             -- SAMN00114986 (BioSample ID)
+    organism_id VARCHAR,                       -- Link to organisms.id (NCBITaxon)
+    organism_name VARCHAR,                     -- E.g., "Escherichia coli K-12"
+    biosample_id VARCHAR,                      -- SAMN ID (same as genome_id)
+    assembly_size INTEGER,                     -- Total genome size in bp
+    contig_count INTEGER,                      -- Number of contigs/scaffolds
+    gene_count INTEGER,                        -- Total genes annotated
+    cds_count INTEGER,                         -- Protein-coding genes (CDS features)
+    trna_count INTEGER,                        -- tRNA genes
+    rrna_count INTEGER,                        -- rRNA genes
+    ncrna_count INTEGER,                       -- Other ncRNA genes
+    annotation_tool VARCHAR,                   -- "Bakta"
+    annotation_version VARCHAR,                -- "v1.9.4"
+    annotation_database VARCHAR,               -- "v5.1, full"
+    annotation_date DATE,                      -- Date annotated
+    metadata_json TEXT                         -- Flexible JSON for extra fields
+);
+
+-- Genome annotations (~250,000 gene annotations from 57 genomes)
+CREATE TABLE IF NOT EXISTS genome_annotations (
+    id INTEGER PRIMARY KEY,
+    genome_id VARCHAR NOT NULL,                -- REFERENCES genome_metadata(genome_id)
+    feature_id VARCHAR NOT NULL,               -- PJIGLD_00005 (unique within genome)
+    feature_type VARCHAR NOT NULL,             -- CDS, tRNA, rRNA, ncRNA, tmRNA, CRISPR, region
+    contig_id VARCHAR,                         -- contig00001
+    start_pos INTEGER,                         -- Start position on contig
+    end_pos INTEGER,                           -- End position on contig
+    strand VARCHAR,                            -- +, -, ?
+    locus_tag VARCHAR,                         -- Systematic locus tag
+    gene_symbol VARCHAR,                       -- Gene name (e.g., "fur", "hemolysin")
+    product TEXT,                              -- Product description
+    ec_numbers TEXT,                           -- Comma-separated: "2.3.2.30,1.1.1.1"
+    go_terms TEXT,                             -- Comma-separated GO IDs: "0005575,0008150"
+    kegg_ids TEXT,                             -- Comma-separated KEGG IDs: "K22310,K00001"
+    cog_ids TEXT,                              -- Comma-separated COG IDs: "COG2202,COG0001"
+    cog_categories TEXT,                       -- Comma-separated COG categories: "T,E"
+    protein_id VARCHAR,                        -- RefSeq/UniRef ID (WP_017839628.1)
+    dbxref TEXT,                               -- Full Dbxref string for reference
+    source VARCHAR,                            -- Pyrodigal, tRNAscan-SE, Infernal, PILER-CR
+    score DOUBLE,                              -- Prediction score (if available)
+    phase INTEGER                              -- Reading frame phase (0, 1, 2 for CDS)
+);
+
+-- ============================================================================
+-- Information Sheets Tables (Extended Data Collections)
+-- ============================================================================
+
+-- Sheet Collections Registry (metadata for each sheets_* directory)
+CREATE TABLE IF NOT EXISTS sheet_collections (
+    collection_id VARCHAR PRIMARY KEY,         -- 'cmm', 'xyz', etc.
+    collection_name VARCHAR NOT NULL,          -- 'CMM Extended Data'
+    directory_path VARCHAR NOT NULL,           -- 'data/sheets_cmm'
+    loaded_at TIMESTAMP,                       -- When collection was loaded
+    table_count INTEGER,                       -- Number of TSV tables loaded
+    total_rows INTEGER,                        -- Total data rows across all tables
+    description TEXT                           -- Collection description
+);
+
+-- Sheet Tables Registry (metadata for each TSV file)
+CREATE TABLE IF NOT EXISTS sheet_tables (
+    table_id VARCHAR PRIMARY KEY,              -- 'cmm_chemicals', 'cmm_genes'
+    collection_id VARCHAR NOT NULL,            -- FK to sheet_collections
+    table_name VARCHAR NOT NULL,               -- 'chemicals', 'genes_and_proteins'
+    source_file VARCHAR NOT NULL,              -- 'BER_CMM_Data_for_AI_chemicals_extended.tsv'
+    row_count INTEGER,                         -- Number of rows in table
+    column_count INTEGER,                      -- Number of columns
+    columns_json TEXT,                         -- JSON array of column names
+    loaded_at TIMESTAMP                        -- When table was loaded
+);
+
+-- Unified Sheet Data Storage (EAV pattern for flexible schemas)
+-- Stores all data from TSV files with JSON for flexible column storage
+CREATE SEQUENCE IF NOT EXISTS sheet_data_seq START 1;
+CREATE TABLE IF NOT EXISTS sheet_data (
+    id INTEGER PRIMARY KEY DEFAULT nextval('sheet_data_seq'),
+    table_id VARCHAR NOT NULL,                 -- FK to sheet_tables
+    row_id INTEGER NOT NULL,                   -- Row number within source table
+    entity_id VARCHAR,                         -- Primary ID (chemical_id, gene_id, strain_id, etc.)
+    entity_name VARCHAR,                       -- Primary name (chemical_name, gene_symbol, etc.)
+    entity_type VARCHAR,                       -- 'chemical', 'gene', 'strain', 'publication', etc.
+    data_json TEXT NOT NULL,                   -- Complete row as JSON (all columns)
+    searchable_text TEXT                       -- Concatenated text fields for full-text search
+);
+
+-- Publication Full-Text Index (markdown files from publications/ subdirs)
+CREATE SEQUENCE IF NOT EXISTS sheet_publications_seq START 1;
+CREATE TABLE IF NOT EXISTS sheet_publications (
+    id INTEGER PRIMARY KEY DEFAULT nextval('sheet_publications_seq'),
+    collection_id VARCHAR NOT NULL,            -- FK to sheet_collections
+    file_name VARCHAR NOT NULL,                -- 'PMID_24816778.md', 'doi_10_1038-nature16174.md'
+    publication_id VARCHAR,                    -- Extracted ID: 'pmid:24816778', 'doi:10.1038/nature16174'
+    publication_type VARCHAR,                  -- 'pmid', 'doi', 'pmc', 'arxiv'
+    title TEXT,                                -- Publication title (if parseable)
+    authors TEXT,                              -- Authors (if parseable)
+    year INTEGER,                              -- Publication year (if parseable)
+    journal TEXT,                              -- Journal name (if parseable)
+    abstract TEXT,                             -- Abstract (if parseable)
+    full_text TEXT,                            -- Complete markdown content
+    word_count INTEGER,                        -- Word count for metadata
+    loaded_at TIMESTAMP                        -- When publication was loaded
+);
+
+-- Cross-References Between Entities and Publications
+-- Links entities in sheet_data to publications they reference
+CREATE SEQUENCE IF NOT EXISTS sheet_publication_references_seq START 1;
+CREATE TABLE IF NOT EXISTS sheet_publication_references (
+    id INTEGER PRIMARY KEY DEFAULT nextval('sheet_publication_references_seq'),
+    publication_id INTEGER NOT NULL,           -- FK to sheet_publications.id
+    table_id VARCHAR NOT NULL,                 -- FK to sheet_tables
+    entity_id VARCHAR NOT NULL,                -- Entity referencing this publication
+    reference_column VARCHAR,                  -- Column where reference appears (URL, DOI, etc.)
+    reference_value VARCHAR                    -- Actual reference value (URL, DOI string)
 );
 
 -- ============================================================================
@@ -163,6 +298,26 @@ CREATE INDEX IF NOT EXISTS idx_chem_props_ingredient ON chemical_properties(ingr
 CREATE INDEX IF NOT EXISTS idx_ing_effects_ingredient ON ingredient_effects(ingredient_id);
 
 -- ============================================================================
+-- Genome Annotation Indexes (8 strategic indexes for 250k annotation queries)
+-- ============================================================================
+
+-- Genome metadata indexes
+CREATE INDEX IF NOT EXISTS idx_genome_meta_organism ON genome_metadata(organism_id);
+CREATE INDEX IF NOT EXISTS idx_genome_meta_biosample ON genome_metadata(biosample_id);
+
+-- Genome annotation indexes for fast queries
+CREATE INDEX IF NOT EXISTS idx_genome_ann_genome ON genome_annotations(genome_id);
+CREATE INDEX IF NOT EXISTS idx_genome_ann_type ON genome_annotations(feature_type);
+CREATE INDEX IF NOT EXISTS idx_genome_ann_gene ON genome_annotations(gene_symbol);
+CREATE INDEX IF NOT EXISTS idx_genome_ann_product ON genome_annotations(product);
+
+-- Functional annotation indexes (for EC, GO, KEGG searches)
+-- Note: DuckDB doesn't have GIN indexes like PostgreSQL, but B-tree indexes work for LIKE queries
+CREATE INDEX IF NOT EXISTS idx_genome_ann_ec ON genome_annotations(ec_numbers);
+CREATE INDEX IF NOT EXISTS idx_genome_ann_go ON genome_annotations(go_terms);
+CREATE INDEX IF NOT EXISTS idx_genome_ann_kegg ON genome_annotations(kegg_ids);
+
+-- ============================================================================
 -- Knowledge Graph Indexes (8 critical indexes for 5M edge queries)
 -- ============================================================================
 
@@ -184,6 +339,27 @@ CREATE INDEX IF NOT EXISTS idx_kg_edges_pred_obj ON kg_edges(predicate, object);
 
 -- Hierarchy index for fast ancestor queries
 CREATE INDEX IF NOT EXISTS idx_kg_hier_ancestor ON kg_hierarchies(ancestor_id);
+
+-- ============================================================================
+-- Information Sheets Indexes (9 strategic indexes for query performance)
+-- ============================================================================
+
+-- Entity lookup indexes (Query Type 1: Entity Lookup by ID/name)
+CREATE INDEX IF NOT EXISTS idx_sheet_data_entity_id ON sheet_data(entity_id);
+CREATE INDEX IF NOT EXISTS idx_sheet_data_entity_name ON sheet_data(entity_name);
+CREATE INDEX IF NOT EXISTS idx_sheet_data_entity_type ON sheet_data(entity_type);
+
+-- Cross-reference indexes (Query Type 2: Cross-Reference Queries)
+CREATE INDEX IF NOT EXISTS idx_sheet_data_composite ON sheet_data(table_id, entity_type);
+CREATE INDEX IF NOT EXISTS idx_sheet_pub_refs_entity ON sheet_publication_references(entity_id);
+
+-- Full-text search indexes (Query Type 3: Publication Search)
+CREATE INDEX IF NOT EXISTS idx_sheet_pubs_pub_id ON sheet_publications(publication_id);
+CREATE INDEX IF NOT EXISTS idx_sheet_data_searchable ON sheet_data(searchable_text);
+
+-- Collection and table lookups (Query Type 4: Filtered Queries)
+CREATE INDEX IF NOT EXISTS idx_sheet_tables_collection ON sheet_tables(collection_id);
+CREATE INDEX IF NOT EXISTS idx_sheet_data_table ON sheet_data(table_id);
 """
 
 
@@ -214,6 +390,15 @@ def drop_schema(conn) -> None:
         "kg_hierarchies",
         "kg_edges",
         "kg_nodes",
+        # Information sheets tables
+        "sheet_publication_references",
+        "sheet_publications",
+        "sheet_data",
+        "sheet_tables",
+        "sheet_collections",
+        # Genome annotation tables
+        "genome_annotations",
+        "genome_metadata",
         # Core media tables
         "ingredient_effects",
         "chemical_properties",

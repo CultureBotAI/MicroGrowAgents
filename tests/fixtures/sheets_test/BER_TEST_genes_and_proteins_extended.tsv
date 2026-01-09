@@ -1,0 +1,6 @@
+gene or protein id	organism	annotation	EC	GO	CHEBI	Source
+K23995	NCBITaxon:469	PQQ-dependent methanol dehydrogenase (XoxF)	1.1.1.244	GO:0016491,GO:0055114	CHEBI:52927,CHEBI:33109	KEGG
+custom_xoxF_ma	NCBITaxon:173826	Lanthanide-dependent methanol dehydrogenase	1.1.1.244	GO:0004022	CHEBI:33404	UniProt
+K14028	NCBITaxon:266	PQQ biosynthesis protein	2.7.7.80	GO:0008295	CHEBI:33109	KEGG
+custom_tonB_ln	NCBITaxon:469	TonB-dependent lanthanide uptake receptor		GO:0015343	CHEBI:52927,CHEBI:33404	UniProt
+K00001	NCBITaxon:562	Alcohol dehydrogenase	1.1.1.1	GO:0004022,GO:0055114	CHEBI:15377	KEGG

@@ -22,6 +22,19 @@ MicroGrowAgents is a comprehensive toolkit for analyzing microbial growth media 
 - 🔍 **Media Comparison**: Compare ingredient compositions across different media
 - 🌐 **External APIs**: Integration with PubChem, ChEBI, and eQuilibrator for chemical data enrichment
 - 📈 **Visualization**: Generate plots for osmotic properties, nutrient ratios, and sensitivity analysis
+- 🤖 **Media Formulation Recommendation**: AI-powered workflow that recommends new media formulations using KG-Microbe (1.5M nodes), literature evidence, and the MP medium database (158 ingredients, 90.5% citation coverage)
+- 🧬 **Genome Function Interpretation**: Organism-specific media design using 57 Bakta-annotated genomes (667K features) with:
+  - **Auxotrophy Detection**: Automatic identification of biosynthetic pathway gaps
+  - **Enzyme Analysis**: EC number queries with wildcard support (1.1.*.* finds all CH-OH oxidoreductases)
+  - **Cofactor Requirements**: Detection of essential cofactors that cannot be biosynthesized
+  - **Transporter Analysis**: Concentration refinement based on nutrient uptake genes
+  - See [docs/GENOME_FUNCTION.md](docs/GENOME_FUNCTION.md) for Claude Code agent examples
+- 📚 **Sheet Query System**: Query extended information sheets with:
+  - **4 Query Types**: Entity lookup, cross-reference, publication search, filtered queries
+  - **3 Output Formats**: Markdown tables, JSON, evidence-rich reports
+  - **Full-Text Search**: Search within publication markdown files with excerpts
+  - **Cross-References**: Automatic linking between entities and publications
+  - See [docs/SHEET_QUERY_SYSTEM.md](docs/SHEET_QUERY_SYSTEM.md) for complete guide
 
 ## Installation
 
@@ -283,7 +296,104 @@ uv run python run.py compare-media "MP medium" "LB medium"
 - Unique ingredients to each medium
 - Concentration differences
 
-### 5. Integration Scripts
+### 5. Media Formulation Recommendation (`recommend-media` workflow)
+
+Recommend new media formulations using AI-powered multi-agent orchestration:
+
+```python
+from microgrowagents.skills.workflows import RecommendMediaWorkflow
+
+# Initialize workflow
+workflow = RecommendMediaWorkflow()
+
+# Recommend organism-specific medium
+result = workflow.run(
+    query="Recommend medium for methanotrophic bacteria",
+    organism="Methylococcus capsulatus",
+    temperature=42.0,
+    pH=6.8,
+    carbon_source="methane",
+    oxygen="aerobic",
+    goals="defined,selective",
+    output_format="markdown"
+)
+print(result)
+```
+
+**Features:**
+- **Multi-source Evidence Integration**: Combines KG-Microbe, literature, and MP database
+- **Organism-Specific**: Tailored to target organism metabolic requirements
+- **Complete Formulation**: Ingredient list with concentrations, roles, and confidence scores
+- **Chemical Compatibility**: Validates precipitation and antagonism risks
+- **Alternative Ingredients**: Provides substitutes with rationales
+- **Comprehensive Rationale**: Human-readable explanations for all decisions
+
+**Example Goals:**
+- `minimal` - Fewest ingredients, core nutrients only
+- `defined` - All ingredients chemically defined, no undefined supplements
+- `complex` - Rich nutrients, may include vitamins and cofactors
+- `cost_effective` - Prioritizes inexpensive, common ingredients
+- `high_yield` - Optimized for biomass/product formation
+- `selective` - Includes selective agents or unusual nutrients
+
+**Output includes:**
+- Complete ingredient list with concentrations and ranges
+- Predicted pH, ionic strength, and other properties
+- Essential nutrient roles coverage
+- Chemical compatibility notes
+- Alternative ingredient suggestions
+- Evidence from KG-Microbe, literature, and database
+- Confidence scoring based on evidence quality
+
+See `.claude/skills/recommend-media.md` for detailed documentation and examples.
+
+### 6. Genome Function Interpretation
+
+Organism-specific media design using Bakta-annotated genomes (57 genomes, 667,502 features):
+
+**Key Capabilities:**
+
+- **Auxotrophy Detection**: Automatically identify biosynthetic pathway gaps
+- **Enzyme Queries**: EC number searches with wildcard support (e.g., `1.1.*.*`)
+- **Cofactor Analysis**: Determine essential cofactors that cannot be biosynthesized
+- **Transporter Analysis**: Find nutrient uptake genes for concentration refinement
+
+**CLI Examples:**
+
+```python
+# Find oxidoreductase enzymes
+from microgrowagents.agents.kg_reasoning_agent import KGReasoningAgent
+from pathlib import Path
+
+agent = KGReasoningAgent(Path('data/processed/microgrow.duckdb'))
+result = agent.run('genome_enzymes SAMN00114986 1.1.*')
+print(f"Found {result['data']['count']} enzymes")
+
+# Detect auxotrophies
+from microgrowagents.agents.genome_function_agent import GenomeFunctionAgent
+
+agent = GenomeFunctionAgent(Path('data/processed/microgrow.duckdb'))
+result = agent.detect_auxotrophies(query='detect auxotrophies', organism='SAMN00114986')
+print(f"Detected {result['data']['summary']['auxotrophies_detected']} auxotrophies")
+```
+
+**Claude Code Agent Examples:**
+
+See [docs/GENOME_FUNCTION.md](docs/GENOME_FUNCTION.md) for detailed examples including:
+- Analyzing organism metabolic capabilities
+- Comparing metabolic profiles of different organisms
+- Designing organism-specific defined media
+- Auxotrophy-guided media optimization
+- Metabolic engineering context analysis
+
+**Automatic Integration:**
+
+Genome analysis is automatically integrated into:
+- **MediaFormulationAgent**: Adds nutrients for detected auxotrophies
+- **GenMediaConcAgent**: Refines concentrations based on transporter presence/affinity
+- **KGReasoningAgent**: Adds `genome_enzymes`, `genome_auxotrophies`, `genome_transporters` queries
+
+### 7. Integration Scripts
 
 Standalone integration scripts for specific analyses:
 
