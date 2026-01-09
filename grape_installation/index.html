@@ -1,0 +1,1158 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://CultureBotAI.github.io/MicroGrowAgents/grape_installation/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>GRAPE Installation Guide - MicroGrowAgents</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#grape-installation-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MicroGrowAgents" class="md-header__button md-logo" aria-label="MicroGrowAgents" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MicroGrowAgents
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              GRAPE Installation Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CultureBotAI/MicroGrowAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MicroGrowAgents" class="md-nav__button md-logo" aria-label="MicroGrowAgents" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MicroGrowAgents
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CultureBotAI/MicroGrowAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-grape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What is GRAPE?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#platform-support" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Platform Support
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Platform Support">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fully-supported-pre-built-wheels-available" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ Fully Supported (Pre-built Wheels Available)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#partial-support-requires-compilation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Partial Support (Requires Compilation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#not-supported" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ❌ Not Supported
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Methods
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-pip-install-easiest-for-supported-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: pip install (Easiest - For Supported Platforms)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-conda-recommended-for-macos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Conda (Recommended for macOS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-3-build-from-source-for-unsupported-platforms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 3: Build from Source (For Unsupported Platforms)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Method 3: Build from Source (For Unsupported Platforms)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compile-and-install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compile and Install
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-4-rosetta-2-macos-arm64-workaround" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 4: Rosetta 2 (macOS ARM64 Workaround)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verifying-grape-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verifying GRAPE Installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verifying GRAPE Installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-import-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Import Test
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-test-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create Test Graph
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Installation Issues
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue-1-importerror-cannot-import-name-ensmallen_default" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 1: ImportError: cannot import name 'ensmallen_default'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-2-modulenotfounderror-no-module-named-grape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 2: ModuleNotFoundError: No module named 'grape'
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-3-compilation-fails-with-cargo-build-failed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 3: Compilation fails with "cargo build failed"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#issue-4-arm64-macos-specific-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 4: ARM64 macOS specific issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing-grape-with-kg-microbe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing GRAPE with KG-Microbe
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing GRAPE with KG-Microbe">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quick-test-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Test Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-benchmarks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Performance Benchmarks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fallback-option-networkx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallback Option: NetworkX
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-setup-by-platform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recommended Setup by Platform
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Recommended Setup by Platform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntudebian-linux-x86_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ubuntu/Debian Linux (x86_64)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centosrhel-linux-x86_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CentOS/RHEL Linux (x86_64)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-arm64-m1m2m3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS ARM64 (M1/M2/M3)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#macos-intel-x86_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        macOS Intel (x86_64)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#windows-x86_64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Windows x86_64
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#support-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Support and Resources
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contact
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quick-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quick Reference
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="grape-installation-guide">GRAPE Installation Guide</h1>
+<p>This guide provides detailed instructions for installing GRAPE (Graph Representation leArning, Predictions and Evaluations) for use with MicroGrowAgents' KG reasoning capabilities.</p>
+<h2 id="what-is-grape">What is GRAPE?</h2>
+<p>GRAPE is a high-performance graph analysis library developed by AnacletoLAB with a Rust backend (ensmallen) that provides:</p>
+<ul>
+<li><strong>10-100x faster</strong> graph algorithms compared to NetworkX</li>
+<li><strong>Memory efficient</strong>: ~800MB vs ~2GB for 5M edge graphs</li>
+<li><strong>Direct TSV loading</strong>: 5-15s vs 60s for large graphs</li>
+<li><strong>Parallel algorithms</strong>: Optimized for biological networks</li>
+<li><strong>Built-in embeddings</strong>: Node2Vec, DeepWalk, etc.</li>
+</ul>
+<p><strong>Repository</strong>: https://github.com/AnacletoLAB/grape</p>
+<h2 id="platform-support">Platform Support</h2>
+<h3 id="fully-supported-pre-built-wheels-available">✅ Fully Supported (Pre-built Wheels Available)</h3>
+<ul>
+<li><strong>Linux x86_64</strong> (Ubuntu, CentOS, Debian, etc.)</li>
+<li>Python 3.8, 3.9, 3.10, 3.11</li>
+<li>
+<p>Recommended: Ubuntu 20.04+ or CentOS 7+</p>
+</li>
+<li>
+<p><strong>Windows x86_64</strong> (limited support)</p>
+</li>
+<li>Python 3.8, 3.9, 3.10</li>
+<li>Requires Visual C++ Build Tools</li>
+</ul>
+<h3 id="partial-support-requires-compilation">⚠️ Partial Support (Requires Compilation)</h3>
+<ul>
+<li><strong>macOS ARM64 (Apple Silicon M1/M2/M3)</strong></li>
+<li>Requires Rust toolchain</li>
+<li>May have compilation issues with Python 3.11+</li>
+<li>
+<p><strong>Workaround</strong>: Use Conda or Rosetta 2</p>
+</li>
+<li>
+<p><strong>macOS x86_64 (Intel)</strong></p>
+</li>
+<li>Requires Rust toolchain</li>
+<li>Better success rate than ARM64</li>
+</ul>
+<h3 id="not-supported">❌ Not Supported</h3>
+<ul>
+<li>Python 3.12+ (as of GRAPE 0.2.5)</li>
+<li>32-bit systems</li>
+<li>BSD systems</li>
+</ul>
+<h2 id="installation-methods">Installation Methods</h2>
+<h3 id="method-1-pip-install-easiest-for-supported-platforms">Method 1: pip install (Easiest - For Supported Platforms)</h3>
+<pre><code class="language-bash"># Standard installation (uses pre-built wheels if available)
+pip install grape
+
+# Or with uv (recommended)
+uv pip install grape
+
+# Verify installation
+python -c &quot;from grape import Graph; print('GRAPE installed successfully')&quot;
+</code></pre>
+<p><strong>Expected output</strong>:</p>
+<pre><code>GRAPE installed successfully
+</code></pre>
+<p>If you see <code>ImportError: cannot import name 'ensmallen_default'</code>, proceed to Method 2 or 3.</p>
+<hr />
+<h3 id="method-2-conda-recommended-for-macos">Method 2: Conda (Recommended for macOS)</h3>
+<p>Conda provides pre-built binaries for more platform combinations:</p>
+<pre><code class="language-bash"># Create a new conda environment (recommended)
+conda create -n microgrow python=3.10
+conda activate microgrow
+
+# Install GRAPE from conda-forge
+conda install -c conda-forge grape
+
+# Verify installation
+python -c &quot;from grape import Graph; print('GRAPE installed successfully')&quot;
+</code></pre>
+<p><strong>Advantages</strong>:
+- Pre-built for macOS ARM64 and x86_64
+- Handles Rust dependencies automatically
+- Better platform compatibility</p>
+<hr />
+<h3 id="method-3-build-from-source-for-unsupported-platforms">Method 3: Build from Source (For Unsupported Platforms)</h3>
+<p>If pre-built wheels are not available, you can compile from source:</p>
+<h4 id="prerequisites">Prerequisites</h4>
+<p><strong>1. Install Rust toolchain</strong>:</p>
+<pre><code class="language-bash"># macOS and Linux
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
+
+# Verify Rust installation
+rustc --version
+cargo --version
+</code></pre>
+<p><strong>2. Install build dependencies</strong>:</p>
+<pre><code class="language-bash"># macOS
+xcode-select --install
+
+# Ubuntu/Debian
+sudo apt-get update
+sudo apt-get install build-essential python3-dev
+
+# CentOS/RHEL
+sudo yum groupinstall &quot;Development Tools&quot;
+sudo yum install python3-devel
+</code></pre>
+<h4 id="compile-and-install">Compile and Install</h4>
+<pre><code class="language-bash"># Build from source (no pre-built wheels)
+pip install --no-binary grape,ensmallen grape
+
+# This will take 10-30 minutes
+# Expected output:
+#   Building wheels for collected packages: ensmallen, grape
+#   Building wheel for ensmallen (setup.py) ... (this is slow)
+</code></pre>
+<p><strong>Troubleshooting compilation</strong>:</p>
+<p>If compilation fails with "cargo build failed":</p>
+<pre><code class="language-bash"># Try with more memory allocated to Rust
+export CARGO_BUILD_JOBS=2  # Reduce parallel jobs
+pip install --no-binary grape,ensmallen grape
+
+# Or build ensmallen separately
+pip install --no-binary ensmallen ensmallen
+pip install grape
+</code></pre>
+<hr />
+<h3 id="method-4-rosetta-2-macos-arm64-workaround">Method 4: Rosetta 2 (macOS ARM64 Workaround)</h3>
+<p>For Apple Silicon Macs, you can run x86_64 Python under Rosetta 2:</p>
+<pre><code class="language-bash"># Install x86_64 Python using pyenv
+arch -x86_64 /bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;
+arch -x86_64 brew install python@3.10
+
+# Create x86_64 virtual environment
+arch -x86_64 /usr/local/bin/python3.10 -m venv .venv-x86
+source .venv-x86/bin/activate
+
+# Install GRAPE (will use x86_64 wheels)
+pip install grape
+
+# Verify
+python -c &quot;from grape import Graph; print('GRAPE installed (x86_64 mode)')&quot;
+</code></pre>
+<hr />
+<h2 id="verifying-grape-installation">Verifying GRAPE Installation</h2>
+<h3 id="basic-import-test">Basic Import Test</h3>
+<pre><code class="language-python">from grape import Graph
+print(f&quot;GRAPE version: {Graph.__module__}&quot;)
+</code></pre>
+<h3 id="create-test-graph">Create Test Graph</h3>
+<pre><code class="language-python">from grape import Graph
+import tempfile
+from pathlib import Path
+
+# Create test data
+nodes_data = &quot;&quot;&quot;id\ttype
+A\ttype1
+B\ttype1
+C\ttype2
+&quot;&quot;&quot;
+
+edges_data = &quot;&quot;&quot;source\tdestination\ttype
+A\tB\trelates_to
+B\tC\trelates_to
+&quot;&quot;&quot;
+
+# Write to temporary files
+with tempfile.NamedTemporaryFile(mode='w', suffix='.tsv', delete=False) as f:
+    f.write(nodes_data)
+    nodes_file = f.name
+
+with tempfile.NamedTemporaryFile(mode='w', suffix='.tsv', delete=False) as f:
+    f.write(edges_data)
+    edges_file = f.name
+
+# Load graph
+graph = Graph.from_csv(
+    directed=True,
+    edge_path=edges_file,
+    edge_list_separator='\t',
+    edge_list_header=True,
+    sources_column='source',
+    destinations_column='destination',
+    node_path=nodes_file,
+    node_list_separator='\t',
+    node_list_header=True,
+    nodes_column='id',
+    name='test_graph'
+)
+
+print(f&quot;Nodes: {graph.get_number_of_nodes()}&quot;)
+print(f&quot;Edges: {graph.get_number_of_edges()}&quot;)
+print(&quot;✓ GRAPE working correctly!&quot;)
+
+# Cleanup
+Path(nodes_file).unlink()
+Path(edges_file).unlink()
+</code></pre>
+<p><strong>Expected output</strong>:</p>
+<pre><code>Nodes: 3
+Edges: 2
+✓ GRAPE working correctly!
+</code></pre>
+<hr />
+<h2 id="common-installation-issues">Common Installation Issues</h2>
+<h3 id="issue-1-importerror-cannot-import-name-ensmallen_default">Issue 1: <code>ImportError: cannot import name 'ensmallen_default'</code></h3>
+<p><strong>Symptom</strong>:</p>
+<pre><code class="language-python">from grape import Graph
+# ImportError: cannot import name 'ensmallen_default' from partially initialized module 'ensmallen'
+</code></pre>
+<p><strong>Cause</strong>: Ensmallen Rust module didn't compile or isn't compatible with your Python version.</p>
+<p><strong>Solutions</strong>:
+1. Check Python version: <code>python --version</code> (must be ≤3.11)
+2. Try Conda installation (Method 2)
+3. Build from source (Method 3)
+4. Use Rosetta 2 on ARM64 Mac (Method 4)</p>
+<hr />
+<h3 id="issue-2-modulenotfounderror-no-module-named-grape">Issue 2: <code>ModuleNotFoundError: No module named 'grape'</code></h3>
+<p><strong>Solution</strong>:</p>
+<pre><code class="language-bash"># Ensure grape is installed in active environment
+pip list | grep grape
+
+# If not found, install
+pip install grape
+</code></pre>
+<hr />
+<h3 id="issue-3-compilation-fails-with-cargo-build-failed">Issue 3: Compilation fails with "cargo build failed"</h3>
+<p><strong>Symptoms</strong>:</p>
+<pre><code>error: could not compile `ensmallen`
+cargo build failed
+</code></pre>
+<p><strong>Solutions</strong>:</p>
+<ol>
+<li>
+<p><strong>Reduce parallel jobs</strong>:
+   <code>bash
+   export CARGO_BUILD_JOBS=2
+   pip install --no-binary grape,ensmallen grape</code></p>
+</li>
+<li>
+<p><strong>Install older Rust</strong>:
+   <code>bash
+   rustup install 1.70.0
+   rustup default 1.70.0
+   pip install --no-binary grape,ensmallen grape</code></p>
+</li>
+<li>
+<p><strong>Use Conda instead</strong> (recommended)</p>
+</li>
+</ol>
+<hr />
+<h3 id="issue-4-arm64-macos-specific-issues">Issue 4: ARM64 macOS specific issues</h3>
+<p><strong>Problem</strong>: Pre-built wheels not available for ARM64 + Python 3.11</p>
+<p><strong>Best solution</strong>: Use Conda</p>
+<pre><code class="language-bash">conda create -n microgrow python=3.10
+conda activate microgrow
+conda install -c conda-forge grape
+</code></pre>
+<p><strong>Alternative</strong>: Use Rosetta 2 (Method 4)</p>
+<hr />
+<h2 id="testing-grape-with-kg-microbe">Testing GRAPE with KG-Microbe</h2>
+<p>Once GRAPE is installed, test with MicroGrowAgents:</p>
+<pre><code class="language-bash"># Run graph builder tests
+uv run pytest tests/test_kg/test_graph_builder.py -v
+
+# If GRAPE is working, all tests should pass
+# If not installed, tests will skip with helpful messages
+</code></pre>
+<h3 id="quick-test-script">Quick Test Script</h3>
+<pre><code class="language-python">from microgrowagents.kg.graph_builder import GraphBuilder, GRAPE_AVAILABLE
+
+if GRAPE_AVAILABLE:
+    print(&quot;✓ GRAPE is available and ready!&quot;)
+    print(&quot;  You can use high-performance graph algorithms.&quot;)
+else:
+    print(&quot;⚠ GRAPE is not available on this system.&quot;)
+    print(&quot;  Graph builder will use fallback mode.&quot;)
+    print(&quot;  See docs/grape_installation.md for installation help.&quot;)
+</code></pre>
+<hr />
+<h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<p>Comparison of GRAPE vs NetworkX on KG-Microbe (1.5M nodes, 5.1M edges):</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>NetworkX</th>
+<th>GRAPE</th>
+<th>Speedup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Graph loading</td>
+<td>60-120s</td>
+<td>5-15s</td>
+<td><strong>8-24x</strong></td>
+</tr>
+<tr>
+<td>Memory usage</td>
+<td>~2GB</td>
+<td>~800MB</td>
+<td><strong>2.5x less</strong></td>
+</tr>
+<tr>
+<td>Shortest path</td>
+<td>800ms</td>
+<td>8-80ms</td>
+<td><strong>10-100x</strong></td>
+</tr>
+<tr>
+<td>Betweenness centrality</td>
+<td>180s</td>
+<td>3.6s</td>
+<td><strong>50x</strong></td>
+</tr>
+<tr>
+<td>PageRank</td>
+<td>45s</td>
+<td>2.3s</td>
+<td><strong>20x</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note</strong>: Benchmarks on Ubuntu 20.04 x86_64 with Python 3.10</p>
+<hr />
+<h2 id="fallback-option-networkx">Fallback Option: NetworkX</h2>
+<p>If GRAPE cannot be installed, MicroGrowAgents provides automatic fallback to NetworkX:</p>
+<pre><code class="language-python"># This will work even without GRAPE
+from microgrowagents.kg.graph_builder import GraphBuilder
+
+builder = GraphBuilder(db_path)
+# Will use NetworkX if GRAPE unavailable (with warning)
+</code></pre>
+<p><strong>Trade-offs</strong>:
+- ✅ Pure Python (no compilation needed)
+- ✅ Works on all platforms
+- ❌ 10-100x slower for large graphs
+- ❌ Higher memory usage (~2GB for KG-Microbe)</p>
+<hr />
+<h2 id="recommended-setup-by-platform">Recommended Setup by Platform</h2>
+<h3 id="ubuntudebian-linux-x86_64">Ubuntu/Debian Linux (x86_64)</h3>
+<pre><code class="language-bash"># Easiest - pre-built wheels available
+pip install grape
+</code></pre>
+<h3 id="centosrhel-linux-x86_64">CentOS/RHEL Linux (x86_64)</h3>
+<pre><code class="language-bash"># Pre-built wheels available
+pip install grape
+</code></pre>
+<h3 id="macos-arm64-m1m2m3">macOS ARM64 (M1/M2/M3)</h3>
+<pre><code class="language-bash"># Use Conda (recommended)
+conda install -c conda-forge grape
+
+# OR use Rosetta 2
+arch -x86_64 python3.10 -m venv .venv-x86
+source .venv-x86/bin/activate
+pip install grape
+</code></pre>
+<h3 id="macos-intel-x86_64">macOS Intel (x86_64)</h3>
+<pre><code class="language-bash"># Conda recommended
+conda install -c conda-forge grape
+
+# Or build from source
+pip install --no-binary grape grape
+</code></pre>
+<h3 id="windows-x86_64">Windows x86_64</h3>
+<pre><code class="language-bash"># Install Visual C++ Build Tools first
+# https://visualstudio.microsoft.com/downloads/#build-tools-for-visual-studio-2019
+
+pip install grape
+</code></pre>
+<hr />
+<h2 id="support-and-resources">Support and Resources</h2>
+<ul>
+<li><strong>GRAPE GitHub</strong>: https://github.com/AnacletoLAB/grape</li>
+<li><strong>Documentation</strong>: https://anacletolab.github.io/grape/</li>
+<li><strong>Issues</strong>: https://github.com/AnacletoLAB/grape/issues</li>
+<li><strong>Paper</strong>: Cappelletti et al., "GRAPE: fast and scalable Graph Processing and Embedding"</li>
+</ul>
+<h2 id="contact">Contact</h2>
+<p>For MicroGrowAgents-specific GRAPE issues:
+- Open an issue on the MicroGrowAgents repository
+- Include: OS, Python version, GRAPE installation method, error message</p>
+<hr />
+<h2 id="quick-reference">Quick Reference</h2>
+<pre><code class="language-bash"># Check if GRAPE is installed
+python -c &quot;from grape import Graph; print('✓ GRAPE OK')&quot;
+
+# Check Python version (must be ≤3.11)
+python --version
+
+# Check system architecture
+uname -m
+
+# Install GRAPE (Linux x86_64)
+pip install grape
+
+# Install GRAPE (macOS, any arch)
+conda install -c conda-forge grape
+
+# Build from source
+pip install --no-binary grape,ensmallen grape
+
+# Test with MicroGrowAgents
+uv run pytest tests/test_kg/test_graph_builder.py -v
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
