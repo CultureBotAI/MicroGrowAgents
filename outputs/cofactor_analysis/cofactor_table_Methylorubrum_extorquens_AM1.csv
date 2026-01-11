@@ -1,0 +1,16 @@
+Category,Cofactor,Ingredient,Status,Biosynthesis_Capable,Acquisition_Mechanism,External_Supply_Needed,Rationale,Confidence
+vitamins,PLP,NOT COVERED,missing,unknown,unknown,True,No ingredient found for PLP,0.5
+vitamins,THF,NOT COVERED,missing,unknown,unknown,True,No ingredient found for THF,0.5
+vitamins,TPP,Thiamin,existing,unknown,unknown,True,Provides TPP cofactor,0.9
+vitamins,coenzyme Q,NOT COVERED,missing,unknown,unknown,True,No ingredient found for coenzyme Q,0.5
+vitamins,vitamin B7,Biotin,existing,unknown,unknown,True,Provides vitamin B7 cofactor,0.9
+metals,Fe-S cluster,FeSO₄·7H₂O,existing,unknown,unknown,True,Provides Fe-S cluster cofactor,0.9
+metals,Mg,MgCl₂·6H₂O,existing,unknown,unknown,True,Provides Mg cofactor,0.9
+nucleotides,ATP,NOT COVERED,missing,unknown,unknown,True,No ingredient found for ATP,0.5
+nucleotides,CTP,NOT COVERED,missing,unknown,unknown,True,No ingredient found for CTP,0.5
+nucleotides,GTP,NOT COVERED,missing,unknown,unknown,True,No ingredient found for GTP,0.5
+nucleotides,NAD+,NOT COVERED,missing,unknown,unknown,True,No ingredient found for NAD+,0.5
+nucleotides,NADP+,NOT COVERED,missing,unknown,unknown,True,No ingredient found for NADP+,0.5
+nucleotides,UTP,NOT COVERED,missing,unknown,unknown,True,No ingredient found for UTP,0.5
+energy_cofactors,CoA,NOT COVERED,missing,unknown,unknown,True,No ingredient found for CoA,0.5
+energy_cofactors,SAM,NOT COVERED,missing,unknown,unknown,True,No ingredient found for SAM,0.5

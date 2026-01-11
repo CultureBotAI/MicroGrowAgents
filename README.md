@@ -36,6 +36,60 @@ MicroGrowAgents is a comprehensive toolkit for analyzing microbial growth media 
   - **Cross-References**: Automatic linking between entities and publications
   - See [docs/SHEET_QUERY_SYSTEM.md](docs/SHEET_QUERY_SYSTEM.md) for complete guide
 
+## Cofactor Analysis Data Sources
+
+The CofactorMediaAgent integrates **6 major biological databases** and specialized literature:
+
+### Primary Databases
+- **[ChEBI](https://www.ebi.ac.uk/chebi/)** - Chemical identifiers for 44 cofactors ([DOI: 10.1093/nar/gkv1031](https://doi.org/10.1093/nar/gkv1031))
+- **[KEGG](https://www.genome.jp/kegg/)** - 30+ biosynthesis pathway definitions ([DOI: 10.1093/nar/gkac963](https://doi.org/10.1093/nar/gkac963))
+- **[BRENDA](https://www.brenda-enzymes.org/)** - EC-to-cofactor relationships ([DOI: 10.1093/nar/gky1048](https://doi.org/10.1093/nar/gky1048))
+- **[ExplorEnz](https://www.enzyme-database.org/)** - Enzyme Commission nomenclature ([DOI: 10.1093/nar/gkn582](https://doi.org/10.1093/nar/gkn582))
+
+### Knowledge Graph Integration
+- **KG-Microbe** (1.5M nodes, 5.1M edges) - Enzyme-substrate relationships and pathway context
+- Queries via `KGReasoningAgent` for multi-source evidence integration
+
+### Reference Files
+- `src/microgrowagents/data/cofactor_hierarchy.yaml` - 44 cofactors across 5 categories
+- `src/microgrowagents/data/ec_to_cofactor_map.yaml` - 68 EC pattern mappings
+- `data/processed/ingredient_cofactor_mapping.csv` - 13 MP medium cofactor providers
+
+See [`docs/cofactor_data_sources.md`](docs/cofactor_data_sources.md) for detailed methodology and citations.
+
+### Example: Cofactor Analysis for M. extorquens AM-1
+
+Generate cofactor requirements table from Bakta genome annotations:
+
+```bash
+# Using Python API
+uv run python -c "
+from microgrowagents.agents import CofactorMediaAgent
+from pathlib import Path
+
+agent = CofactorMediaAgent(Path('data/processed/microgrow.duckdb'))
+result = agent.run(
+    query='Analyze cofactor requirements',
+    organism='SAMN31331780',  # M. extorquens AM-1
+    base_medium='MP'
+)
+
+# Save results
+import pandas as pd
+df = pd.DataFrame(result['data']['cofactor_table'])
+df.to_csv('outputs/cofactor_analysis/cofactor_table_Methylorubrum_extorquens_AM1.csv')
+"
+```
+
+**Results for M. extorquens AM-1** (from 110 EC numbers):
+- **15 cofactors identified**
+- **4 existing** in MP medium: TPP, Biotin, Fe-S clusters, Mg
+- **11 missing**: PLP, THF, Coenzyme Q, NAD+, NADP+, ATP, CTP, GTP, UTP, CoA, SAM
+
+Generated tables available at:
+- CSV: `outputs/cofactor_analysis/cofactor_table_Methylorubrum_extorquens_AM1.csv`
+- TSV: `outputs/cofactor_analysis/cofactor_table_Methylorubrum_extorquens_AM1.tsv`
+
 ## Installation
 
 ### Prerequisites
