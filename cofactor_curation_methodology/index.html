@@ -1,0 +1,1133 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://CultureBotAI.github.io/MicroGrowAgents/cofactor_curation_methodology/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Cofactor Curation Methodology - MicroGrowAgents</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cofactor-curation-methodology" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="MicroGrowAgents" class="md-header__button md-logo" aria-label="MicroGrowAgents" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            MicroGrowAgents
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cofactor Curation Methodology
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/CultureBotAI/MicroGrowAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="MicroGrowAgents" class="md-nav__button md-logo" aria-label="MicroGrowAgents" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    MicroGrowAgents
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/CultureBotAI/MicroGrowAgents" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-cofactor-hierarchy-curation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Cofactor Hierarchy Curation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Cofactor Hierarchy Curation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-cofactor_hierarchyyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File: cofactor_hierarchy.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-initial-cofactor-identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Initial Cofactor Identification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-functional-categorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Functional Categorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-chebi-id-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: ChEBI ID Assignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-kegg-pathway-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: KEGG Pathway Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-ec-association-assignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: EC Association Assignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Quality Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ec-to-cofactor-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. EC-to-Cofactor Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. EC-to-Cofactor Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-ec_to_cofactor_mapyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File: ec_to_cofactor_map.yaml
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-brenda-data-mining" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: BRENDA Data Mining
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-pattern-generalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Pattern Generalization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-primary-vs-optional-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Primary vs Optional Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-cross-validation-with-metacyc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Cross-Validation with MetaCyc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Quality Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ingredient-to-cofactor-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ingredient-to-Cofactor Mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ingredient-to-Cofactor Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#file-ingredient_cofactor_mappingcsv" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        File: ingredient_cofactor_mapping.csv
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapping-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quality Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-integration-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Integration Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Integration Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-organisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Organisms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-version-control-and-updates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Version Control and Updates
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Version Control and Updates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versioning-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning Strategy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Future Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Future Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planned-improvements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planned Improvements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-citation-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Citation Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Citation Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#citation-update-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Citation Update Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendix-tools-and-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendix: Tools and Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendix: Tools and Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Database Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scripts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="cofactor-curation-methodology">Cofactor Curation Methodology</h1>
+<p>This document describes the detailed methodology used to create and maintain the cofactor reference data for the MicroGrowAgents system.</p>
+<h2 id="overview">Overview</h2>
+<p>The cofactor curation process integrates data from multiple authoritative biological databases into structured reference files that power the CofactorMediaAgent. The methodology emphasizes:</p>
+<ol>
+<li><strong>Multi-source validation</strong>: Cross-referencing across ChEBI, KEGG, BRENDA, and ExplorEnz</li>
+<li><strong>Literature-based curation</strong>: Specialized cofactors validated against primary literature</li>
+<li><strong>Pattern-based mapping</strong>: Scalable EC-to-cofactor relationships using wildcards</li>
+<li><strong>Reproducibility</strong>: All curation steps documented with version control</li>
+</ol>
+<h2 id="1-cofactor-hierarchy-curation">1. Cofactor Hierarchy Curation</h2>
+<h3 id="file-cofactor_hierarchyyaml">File: <code>cofactor_hierarchy.yaml</code></h3>
+<h3 id="step-1-initial-cofactor-identification">Step 1: Initial Cofactor Identification</h3>
+<p><strong>Data Sources</strong>:
+- ChEBI ontology search for term "cofactor" (CHEBI:23357)
+- KEGG compound search for "coenzyme" and "prosthetic group"
+- Literature review for specialized cofactors (lanthanides, PQQ, archaeal cofactors)</p>
+<p><strong>Inclusion Criteria</strong>:
+- Essential for enzyme catalysis or electron transfer
+- Chemically well-defined structure
+- Present in at least one known microbial enzyme
+- Has a ChEBI ID or KEGG compound ID</p>
+<p><strong>Exclusion Criteria</strong>:
+- Generic terms (e.g., "organic cofactor")
+- Insufficiently characterized compounds
+- Eukaryote-specific cofactors not found in bacteria/archaea</p>
+<h3 id="step-2-functional-categorization">Step 2: Functional Categorization</h3>
+<p><strong>Categories defined</strong>:
+1. <strong>Vitamins</strong> - Organic cofactors derived from dietary vitamins
+2. <strong>Metals</strong> - Metal ions and metalloenzyme prosthetic groups
+3. <strong>Nucleotides</strong> - Nucleotide-based redox carriers and energy currencies
+4. <strong>Energy Cofactors</strong> - Group transfer and energy metabolism cofactors
+5. <strong>Other</strong> - Specialized cofactors (PQQ, archaeal cofactors, etc.)</p>
+<p><strong>Categorization Process</strong>:</p>
+<pre><code class="language-python"># Pseudo-algorithm
+for cofactor in candidate_list:
+    if has_vitamin_precursor(cofactor):
+        category = &quot;vitamins&quot;
+    elif contains_metal(cofactor):
+        category = &quot;metals&quot;
+    elif is_nucleotide_derivative(cofactor):
+        category = &quot;nucleotides&quot;
+    elif is_group_transfer_cofactor(cofactor):
+        category = &quot;energy_cofactors&quot;
+    else:
+        category = &quot;other&quot;
+</code></pre>
+<h3 id="step-3-chebi-id-assignment">Step 3: ChEBI ID Assignment</h3>
+<p><strong>Process</strong>:
+1. Search ChEBI ontology by cofactor name
+2. Verify chemical structure matches expected cofactor
+3. Select most specific ChEBI ID (e.g., CHEBI:15846 for NAD+ vs CHEBI:13389 for NAD)
+4. Record primary ID and all synonyms</p>
+<p><strong>ChEBI Search Tool</strong>: https://www.ebi.ac.uk/chebi/advancedSearchFT.do</p>
+<p><strong>Example</strong>:</p>
+<pre><code class="language-yaml">thiamine_pyrophosphate:
+  id: &quot;CHEBI:9532&quot;  # Exact match from ChEBI search
+  names: [&quot;TPP&quot;, &quot;ThDP&quot;, &quot;Thiamine diphosphate&quot;]  # All synonyms
+</code></pre>
+<h3 id="step-4-kegg-pathway-mapping">Step 4: KEGG Pathway Mapping</h3>
+<p><strong>Process</strong>:
+1. Search KEGG pathway database for cofactor biosynthesis
+2. Record pathway IDs (ko##### format)
+3. Validate pathway relevance to bacterial/archaeal metabolism</p>
+<p><strong>KEGG Resources</strong>:
+- Pathway database: https://www.genome.jp/kegg/pathway.html
+- Compound database: https://www.genome.jp/kegg/compound/</p>
+<p><strong>Example Pathways</strong>:
+- ko00730: Thiamine metabolism (for TPP)
+- ko00760: Nicotinate and nicotinamide metabolism (for NAD/NADP)
+- ko00780: Biotin metabolism</p>
+<h3 id="step-5-ec-association-assignment">Step 5: EC Association Assignment</h3>
+<p><strong>Process</strong>:
+1. Query BRENDA for enzymes requiring specific cofactor
+2. Extract EC numbers from enzyme entries
+3. Generalize to EC patterns where appropriate
+4. Validate against ExplorEnz classifications</p>
+<p><strong>Example</strong>:</p>
+<pre><code class="language-yaml">pyridoxal_phosphate:
+  ec_associations: [&quot;2.6.1.-&quot;, &quot;4.1.1.-&quot;, &quot;5.1.1.-&quot;]  # All aminotransferases, decarboxylases, racemases
+</code></pre>
+<h3 id="step-6-quality-control">Step 6: Quality Control</h3>
+<p><strong>Validation Checks</strong>:
+- [ ] All cofactors have valid ChEBI IDs
+- [ ] All synonyms verified against ChEBI
+- [ ] KEGG pathway IDs are valid
+- [ ] EC associations match BRENDA/ExplorEnz
+- [ ] No duplicate cofactor entries
+- [ ] All categories properly defined</p>
+<h2 id="2-ec-to-cofactor-mapping">2. EC-to-Cofactor Mapping</h2>
+<h3 id="file-ec_to_cofactor_mapyaml">File: <code>ec_to_cofactor_map.yaml</code></h3>
+<h3 id="step-1-brenda-data-mining">Step 1: BRENDA Data Mining</h3>
+<p><strong>Process</strong>:
+1. For each EC class (1-6), query BRENDA for cofactor requirements
+2. Extract cofactor-EC relationships from enzyme entries
+3. Identify patterns across EC subclasses</p>
+<p><strong>BRENDA Query Example</strong>:</p>
+<pre><code>EC 1.1.1.- (NAD/NADP-dependent dehydrogenases)
+→ Primary: NAD+, NADP+
+→ Optional: Zn2+ (for some alcohol dehydrogenases)
+</code></pre>
+<h3 id="step-2-pattern-generalization">Step 2: Pattern Generalization</h3>
+<p><strong>Pattern Hierarchy</strong>:
+1. <strong>Exact match</strong> (highest priority): <code>"1.1.1.27"</code> - specific enzyme
+2. <strong>3-digit pattern</strong>: <code>"1.1.1.-"</code> - EC subclass
+3. <strong>2-digit pattern</strong>: <code>"1.1.-.-"</code> - EC sub-subclass (rarely used)
+4. <strong>1-digit pattern</strong>: Never used (too broad)</p>
+<p><strong>Generalization Rules</strong>:
+- If &gt;80% of enzymes in EC subclass share cofactor → create pattern
+- If cofactor is optional in &lt;50% of enzymes → mark as "optional"
+- If conflicting evidence → use exact EC number</p>
+<h3 id="step-3-primary-vs-optional-classification">Step 3: Primary vs Optional Classification</h3>
+<p><strong>Definitions</strong>:
+- <strong>Primary</strong>: Absolutely required for catalytic activity
+- <strong>Optional</strong>: Enhances activity or is alternative substrate</p>
+<p><strong>Classification Process</strong>:</p>
+<pre><code class="language-yaml">&quot;1.1.1.-&quot;:
+  primary: [&quot;nad&quot;, &quot;nadp&quot;]     # Required for all dehydrogenases
+  optional: [&quot;zinc_ion&quot;]       # Only for alcohol dehydrogenases
+</code></pre>
+<h3 id="step-4-cross-validation-with-metacyc">Step 4: Cross-Validation with MetaCyc</h3>
+<p><strong>Process</strong>:
+1. Query MetaCyc for EC number
+2. Verify cofactor requirements match BRENDA
+3. Resolve conflicts by checking primary literature</p>
+<h3 id="step-5-quality-control">Step 5: Quality Control</h3>
+<p><strong>Validation Checks</strong>:
+- [ ] All EC patterns are valid (e.g., "1.1.1.-" not "1.1.1")
+- [ ] No conflicting mappings (same EC → different cofactors)
+- [ ] All cofactor keys reference <code>cofactor_hierarchy.yaml</code> entries
+- [ ] Pattern hierarchy respected (exact &gt; 3-digit &gt; 2-digit)
+- [ ] Primary/optional classification justified</p>
+<h2 id="3-ingredient-to-cofactor-mapping">3. Ingredient-to-Cofactor Mapping</h2>
+<h3 id="file-ingredient_cofactor_mappingcsv">File: <code>ingredient_cofactor_mapping.csv</code></h3>
+<h3 id="data-source">Data Source</h3>
+<p><strong>Input</strong>: <code>data/raw/mp_medium_ingredient_properties.csv</code> (158 ingredients)</p>
+<h3 id="mapping-algorithm">Mapping Algorithm</h3>
+<p><strong>Script</strong>: <code>scripts/generate_ingredient_cofactor_mapping.py</code></p>
+<p><strong>Step 1: Component Name Parsing</strong></p>
+<pre><code class="language-python">def extract_cofactor_from_component(component_name, chebi_id):
+    &quot;&quot;&quot;
+    Rule-based pattern matching on component names.
+
+    Examples:
+    - &quot;Thiamin&quot; → thiamine_pyrophosphate
+    - &quot;FeSO₄·7H₂O&quot; → iron_ion, heme, iron_sulfur_clusters
+    - &quot;MgCl₂·6H₂O&quot; → magnesium_ion
+    &quot;&quot;&quot;
+    cofactors = []
+
+    # Vitamin mappings
+    if &quot;thiamin&quot; in component_name.lower():
+        cofactors.append(&quot;thiamine_pyrophosphate&quot;)
+    elif &quot;biotin&quot; in component_name.lower():
+        cofactors.append(&quot;biotin&quot;)
+    elif &quot;cobal&quot; in component_name.lower():  # Cobalamin, cobalt
+        cofactors.extend([&quot;cobalamin&quot;, &quot;cobalt_ion&quot;])
+
+    # Metal mappings (extract from chemical formula)
+    if extract_metal(component_name) == &quot;Mg&quot;:
+        cofactors.append(&quot;magnesium_ion&quot;)
+    elif extract_metal(component_name) == &quot;Fe&quot;:
+        cofactors.extend([&quot;iron_ion&quot;, &quot;heme&quot;, &quot;iron_sulfur_clusters&quot;])
+    elif extract_metal(component_name) == &quot;Zn&quot;:
+        cofactors.append(&quot;zinc_ion&quot;)
+    # ... etc for all metals
+
+    return cofactors
+</code></pre>
+<p><strong>Step 2: ChEBI ID Validation</strong>
+- Verify ChEBI ID from source CSV matches expected chemical
+- Cross-check with ChEBI ontology using <code>chebi_client.py</code></p>
+<p><strong>Step 3: Manual Curation</strong>
+- Review edge cases (e.g., rare earth elements → lanthanides)
+- Add lanthanide mapping for NdCl₃, PrCl₃, etc.
+- Verify multi-cofactor assignments (e.g., Fe → iron_ion + heme + Fe-S)</p>
+<h3 id="quality-control">Quality Control</h3>
+<p><strong>Validation Checks</strong>:
+- [ ] All ingredient names from MP medium CSV present
+- [ ] ChEBI IDs match source data
+- [ ] Cofactor keys reference <code>cofactor_hierarchy.yaml</code>
+- [ ] No missing cofactor assignments for known cofactor-providing ingredients
+- [ ] Multi-cofactor assignments justified (e.g., Fe provides multiple forms)</p>
+<h2 id="4-integration-testing">4. Integration Testing</h2>
+<h3 id="test-organisms">Test Organisms</h3>
+<p><strong>E. coli K-12</strong>: Well-characterized model organism
+- Expected cofactors: NAD, FAD, CoA, Fe, Mg, etc.
+- Biosynthesis: Capable for most vitamins
+- Validation: Compare to EcoCyc pathways</p>
+<p><strong>M. radiotolerans</strong>: Methylotroph representative
+- Expected cofactors: PQQ, lanthanides (XoxF-MDH)
+- Validation: Compare to published genome analysis</p>
+<h3 id="test-cases">Test Cases</h3>
+<p><strong>Test 1: Cofactor Identification</strong></p>
+<pre><code class="language-python">def test_cofactor_identification():
+    &quot;&quot;&quot;Test that all expected cofactors are identified from genome.&quot;&quot;&quot;
+    agent = CofactorMediaAgent()
+    result = agent.analyze_cofactor_requirements(&quot;SAMN02604091&quot;)  # E. coli
+
+    expected_cofactors = [&quot;nad&quot;, &quot;fad&quot;, &quot;thiamine_pyrophosphate&quot;, &quot;iron_ion&quot;]
+    found_cofactors = [req.cofactor_key for req in result]
+
+    assert all(cf in found_cofactors for cf in expected_cofactors)
+</code></pre>
+<p><strong>Test 2: Ingredient Mapping</strong></p>
+<pre><code class="language-python">def test_ingredient_mapping():
+    &quot;&quot;&quot;Test that MP medium ingredients map to cofactors.&quot;&quot;&quot;
+    agent = CofactorMediaAgent()
+    requirements = [
+        CofactorRequirement(cofactor_key=&quot;magnesium_ion&quot;, ...)
+    ]
+
+    mapping = agent.map_ingredients_to_cofactors(requirements, &quot;MP&quot;)
+
+    # Mg should be mapped to MgCl₂·6H₂O
+    assert any(&quot;MgCl&quot; in ing.ingredient_name for ing in mapping[&quot;existing&quot;])
+</code></pre>
+<p><strong>Test 3: Cross-Validation with Literature</strong></p>
+<pre><code class="language-python">def test_literature_validation():
+    &quot;&quot;&quot;Validate lanthanide cofactor for M. extorquens.&quot;&quot;&quot;
+    agent = CofactorMediaAgent()
+    result = agent.analyze_cofactor_requirements(&quot;Methylobacterium_extorquens&quot;)
+
+    # Should detect lanthanide requirement for XoxF
+    cofactors = [req.cofactor_key for req in result]
+    assert &quot;lanthanides&quot; in cofactors
+</code></pre>
+<h2 id="5-version-control-and-updates">5. Version Control and Updates</h2>
+<h3 id="versioning-strategy">Versioning Strategy</h3>
+<p><strong>Version Format</strong>: <code>MAJOR.MINOR</code> (e.g., 1.0, 1.1, 2.0)</p>
+<p><strong>Version Increments</strong>:
+- <strong>MAJOR</strong>: Breaking changes (e.g., restructure categories, change keys)
+- <strong>MINOR</strong>: Additions (e.g., new cofactors, new EC mappings)</p>
+<p><strong>Current Version</strong>: 1.0 (as of 2025-01-10)</p>
+<h3 id="update-procedure">Update Procedure</h3>
+<p><strong>Adding New Cofactor</strong>:
+1. Verify ChEBI ID exists
+2. Assign to appropriate category
+3. Map EC associations from BRENDA
+4. Identify KEGG biosynthesis pathway
+5. Update <code>cofactor_hierarchy.yaml</code>
+6. Run tests to verify integration
+7. Increment MINOR version</p>
+<p><strong>Adding New EC Mapping</strong>:
+1. Query BRENDA for EC number
+2. Identify cofactor requirements
+3. Determine if pattern or exact match
+4. Update <code>ec_to_cofactor_map.yaml</code>
+5. Run tests
+6. Increment MINOR version</p>
+<p><strong>Citation Updates</strong>:
+- Review annually for database updates (ChEBI, KEGG, BRENDA)
+- Update DOIs if new papers published
+- Maintain backward compatibility with existing ChEBI IDs</p>
+<h2 id="6-future-enhancements">6. Future Enhancements</h2>
+<h3 id="planned-improvements">Planned Improvements</h3>
+<ol>
+<li><strong>Automated ChEBI ID Validation</strong></li>
+<li>Script to check all ChEBI IDs are still valid</li>
+<li>
+<p>Detect deprecated IDs and suggest replacements</p>
+</li>
+<li>
+<p><strong>BRENDA API Integration</strong></p>
+</li>
+<li>Automate EC-to-cofactor mapping updates</li>
+<li>
+<p>Quarterly refresh of cofactor-enzyme relationships</p>
+</li>
+<li>
+<p><strong>Quantitative Cofactor Requirements</strong></p>
+</li>
+<li>Add stoichiometry information (e.g., 2 Mg2+ per enzyme)</li>
+<li>
+<p>Concentration ranges for optimal activity</p>
+</li>
+<li>
+<p><strong>Organism-Specific Cofactor Variants</strong></p>
+</li>
+<li>Expand lanthanide mapping (La, Ce, Nd, Pr, Dy specificities)</li>
+<li>Quinone pool variations (ubiquinone vs menaquinone preferences)</li>
+</ol>
+<h2 id="7-citation-management">7. Citation Management</h2>
+<h3 id="citation-update-process">Citation Update Process</h3>
+<p><strong>Annual Review</strong> (recommended: January each year):
+1. Check for updated versions of ChEBI, KEGG, BRENDA
+2. Update DOIs in YAML headers
+3. Verify URL accessibility
+4. Update BibTeX file (<code>docs/references/cofactor_sources.bib</code>)</p>
+<p><strong>Adding New Citations</strong>:
+1. Add to BibTeX file first
+2. Update YAML header with citation format: "Author et al. (YEAR) Journal. Vol(Issue):Pages"
+3. Include DOI</p>
+<p><strong>Citation Format</strong>:</p>
+<pre><code class="language-yaml"># Citation: LastName F, et al. (YEAR) Journal Name. Vol(Issue):Pages
+# DOI: 10.####/######
+</code></pre>
+<h2 id="appendix-tools-and-resources">Appendix: Tools and Resources</h2>
+<h3 id="database-access">Database Access</h3>
+<table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Access Method</th>
+<th>Update Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChEBI</td>
+<td>OWL download + API</td>
+<td>Monthly</td>
+</tr>
+<tr>
+<td>KEGG</td>
+<td>Web interface</td>
+<td>Quarterly</td>
+</tr>
+<tr>
+<td>BRENDA</td>
+<td>Web interface</td>
+<td>Annually</td>
+</tr>
+<tr>
+<td>ExplorEnz</td>
+<td>Web interface</td>
+<td>Annually</td>
+</tr>
+<tr>
+<td>MetaCyc</td>
+<td>Web interface</td>
+<td>Biannually</td>
+</tr>
+</tbody>
+</table>
+<h3 id="scripts">Scripts</h3>
+<ul>
+<li><code>scripts/generate_ingredient_cofactor_mapping.py</code> - Ingredient mapping generator</li>
+<li><code>scripts/validate_cofactor_hierarchy.py</code> - Quality control validator (TODO)</li>
+<li><code>scripts/update_chebi_ids.py</code> - ChEBI ID validator (TODO)</li>
+</ul>
+<h3 id="contacts">Contacts</h3>
+<p>For questions about curation methodology:
+- GitHub Issues: https://github.com/CultureBotAI/MicroGrowAgents/issues
+- Maintainer: MicroGrowAgents Team</p>
+<hr />
+<p><strong>Last Updated</strong>: 2025-01-10
+<strong>Version</strong>: 1.0
+<strong>Related Documentation</strong>: <a href="../cofactor_data_sources/">Cofactor Data Sources</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
