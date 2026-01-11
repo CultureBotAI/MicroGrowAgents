@@ -447,7 +447,77 @@ Genome analysis is automatically integrated into:
 - **GenMediaConcAgent**: Refines concentrations based on transporter presence/affinity
 - **KGReasoningAgent**: Adds `genome_enzymes`, `genome_auxotrophies`, `genome_transporters` queries
 
-### 7. Integration Scripts
+### 7. Claude Code Skills
+
+The MicroGrowAgents skills framework provides 16 Claude Code skills:
+
+#### Simple Skills (10 skills)
+
+**Cofactor Analysis Skill:**
+```python
+from microgrowagents.skills.simple import AnalyzeCofactorsSkill
+
+skill = AnalyzeCofactorsSkill()
+result = skill.run(
+    organism="SAMN31331780",  # M. extorquens AM-1
+    base_medium="MP",
+    output_format="markdown"
+)
+print(result)
+```
+
+**Genome Analysis Skill:**
+```python
+from microgrowagents.skills.simple import AnalyzeGenomeSkill
+
+skill = AnalyzeGenomeSkill()
+result = skill.run(
+    query="Find all methanol dehydrogenases",
+    organism="SAMN31331780",
+    analysis_type="enzymes",
+    ec_pattern="1.1.2.*",
+    output_format="markdown"
+)
+print(result)
+```
+
+**Knowledge Graph Query Skill:**
+```python
+from microgrowagents.skills.simple import QueryKnowledgeGraphSkill
+
+skill = QueryKnowledgeGraphSkill()
+result = skill.run(
+    query="Find media for Methylococcus capsulatus",
+    query_type="organism_media",
+    output_format="markdown"
+)
+print(result)
+```
+
+**Other Simple Skills:**
+- `PredictConcentrationSkill` - Predict ingredient concentrations
+- `FindAlternatesSkill` - Find alternative ingredients
+- `AnalyzeSensitivitySkill` - Sensitivity analysis for pH/salinity
+- `ClassifyRoleSkill` - Classify ingredient metabolic roles
+- `SearchLiteratureSkill` - Search scientific literature
+- `QueryDatabaseSkill` - SQL queries on MP medium database
+- `CalculateChemistrySkill` - Calculate osmotic/redox/nutrient properties
+
+#### Workflow Skills (3 workflows)
+
+- `RecommendMediaWorkflow` - Comprehensive media formulation recommendation
+- `OptimizeMediumWorkflow` - Medium optimization for specific goals
+- `IngredientReportWorkflow` - Detailed ingredient analysis reports
+
+#### Utility Skills (3 utilities)
+
+- `InitializeDatabaseSkill` - Database initialization and validation
+- `ExportResultsSkill` - Export results to JSON/CSV/Excel
+- `ValidateIngredientSkill` - Ingredient validation and normalization
+
+See `src/microgrowagents/skills/` for complete skill documentation.
+
+### 8. Integration Scripts
 
 Standalone integration scripts for specific analyses:
 
