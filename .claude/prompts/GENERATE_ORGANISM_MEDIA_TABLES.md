@@ -92,6 +92,33 @@ Create organism-specific TSV export tables that include:
 
 ## Implementation Steps
 
+### CRITICAL: Enable Provenance Tracking
+
+**Before executing any agents, enable provenance tracking:**
+
+```python
+from microgrowagents.agents import GenomeFunctionAgent
+
+# ✅ CORRECT: Use execute() method to enable provenance tracking
+genome_agent = GenomeFunctionAgent(enable_provenance=True)
+result = genome_agent.execute("Find metabolic requirements...")
+
+# ❌ INCORRECT: run() method does NOT enable provenance tracking
+# genome_agent = GenomeFunctionAgent()
+# result = genome_agent.run("...")  # No provenance files generated!
+```
+
+**Provenance tracking creates:**
+- `.claude/provenance/sessions/YYYY-MM-DD-HH-mm/manifest.yaml` - Session metadata
+- `.claude/provenance/sessions/YYYY-MM-DD-HH-mm/actions.jsonl` - Detailed action log
+- `.claude/provenance/sessions/YYYY-MM-DD-HH-mm/summary.md` - Human-readable summary
+
+**All agent executions in this workflow MUST use:**
+1. `enable_provenance=True` parameter when instantiating agents
+2. `agent.execute()` method instead of `agent.run()`
+
+This ensures complete audit trails and reproducibility of all decisions, queries, and transformations.
+
 ### Step 1: Query Genome-Specific Requirements
 
 Use `GenomeFunctionAgent` and `analyze_genome` skill:
@@ -99,10 +126,10 @@ Use `GenomeFunctionAgent` and `analyze_genome` skill:
 ```python
 from microgrowagents.agents import GenomeFunctionAgent
 
-genome_agent = GenomeFunctionAgent()
+genome_agent = GenomeFunctionAgent(enable_provenance=True)
 
 # Query M. extorquens AM-1 genome (if available in database)
-result = genome_agent.run(
+result = genome_agent.execute(
     query="Find metabolic requirements for Methylorubrum extorquens AM-1",
     organism="Methylorubrum extorquens AM-1",
     functions=["cofactor biosynthesis", "metal transport", "vitamin requirements"]
@@ -122,10 +149,10 @@ Use `KGReasoningAgent` and `query_knowledge_graph` skill:
 ```python
 from microgrowagents.agents import KGReasoningAgent
 
-kg_agent = KGReasoningAgent()
+kg_agent = KGReasoningAgent(enable_provenance=True)
 
 # Query metabolic phenotypes
-result = kg_agent.run(
+result = kg_agent.execute(
     query="Find growth requirements for Methylorubrum extorquens",
     reasoning_type="metabolic_phenotype",
     evidence_level="experimental"
@@ -145,10 +172,10 @@ Use `CofactorMediaAgent` and `analyze_cofactors` skill:
 ```python
 from microgrowagents.agents import CofactorMediaAgent
 
-cofactor_agent = CofactorMediaAgent()
+cofactor_agent = CofactorMediaAgent(enable_provenance=True)
 
 # Analyze cofactor requirements
-result = cofactor_agent.run(
+result = cofactor_agent.execute(
     query="Analyze cofactor requirements for M. extorquens AM-1",
     organism="Methylorubrum extorquens AM-1",
     pathways=["methanol oxidation", "formaldehyde assimilation", "serine cycle"]
@@ -547,6 +574,7 @@ print(f"\n✓ Generated 5 TSV tables in {output_dir}")
 ✅ **Evidence-Based:** ≥80% of values supported by organism-specific evidence
 ✅ **Publication-Ready:** Proper formatting, documentation, and citations
 ✅ **Reproducible:** Clear methodology, version tracking, provenance metadata
+✅ **Provenance Tracked:** Session files created in `.claude/provenance/sessions/` with manifest, actions log, and summary
 
 ## Usage Example
 
@@ -585,7 +613,12 @@ cat data/exports/methylorubrum_extorquens_AM1/README.md
 - **Alternative Organisms:** If not available, use closely related strains or methylotrophs
 - **Evidence Quality:** Prioritize experimental evidence over computational predictions
 - **Version Control:** Date-stamp all files and maintain version history
-- **Provenance:** Enable provenance tracking to record all agent decisions
+- **Provenance Tracking (REQUIRED):**
+  - **MUST** instantiate all agents with `enable_provenance=True`
+  - **MUST** use `agent.execute()` method, NOT `agent.run()`
+  - Verify provenance files created in `.claude/provenance/sessions/YYYY-MM-DD-HH-mm/`
+  - Check for manifest.yaml, actions.jsonl, and summary.md after completion
+  - If provenance files missing, create retroactively before committing results
 
 ## References
 
