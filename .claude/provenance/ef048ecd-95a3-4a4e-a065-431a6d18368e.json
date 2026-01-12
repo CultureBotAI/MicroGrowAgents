@@ -1,0 +1,128 @@
+{
+  "manifest_version": "1.0",
+  "session": {
+    "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+    "agent_type": "TestAgent",
+    "query": "Test provenance tracking",
+    "kwargs": {
+      "test": true
+    },
+    "start_time": "2026-01-11T07:08:27.663687",
+    "parent_session_id": null,
+    "depth": 0,
+    "sequence_counter": 5,
+    "environment": {
+      "python_version": "3.11.5 (main, Aug 25 2023, 02:32:06) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+      "platform": "macOS-13.7.8-arm64-arm-64bit",
+      "hostname": "marcins-MacBook-Pro.local",
+      "dependencies": {
+        "duckdb": "1.4.3",
+        "linkml-runtime": "1.9.5",
+        "pandas": "2.3.3",
+        "requests": "2.32.5"
+      }
+    },
+    "end_time": "2026-01-11T07:08:27.821475",
+    "duration_ms": 157,
+    "success": true,
+    "result_summary": {
+      "status": "success",
+      "message": "Test completed"
+    },
+    "error_message": null,
+    "action_count": 4
+  },
+  "environment": {
+    "python_version": "3.11.5 (main, Aug 25 2023, 02:32:06) [Clang 14.0.3 (clang-1403.0.22.14.1)]",
+    "platform": "macOS-13.7.8-arm64-arm-64bit",
+    "hostname": "marcins-MacBook-Pro.local",
+    "dependencies": {
+      "duckdb": "1.4.3",
+      "linkml-runtime": "1.9.5",
+      "pandas": "2.3.3",
+      "requests": "2.32.5"
+    }
+  },
+  "execution_trace": [
+    {
+      "event_id": "da262caf-ac6d-4aca-879d-254364aa90bc",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "event_type": "lifecycle",
+      "event_name": "agent_start",
+      "timestamp": "2026-01-11T07:08:27.821049",
+      "sequence_number": 1,
+      "details": {
+        "agent_type": "TestAgent",
+        "query": "Test provenance tracking"
+      }
+    },
+    {
+      "event_id": "5b5c14e3-4446-4cfd-9b65-90cf29e46cc2",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "event_type": "lifecycle",
+      "event_name": "agent_start",
+      "timestamp": "2026-01-11T07:08:27.821291",
+      "sequence_number": 2,
+      "details": {
+        "message": "Test agent started"
+      }
+    },
+    {
+      "event_id": "4ea4f211-0b0c-4c46-bf5e-5607a624ce3e",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "event_type": "log",
+      "event_name": "log_info",
+      "timestamp": "2026-01-11T07:08:27.821362",
+      "sequence_number": 3,
+      "details": {
+        "message": "Processing test query",
+        "level": "INFO"
+      }
+    },
+    {
+      "event_id": "8fda53f4-3efb-4a37-b9a8-f59df2fe3122",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "event_type": "decision",
+      "event_name": "query_type",
+      "timestamp": "2026-01-11T07:08:27.821427",
+      "sequence_number": 4,
+      "details": {
+        "branch_taken": "test_mode",
+        "reason": "Running in test mode"
+      }
+    },
+    {
+      "event_id": "1ff590da-917a-49fd-9f4e-76352e360a22",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "event_type": "lifecycle",
+      "event_name": "agent_end",
+      "timestamp": "2026-01-11T07:08:27.821505",
+      "sequence_number": 5,
+      "details": {
+        "success": true,
+        "duration_ms": 157
+      }
+    }
+  ],
+  "tool_calls": [],
+  "decisions": [
+    {
+      "decision_id": "050160c0-bbcf-4ce8-bdf0-89d126216b62",
+      "session_id": "ef048ecd-95a3-4a4e-a065-431a6d18368e",
+      "decision_type": "route",
+      "decision_point": "query_type",
+      "input_values": {
+        "query": "Test provenance tracking"
+      },
+      "branch_taken": "test_mode",
+      "branches_available": [
+        "test_mode",
+        "production_mode"
+      ],
+      "reason": "Running in test mode",
+      "timestamp": "2026-01-11T07:08:27.821422"
+    }
+  ],
+  "transformations": [],
+  "entity_links": []
+}

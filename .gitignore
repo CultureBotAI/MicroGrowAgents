@@ -141,6 +141,18 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Claude Code provenance tracking
+# Ignore large action logs but keep manifests and summaries
+.claude/provenance/sessions/*/actions.jsonl
+.claude/provenance/indices/*.json
+
+# Keep session manifests, summaries, and templates
+!.claude/provenance/sessions/*/manifest.yaml
+!.claude/provenance/sessions/*/summary.md
+!.claude/provenance/README.md
+!.claude/provenance/*.yaml
+!.claude/provenance/metadata-schema.json
+
 # pycharm
 .idea
 # Local vscode editor config

@@ -1,0 +1,86 @@
+session:
+  id: agent-session-2026-01-11-07-08
+  database_session_id: ef048ecd-95a3-4a4e-a065-431a6d18368e
+  date_started: '2026-01-11T07:08:27.663687Z'
+  date_ended: '2026-01-11T07:08:27.821475Z'
+  duration_minutes: 0.0
+  model: claude-sonnet-4-5
+  user: marcin
+  session_type: agent_execution
+  agent_type: TestAgent
+user_context:
+  working_directory: /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/MicroGrowAgents/MicroGrowAgents
+  git_branch: null
+  git_commit_before: null
+  git_commit_after: null
+  python_version: null
+  project_status: MicroGrowAgents development
+agent_context:
+  query: Test provenance tracking
+  kwargs:
+    test: true
+  parent_session_id: null
+  depth: 0
+goals:
+- Test provenance tracking
+results:
+  success: true
+  actions_performed: 5
+  files_analyzed: 0
+  files_created: 0
+  files_modified: 0
+  api_calls_made: 0
+  cache_hits: 0
+  notes: ''
+action_summary:
+  reads:
+    total: 1
+    files: []
+  searches:
+    total: 0
+    patterns: []
+  modifications:
+    total: 0
+    files: []
+  executions:
+    total: 3
+    commands: []
+  queries:
+    total: 0
+    apis: []
+  decisions:
+    total: 1
+    key_decisions: []
+  transformations:
+    total: 0
+    transformation_types: []
+tool_usage:
+  pubchem:
+    calls: 0
+    cache_hits: 0
+    operations: []
+  pubmed:
+    calls: 0
+    cache_hits: 0
+    operations: []
+  duckdb:
+    calls: 0
+    queries: []
+  sub_agents:
+    calls: 0
+    agent_types: []
+key_findings: []
+recommendations: []
+errors: []
+warnings: []
+entity_links:
+  genome_annotations: []
+  pathway_models: []
+  media_formulations: []
+  ingredients: []
+metadata:
+  created_by: MicroGrowAgents Provenance System v1.0
+  schema_version: 1.0.0
+  hybrid_storage: true
+  database_path: data/processed/microgrow.duckdb
+  file_session_dir: .claude/provenance/sessions/2026-01-11-07-08

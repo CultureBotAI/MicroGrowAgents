@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Claude Code Action Metadata Schema",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["timestamp", "action_id", "type", "tool", "status"],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp (UTC)"
+    },
+    "action_id": {
+      "type": "integer",
+      "description": "Sequential action identifier within session"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["read", "search", "analyze", "modify", "create", "execute", "query", "decision"],
+      "description": "Action category"
+    },
+    "tool": {
+      "type": "string",
+      "description": "Tool name (Read, Bash, Grep, Edit, Write, etc.)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failure", "partial", "skipped"],
+      "description": "Action outcome"
+    },
+    "duration_ms": {
+      "type": "integer",
+      "description": "Execution duration in milliseconds"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "working_directory": {"type": "string"},
+        "git_branch": {"type": "string"},
+        "git_commit": {"type": "string"}
+      }
+    },
+    "details": {
+      "type": "object",
+      "description": "Tool-specific details",
+      "properties": {
+        "file_path": {"type": "string"},
+        "bytes_read": {"type": "integer"},
+        "line_count": {"type": "integer"},
+        "pattern": {"type": "string"},
+        "glob": {"type": "string"},
+        "matches_found": {"type": "integer"},
+        "files_searched": {"type": "integer"},
+        "command": {"type": "string"},
+        "exit_code": {"type": "integer"},
+        "output_lines": {"type": "integer"},
+        "old_content": {"type": "string"},
+        "new_content": {"type": "string"},
+        "content_length": {"type": "integer"},
+        "file_type": {"type": "string"},
+        "url": {"type": "string"},
+        "query": {"type": "string"},
+        "results_count": {"type": "integer"},
+        "decision_type": {"type": "string"},
+        "options_considered": {
+          "type": "array",
+          "items": {"type": "string"}
+        },
+        "rationale": {"type": "string"},
+        "user_input": {"type": "string"}
+      }
+    },
+    "files_affected": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Paths of files accessed/modified"
+    },
+    "read_only": {
+      "type": "boolean",
+      "description": "Whether action only reads data"
+    },
+    "error": {
+      "type": "object",
+      "properties": {
+        "message": {"type": "string"},
+        "code": {"type": "string"},
+        "stack": {"type": "string"}
+      }
+    }
+  }
+}

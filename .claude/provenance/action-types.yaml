@@ -1,0 +1,129 @@
+---
+action_types:
+  read:
+    description: "File read operations"
+    tools:
+      - Read
+      - Glob
+    examples:
+      - "Read file at path"
+      - "List files matching pattern"
+    metadata_fields:
+      - file_path
+      - bytes_read
+      - line_count
+
+  search:
+    description: "Search and pattern matching operations"
+    tools:
+      - Grep
+      - Glob
+    examples:
+      - "Search for pattern in files"
+      - "Find files by name"
+    metadata_fields:
+      - pattern
+      - glob
+      - matches_found
+      - files_searched
+
+  analyze:
+    description: "Code analysis and inspection"
+    tools:
+      - Task (Explore agent)
+      - Read
+    examples:
+      - "Analyze codebase structure"
+      - "Understand existing patterns"
+    metadata_fields:
+      - analysis_type
+      - files_analyzed
+      - findings
+
+  modify:
+    description: "File modification operations"
+    tools:
+      - Edit
+      - NotebookEdit
+    examples:
+      - "Update existing file"
+      - "Replace code section"
+    metadata_fields:
+      - file_path
+      - old_content
+      - new_content
+      - line_range
+
+  create:
+    description: "New file creation"
+    tools:
+      - Write
+    examples:
+      - "Create new file"
+      - "Initialize template"
+    metadata_fields:
+      - file_path
+      - content_length
+      - file_type
+
+  execute:
+    description: "Command execution"
+    tools:
+      - Bash
+    examples:
+      - "Run bash command"
+      - "Execute script"
+    metadata_fields:
+      - command
+      - read_only
+      - exit_code
+      - output_lines
+
+  query:
+    description: "Data queries and API calls"
+    tools:
+      - WebFetch
+      - WebSearch
+    examples:
+      - "Fetch URL content"
+      - "Search web"
+    metadata_fields:
+      - url
+      - query
+      - results_count
+
+  decision:
+    description: "Decision points and rationale"
+    tools:
+      - AskUserQuestion
+      - TodoWrite
+      - EnterPlanMode
+      - ExitPlanMode
+    examples:
+      - "Ask user for clarification"
+      - "Choose implementation approach"
+      - "Plan complex task"
+    metadata_fields:
+      - decision_type
+      - options_considered
+      - rationale
+      - user_input
+
+categories:
+  exploration:
+    - read
+    - search
+    - analyze
+
+  implementation:
+    - create
+    - modify
+    - execute
+
+  planning:
+    - analyze
+    - decision
+
+  validation:
+    - execute
+    - query

@@ -284,6 +284,118 @@ CREATE TABLE IF NOT EXISTS kg_predicate_index (
     domain_category VARCHAR,                   -- Typical subject category
     range_category VARCHAR                     -- Typical object category
 );
+
+-- ============================================================================
+-- Provenance Tracking Tables (Hybrid system with file-based tracking)
+-- ============================================================================
+
+-- Provenance Sessions: Records each agent execution
+CREATE TABLE IF NOT EXISTS provenance_sessions (
+    session_id VARCHAR PRIMARY KEY,
+    agent_type VARCHAR NOT NULL,
+    agent_version VARCHAR,
+    query TEXT NOT NULL,
+    kwargs JSON,
+    user_context JSON,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP,
+    duration_ms INTEGER,
+    success BOOLEAN,
+    result_summary JSON,
+    error_message TEXT,
+    python_version VARCHAR,
+    dependencies JSON,
+    db_path VARCHAR,
+    parent_session_id VARCHAR,
+    depth INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (parent_session_id) REFERENCES provenance_sessions(session_id)
+);
+
+-- Provenance Events: Detailed step-by-step event log
+CREATE TABLE IF NOT EXISTS provenance_events (
+    event_id VARCHAR PRIMARY KEY,
+    session_id VARCHAR NOT NULL,
+    event_type VARCHAR NOT NULL,
+    event_name VARCHAR NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
+    sequence_number INTEGER NOT NULL,
+    details JSON NOT NULL,
+    duration_ms INTEGER,
+    related_event_id VARCHAR,
+    FOREIGN KEY (session_id) REFERENCES provenance_sessions(session_id)
+);
+
+-- Provenance Tool Calls: Database queries, API calls, file operations
+CREATE TABLE IF NOT EXISTS provenance_tool_calls (
+    call_id VARCHAR PRIMARY KEY,
+    session_id VARCHAR NOT NULL,
+    event_id VARCHAR NOT NULL,
+    tool_type VARCHAR NOT NULL,
+    tool_name VARCHAR NOT NULL,
+    input_params JSON NOT NULL,
+    output_data JSON,
+    output_size_bytes INTEGER,
+    call_time TIMESTAMP NOT NULL,
+    duration_ms INTEGER,
+    cache_hit BOOLEAN DEFAULT FALSE,
+    cache_key VARCHAR,
+    cache_source VARCHAR,
+    rate_limit_delay_ms INTEGER,
+    retry_count INTEGER DEFAULT 0,
+    success BOOLEAN NOT NULL,
+    error_type VARCHAR,
+    error_message TEXT,
+    FOREIGN KEY (session_id) REFERENCES provenance_sessions(session_id)
+);
+
+-- Provenance Decisions: Decision points and reasoning
+CREATE TABLE IF NOT EXISTS provenance_decisions (
+    decision_id VARCHAR PRIMARY KEY,
+    session_id VARCHAR NOT NULL,
+    event_id VARCHAR NOT NULL,
+    decision_type VARCHAR NOT NULL,
+    decision_point VARCHAR NOT NULL,
+    input_values JSON NOT NULL,
+    condition_evaluated TEXT,
+    branch_taken VARCHAR,
+    branches_available JSON,
+    reason TEXT,
+    timestamp TIMESTAMP NOT NULL,
+    FOREIGN KEY (session_id) REFERENCES provenance_sessions(session_id)
+);
+
+-- Provenance Transformations: Data transformations and mappings
+CREATE TABLE IF NOT EXISTS provenance_transformations (
+    transformation_id VARCHAR PRIMARY KEY,
+    session_id VARCHAR NOT NULL,
+    event_id VARCHAR NOT NULL,
+    transformation_type VARCHAR NOT NULL,
+    transformation_name VARCHAR NOT NULL,
+    input_schema JSON,
+    input_sample JSON,
+    input_size INTEGER,
+    output_schema JSON,
+    output_sample JSON,
+    output_size INTEGER,
+    method VARCHAR,
+    parameters JSON,
+    timestamp TIMESTAMP NOT NULL,
+    duration_ms INTEGER,
+    FOREIGN KEY (session_id) REFERENCES provenance_sessions(session_id)
+);
+
+-- Provenance Entity Links: Connect provenance to domain entities
+CREATE TABLE IF NOT EXISTS provenance_entity_links (
+    link_id INTEGER PRIMARY KEY,
+    session_id VARCHAR NOT NULL,
+    event_id VARCHAR,
+    entity_table VARCHAR NOT NULL,
+    entity_id VARCHAR NOT NULL,
+    link_type VARCHAR NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
+    FOREIGN KEY (session_id) REFERENCES provenance_sessions(session_id)
+);
 """
 
 INDEX_SQL = """
@@ -360,6 +472,17 @@ CREATE INDEX IF NOT EXISTS idx_sheet_data_searchable ON sheet_data(searchable_te
 -- Collection and table lookups (Query Type 4: Filtered Queries)
 CREATE INDEX IF NOT EXISTS idx_sheet_tables_collection ON sheet_tables(collection_id);
 CREATE INDEX IF NOT EXISTS idx_sheet_data_table ON sheet_data(table_id);
+
+-- ============================================================================
+-- Provenance Tracking Indexes (6 strategic indexes for session analytics)
+-- ============================================================================
+
+CREATE INDEX IF NOT EXISTS idx_prov_sessions_agent ON provenance_sessions(agent_type, created_at);
+CREATE INDEX IF NOT EXISTS idx_prov_events_session ON provenance_events(session_id, sequence_number);
+CREATE INDEX IF NOT EXISTS idx_prov_tools_session ON provenance_tool_calls(session_id, call_time);
+CREATE INDEX IF NOT EXISTS idx_prov_decisions_session ON provenance_decisions(session_id, timestamp);
+CREATE INDEX IF NOT EXISTS idx_prov_transformations_session ON provenance_transformations(session_id, timestamp);
+CREATE INDEX IF NOT EXISTS idx_prov_entity_links_entity ON provenance_entity_links(entity_table, entity_id);
 """
 
 
@@ -385,6 +508,13 @@ def drop_schema(conn) -> None:
         conn: DuckDB connection
     """
     tables = [
+        # Provenance tables (drop first due to potential dependencies)
+        "provenance_entity_links",
+        "provenance_transformations",
+        "provenance_decisions",
+        "provenance_tool_calls",
+        "provenance_events",
+        "provenance_sessions",
         # KG tables (drop first to avoid conflicts)
         "kg_predicate_index",
         "kg_hierarchies",

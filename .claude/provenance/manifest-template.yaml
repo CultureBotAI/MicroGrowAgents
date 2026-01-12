@@ -1,0 +1,55 @@
+---
+session:
+  id: "claude-session-YYYY-MM-DD-HH-mm-ss"
+  date_started: "YYYY-MM-DDTHH:mm:ssZ"
+  date_ended: null  # Set on completion
+  duration_minutes: null
+  model: "claude-sonnet-4-5"  # or haiku/opus
+  user: "marcin"
+  session_type: "development"  # development, refactoring, documentation, bugfix, feature, exploration
+
+user_context:
+  working_directory: "/Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/MicroGrowAgents/MicroGrowAgents"
+  git_branch: null
+  git_commit_before: null
+  git_commit_after: null
+  python_version: "3.11.7"
+  project_status: "Short description of project state"
+
+goals:
+  - "Primary objective"
+  - "Secondary objective"
+
+results:
+  success: null  # true/false/partial
+  actions_performed: 0
+  files_analyzed: 0
+  files_created: 0
+  files_modified: 0
+  notes: ""
+
+action_summary:
+  reads:
+    total: 0
+    files: []
+  searches:
+    total: 0
+    patterns: []
+  modifications:
+    total: 0
+    files: []
+  executions:
+    total: 0
+    commands: []
+  decisions:
+    total: 0
+    key_decisions: []
+
+key_findings: []
+recommendations: []
+errors: []
+warnings: []
+
+metadata:
+  created_by: "Claude Code Provenance System v1.0"
+  schema_version: "1.0.0"
