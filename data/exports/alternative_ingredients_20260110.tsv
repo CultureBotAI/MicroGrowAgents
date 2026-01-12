@@ -1,0 +1,30 @@
+Ingredient	Alternate Ingredient	Rationale	Alternate Role	DOI Citation	KG Node ID	KG Node Label
+PIPES	HEPES	Good buffer at pH 6.8-8.2, commonly used in biological applications	pH Buffer		CHEBI:46756	HEPES
+PIPES	MOPS	Effective buffer at pH 6.5-7.9, minimal metal binding	pH Buffer		CHEBI:39074	MOPS
+PIPES	Tris	Widely used buffer at pH 7-9, temperature-sensitive	pH Buffer		CHEBI:9754	tris
+PIPES	MES	Effective buffer at pH 5.5-6.7, useful for acidic conditions	pH Buffer		CHEBI:39010	MES
+K₂HPO₄·3H₂O	HEPES	Good buffer at pH 6.8-8.2, commonly used in biological applications	pH Buffer		CHEBI:46756	HEPES
+K₂HPO₄·3H₂O	MOPS	Effective buffer at pH 6.5-7.9, minimal metal binding	pH Buffer		CHEBI:39074	MOPS
+K₂HPO₄·3H₂O	Tris	Widely used buffer at pH 7-9, temperature-sensitive	pH Buffer		CHEBI:9754	tris
+K₂HPO₄·3H₂O	MES	Effective buffer at pH 5.5-6.7, useful for acidic conditions	pH Buffer		CHEBI:39010	MES
+NaH₂PO₄·H₂O	HEPES	Good buffer at pH 6.8-8.2, commonly used in biological applications	pH Buffer		CHEBI:46756	HEPES
+NaH₂PO₄·H₂O	MOPS	Effective buffer at pH 6.5-7.9, minimal metal binding	pH Buffer		CHEBI:39074	MOPS
+NaH₂PO₄·H₂O	Tris	Widely used buffer at pH 7-9, temperature-sensitive	pH Buffer		CHEBI:9754	tris
+NaH₂PO₄·H₂O	MES	Effective buffer at pH 5.5-6.7, useful for acidic conditions	pH Buffer		CHEBI:39010	MES
+(NH₄)₂SO₄	NH₄Cl	Simple ammonium source without sulfate	Nitrogen Source		CHEBI:31206	ammonium chloride
+(NH₄)₂SO₄	(NH₄)₂SO₄	Dual nitrogen and sulfur source	Nitrogen Source; Sulfur Source		CHEBI:62946	ammonium sulfate
+(NH₄)₂SO₄	Urea	Organic nitrogen source, hydrolyzed to ammonia by urease	Nitrogen Source		CHEBI:16199	Urea
+Sodium citrate	HEPES	Good buffer at pH 6.8-8.2, commonly used in biological applications	pH Buffer		CHEBI:46756	HEPES
+Sodium citrate	MOPS	Effective buffer at pH 6.5-7.9, minimal metal binding	pH Buffer		CHEBI:39074	MOPS
+Sodium citrate	Tris	Widely used buffer at pH 7-9, temperature-sensitive	pH Buffer		CHEBI:9754	tris
+Sodium citrate	MES	Effective buffer at pH 5.5-6.7, useful for acidic conditions	pH Buffer		CHEBI:39010	MES
+ZnSO₄·7H₂O	ZnCl₂	Alternative zinc source with higher solubility	Trace Element (Zn)		CHEBI:49976	zinc dichloride
+ZnSO₄·7H₂O	Zinc acetate	Well-soluble zinc source used in microbial culture	Trace Element (Zn)		CHEBI:62984	zinc acetate
+MnCl₂·4H₂O	MnSO₄·H₂O	Alternative manganese source that also provides sulfate	Trace Element (Mn); Sulfur Source		CHEBI:131524	manganese(II) sulfate pentahydrate
+FeSO₄·7H₂O	FeCl₃·6H₂O	Alternative iron(III) source with higher solubility in acidic conditions	Trace Element (Fe)		CHEBI:30808	iron trichloride
+FeSO₄·7H₂O	Ferric citrate	Chelated iron source that reduces precipitation with phosphate	Trace Element (Fe); Chelator		PubChem:61300	Ferric citrate
+FeSO₄·7H₂O	Fe-EDTA	Stable chelated iron that remains soluble across pH ranges	Trace Element (Fe); Chelator		mediadive.solution:6243	Fe-EDTA
+CuSO₄·5H₂O	CuCl₂·2H₂O	Alternative copper source with different counterion	Trace Element (Cu)		CHEBI:49553	copper(II) chloride
+Methanol	Glucose	Common carbon and energy source for heterotrophic growth	Carbon Source		CHEBI:17234	D-glucose
+Methanol	Glycerol	Alternative carbon source, often used for slower growth	Carbon Source		CHEBI:15978	glycerol
+Methanol	Acetate	Simple carbon source for acetate-utilizing organisms	Carbon Source		mediadive.ingredient:1861	Acetate

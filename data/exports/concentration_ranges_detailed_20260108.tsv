@@ -1,0 +1,289 @@
+Ingredient	Formula	Database_ID	Priority	Standard_Concentration	Lower_Bound	Lower_Bound_Organism	Lower_Bound_DOI	Lower_Bound_Evidence	Upper_Bound	Upper_Bound_Organism	Upper_Bound_DOI	Upper_Bound_Evidence	Optimal_Concentration	Optimal_Conc_Organism	Optimal_Conc_DOI	Optimal_Conc_Evidence	Solubility	Solubility_Organism	Solubility_DOI	Solubility_Evidence	Toxicity_Limit	Toxicity_Organism	Toxicity_DOI	Toxicity_Evidence
+PIPES	PIPES	CHEBI:39033		30 mM	10 mM	E. coli, Escherichia coli	https://doi.org/10.1021/bi00866a011	"(2)  The  buffer  should  have  maximum  water  solu-
+bility  and  minimum  solubility  in  all  oth..."	100 mM	E. coli, Escherichia coli	https://doi.org/10.1021/bi00866a011	"(2)  The  buffer  should  have  maximum  water  solu-
+bility  and  minimum  solubility  in  all  oth..."	Rarely used for bacteria (MOPS/HEPES preferred)				1000 mM	E. coli, Escherichia coli	https://doi.org/10.1021/bi00866a011	"We  cannot  as-
+sume  that  various  particulate  systems  and  soluble
+enzyme  systems all  respond..."	>100 mM (ionic strength effects)	E. coli, Escherichia coli	https://doi.org/10.1021/bi00866a011	V O I
+K₂HPO₄·3H₂O	K2HPO4.3H2O	CHEBI:131527	1.0	1.45 mM	0.1 mM		https://doi.org/10.1128/jb.149.1.163-170.1982		100 mM		https://doi.org/10.1128/jb.149.1.163-170.1982		E. coli: 50-100 mM; M9: 70 mM; MOPS: 1.32 mM	E. coli, E. coli BL21, E. coli C41, Escherichia coli, Escherichia coli BL21, P. furiosus, Pyrococcus furiosus	https://doi.org/10.1007/s10858-018-00222-4	"Journal of Biomolecular NMR
+https://doi.org/10.1007/s10858-018-00222-4
+
+COMMUNICATION
+
+Increasing..."	900 mM		https://doi.org/10.1021/je60032a018	"Precise Representation of Volume Properties
+
+of Water  at One Atmosphere
+
+G.  S.  KELL
+Division  of ..."	>100 mM (high phosphate inhibits Mo uptake)		https://doi.org/10.1016/j.biortech.2004.11.001	"Bioresource Technology 96 (2005) 1215–1222
+
+Eﬀect of molybdate on methanogenic and sulﬁdogenic ac..."
+NaH₂PO₄·H₂O	NaH2PO4.H2O	CHEBI:37586	1.0	1.88 mM	0.1 mM		https://doi.org/10.1128/jb.149.1.163-170.1982		100 mM		https://doi.org/10.1128/jb.149.1.163-170.1982		~70 mM total phosphate as buffer system	E. coli, E. coli BL21, E. coli C41, Escherichia coli, Escherichia coli BL21, P. furiosus, Pyrococcus furiosus	https://doi.org/10.1007/s10858-018-00222-4	"Journal of Biomolecular NMR
+https://doi.org/10.1007/s10858-018-00222-4
+
+COMMUNICATION
+
+Increasing..."	3000 mM		https://doi.org/10.1021/je60032a018	"Precise Representation of Volume Properties
+
+of Water  at One Atmosphere
+
+G.  S.  KELL
+Division  of ..."	>100 mM		https://doi.org/10.1128/jb.149.1.163-170.1982	
+MgCl₂·6H₂O	MgCl2.6H2O	CHEBI:86345		0.5 mM	0.02 mM	Burkholderia cenocepacia, Escherichia coli, Escherichia coli BL21, P. aeruginosa, P. aeruginosa PAO1, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas fluorescens, Salmonella enterica, Salmonella enterica serovar Typhimurium, Salmonella enteritidis, Salmonella typhimurium	https://doi.org/10.1371/journal.pone.0023307	"The expression
+of retS was repressed in a Mg2+ concentration-dependent manner
+(Figure 1B), with maxi..."	2 mM	Burkholderia cenocepacia, Escherichia coli, Escherichia coli BL21, P. aeruginosa, P. aeruginosa PAO1, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas fluorescens, Salmonella enterica, Salmonella enterica serovar Typhimurium, Salmonella enteritidis, Salmonella typhimurium	https://doi.org/10.1371/journal.pone.0023307	"...02-lux),
+in different media and expressed as fold change in the medium indicated relative to BM2 ..."	E. coli: 1-2 mM; intracellular ~1 mM	Escherichia coli, Salmonella typhimurium	https://doi.org/10.1128/jb.119.3.736-747.1974	"# Culture Medium for Enterobacteria
+
+**DOI:** https://doi.org/10.1128/jb.119.3.736-747.1974
+
+## Abst..."	2.5 mM		https://doi.org/10.1021/je60011a015	"Densities and Viscosities of
+Methanol-Water Mixtures
+
+S.Z. MIKHAIL and W.R. KIMEL
+Department of Nucl..."	300 mM (species-dependent)	E. coli, E. faecium, Enterococcus faecium, Escherichia coli, L. monocytogenes, Listeria monocytogenes, S. typhimurium, Salmonella enterica, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Staphylococcus aureus	https://doi.org/10.1684/mrh.2014.0362	"of E. coli, S. typhimurium, E. faecium, and S.
+aureus were exposed to pH7 and acidic pHs in
+the abse..."
+(NH₄)₂SO₄	(NH4)2SO4	CHEBI:62946	1.0	8 mM	1 mM	B. subtilis, Bacillus firmus, Bacillus subtilis, C. glutamicum, C. glutamicum ATCC, Corynebacterium glutamicum, E. coli, E. coli MG1655, Escherichia coli, Escherichia coli K-12	https://doi.org/10.1007/s00284-005-0370-x	"When the ammonium concentration in the wild type
+grown in minimal medium (151 mM ammonium) was
+teste..."	100 mM	B. subtilis, Bacillus firmus, Bacillus subtilis, C. glutamicum, C. glutamicum ATCC, Corynebacterium glutamicum, E. coli, E. coli MG1655, Escherichia coli, Escherichia coli K-12	https://doi.org/10.1007/s00284-005-0370-x	"The medium
+for glutamine-auxotrophic Dgdh-DglnA strain TMDgdhDglnA was
+supplemented with 100 mM L-gl..."	E. coli: 19 mM (M9); 9.52 mM (MOPS)	Escherichia coli, Salmonella typhimurium	https://doi.org/10.1128/jb.119.3.736-747.1974	"# Culture Medium for Enterobacteria
+
+**DOI:** https://doi.org/10.1128/jb.119.3.736-747.1974
+
+## Abst..."	5600 mM		https://doi.org/10.1021/je60073a004	"Vapor  Pressure and Evaporation Coefficient of  Glycerol
+
+Heiko K. Cammenga,*  Friedrich W.  Schulze..."	>500 mM (osmotic effects, not NH₄⁺ toxicity)	B. subtilis, Bacillus firmus, Bacillus subtilis, C. glutamicum, C. glutamicum ATCC, Corynebacterium glutamicum, E. coli, E. coli MG1655, Escherichia coli, Escherichia coli K-12	https://doi.org/10.1007/s00284-005-0370-x	"For B. subtilis, a standard complex medium was
+supplemented with (NH4)2SO4"
+CaCl₂·2H₂O	CaCl2.2H2O	CHEBI:86158		20 µM	1 µM	E. coli, E. coli MM294, Escherichia coli, Pseudomonas aeruginosa, S. aureus, Sinorhizobium meliloti, Staphylococcus aureus	https://doi.org/10.3389/fmicb.2017.02169	"...ause
+some parts of the DNA have to adsorb onto the cell surface and
+for that free phosphates are ..."	1 mM	E. coli, E. coli MM294, Escherichia coli, Pseudomonas aeruginosa, S. aureus, Sinorhizobium meliloti, Staphylococcus aureus	https://doi.org/10.3389/fmicb.2017.02169	"(2008a) studied the eﬃcacy of cooling and
+heating cycles by increasing the number of cycles until ma..."	E. coli: 0.1 mM or omit; transformation 20-100 mM	Escherichia coli, Salmonella typhimurium	https://doi.org/10.1128/jb.119.3.736-747.1974	"# Culture Medium for Enterobacteria
+
+**DOI:** https://doi.org/10.1128/jb.119.3.736-747.1974
+
+## Abst..."	5100 mM		https://doi.org/10.1021/je60011a015	"Densities and Viscosities of
+Methanol-Water Mixtures
+
+S.Z. MIKHAIL and W.R. KIMEL
+Department of Nucl..."	100 mM (species-specific)	B. subtilis, Bacillus subtilis, E. coli, Escherichia coli, Klebsiella pneumoniae, S. aureus, Staphylococcus aureus	https://doi.org/10.1038/srep20628	"OPEN
+
+received: 04 September 2015
+
+accepted: 06 January 2016
+
+Published: 11 February 2016
+
+Calciu..."
+Sodium citrate	C6H5O7.2H2O.3Na	CHEBI:32142		45.6 µM	10 µM	E. coli, Escherichia coli, Escherichia coli K12, Pseudomonas mendocina, Shewanella putrefaciens	https://doi.org/10.1128/AEM.71.9.5621-5623.2005	"APPLIED AND ENVIRONMENTAL MICROBIOLOGY, Sept. 2005, p. 5621–5623
+0099-2240/05/$08.00(cid:1)0 doi:10...."	10 mM	E. coli, Escherichia coli, Escherichia coli K12, Pseudomonas mendocina, Shewanella putrefaciens	https://doi.org/10.1128/AEM.71.9.5621-5623.2005	"APPLIED AND ENVIRONMENTAL MICROBIOLOGY, Sept. 2005, p. 5621–5623
+0099-2240/05/$08.00(cid:1)0 doi:10...."	E. coli: 2 mM as chelator	Escherichia coli, Salmonella typhimurium	https://doi.org/10.1128/jb.119.3.736-747.1974	"# Culture Medium for Enterobacteria
+
+**DOI:** https://doi.org/10.1128/jb.119.3.736-747.1974
+
+## Abst..."	2800 mM		https://doi.org/10.1021/je60036a011	"LITERATURE  CITED
+
+(1)  Campanile,  V.A.,  Lantz.  V..  Anal.  C'hem.  26,  1394 (1954).
+( 2 )   Chu..."	>50 mM (chelation effects)	E. coli, Escherichia coli, Escherichia coli K12, Pseudomonas mendocina, Shewanella putrefaciens	https://doi.org/10.1128/AEM.71.9.5621-5623.2005	APPLIED AND ENVIRONMENTAL MICROBIOLOGY, Sept
+ZnSO₄·7H₂O	ZnSO4.7H2O	CHEBI:32312		1.2 µM	0.01 µM	Bacillus anthracis, Escherichia coli, Neisseria gonorrhoeae, S. pneumoniae, S. pyogenes, Staphylococcus aureus, Streptococcus pneumoniae, Streptococcus pyogenes, Treponema pallidum, Yersinia pestis	https://doi.org/10.1371/journal.ppat.1002357	"... this study were conducted with a
+view to minimising the discomfort of the animals, and used the
+..."	100 µM	Bacillus anthracis, Escherichia coli, Neisseria gonorrhoeae, S. pneumoniae, S. pyogenes, Staphylococcus aureus, Streptococcus pneumoniae, Streptococcus pyogenes, Treponema pallidum, Yersinia pestis	https://doi.org/10.1371/journal.ppat.1002357	"... and glycine in the molar
+ratios 2:7:7 and pH adjusted by adding 10 N NaOH. Crystals
+grew to the ..."	E. coli: 0.5-6 μM; concentrate 2000× over medium	Citromicrobium bathyomarinum, E. coli, Erythrobacter longus, Escherichia coli, R. sphaeroides, Rhodobacter sphaeroides	https://doi.org/10.1126/science.1060331	"Femtomolar Sensitivity of Metalloregulatory Proteins Controlling Zinc
+Homeostasis
+Caryn E. Outten..."	2000 mM		https://doi.org/10.1021/je60002a003	"also of backflow surges of liquid from still
+to condensate
+The increased solubility of
+chamber at hi..."	10 mM (E. coli)	A. niger, Aspergillus niger, Bacillus cereus, Cunninghamella echinulata, Escherichia coli, Fusarium solani, Pseudomonas aeruginosa, Rhizoctonia solani, Trichoderma viride	https://doi.org/10.1128/aem.36.6.906-914.1978	"# Toxicity of zinc to fungi, bacteria, and coliphages: influence of chloride ions
+
+**DOI:** https..."
+MnCl₂·4H₂O	MnCl2.4H2O	CHEBI:86345		1 µM	0.02 µM	Bacillus anthracis, Escherichia coli, Neisseria gonorrhoeae, S. pneumoniae, S. pyogenes, Staphylococcus aureus, Streptococcus pneumoniae, Streptococcus pyogenes, Treponema pallidum, Yersinia pestis	https://doi.org/10.1371/journal.ppat.1002357	"... this study were conducted with a
+view to minimising the discomfort of the animals, and used the
+..."	10 µM	Bacillus anthracis, Escherichia coli, Neisseria gonorrhoeae, S. pneumoniae, S. pyogenes, Staphylococcus aureus, Streptococcus pneumoniae, Streptococcus pyogenes, Treponema pallidum, Yersinia pestis	https://doi.org/10.1371/journal.ppat.1002357	"... and glycine in the molar
+ratios 2:7:7 and pH adjusted by adding 10 N NaOH. Crystals
+grew to the ..."	E. coli: intracellular ~15-21 μM; media 1-10 μM	Bacillus subtilis, Citrobacter koseri, Cronobacter turicensis, Deinococcus radiodurans, Enterobacter sakazakii, Escherichia coli, Escherichia coli K-12, Klebsiella pneumoniae, Salmonella enterica, Salmonella enterica serovar Typhimurium, Shigella boydii, Streptococcus mutans	https://doi.org/10.1128/jb.05872-11	JOURNAL OF BACTERIOLOGY, Nov	3650 mM		https://doi.org/10.1021/je60046a012	"The solubility data  of  Seidell
+and  Linke  (9) were  used  for  the  diammonium  phosphate
+system"	1 mM		https://doi.org/10.1128/jb.60.4.401-413.1950	# ION ANTAGONISMS IN MICROORGANISMS: INTERFERENCE OF NORMAL MAGNESIUM METABOLISM BY NICKEL, COBAL...
+FeSO₄·7H₂O	FeSO4.7H2O	CHEBI:75832		18 µM	0.1 µM		https://doi.org/10.1016/S0168-6445(03)00055-X	"# Bacterial iron homeostasis
+
+**DOI:** https://doi.org/10.1016/S0168-6445(03)00055-X
+
+## Abstract
+
+
+..."	200 µM	E. coli, Escherichia coli, Escherichia coli K-12, P. aeruginosa, P. syringae, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas putida, Pseudomonas putida BTP1, Pseudomonas syringae	https://doi.org/10.1128/AEM.02738-08	"Figure 1 shows that
+both maximum growth yield and growth rate are reduced and
+that adaptation period..."	E. coli: 10 μM in MOPS; cellular total ~200 μM	Escherichia coli	https://doi.org/10.1073/pnas.1707189114	"# O
+            <sub>2</sub>
+            availability impacts iron homeostasis in
+            <i>..."	1800 mM		https://doi.org/10.1021/je60027a006	"Osmotic  Properties of  Some  Aqueous Solutions  at 45OC.
+
+K.  LAMAR  HELLAMS,  C.  STUART  PATTERSO..."	400 µM	E. coli, Escherichia coli, Escherichia coli K-12, P. aeruginosa, P. syringae, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas putida, Pseudomonas putida BTP1, Pseudomonas syringae	https://doi.org/10.1128/AEM.02738-08	"Iron deﬁciency has been
+reported to alter respiration and energy coupling in E. coli,
+reducing respi..."
+(NH₄)₆Mo₇O₂₄·4H₂O	(NH4)6Mo7O24.4H2O	CHEBI:75211		2 µM	0.01 µM		https://doi.org/10.1016/j.biortech.2004.11.001	"4
+The minimum concentration that gave over 93% TSA inhibition was 0.25 mM. However, intermediate con..."	30 mM		https://doi.org/10.1016/j.biortech.2004.11.001	"Data analysis and interpretation of results
+
+The maximum slope of the cumulative gas produc-
+tion cu..."	E. coli: ~1 μM for full activity; 100 μM restores mutants	Azotobacter vinelandii, Bacillus subtilis, E. coli, Escherichia coli, Rhodobacter capsulatus, S. carnosus, S. carnosus TM300, Staphylococcus aureus, Staphylococcus carnosus, Staphylococcus epidermidis, Staphylococcus xylosus	https://doi.org/10.1007/s002030050747	"Arch Microbiol (1999) 172 : 109–115
+
+© Springer-Verlag 1999
+
+O R I G I N A L   PA P E R
+
+Heike Ne..."	350 mM		https://doi.org/10.1021/je60039a018	"The  lower
+results  may  be  attributable  to  the  presence  of  soluble
+(2)"	3 mM (inhibits SRB)		https://doi.org/10.1016/j.biortech.2004.11.001	"Bioresource Technology 96 (2005) 1215–1222
+
+Eﬀect of molybdate on methanogenic and sulﬁdogenic ac..."
+CuSO₄·5H₂O	CuSO4.5H2O	CHEBI:31440		1 µM	0.001 µM	Chromatium okenii, Desulfococcus multivorans, Desulfovibrio desulfuricans, Desulfovibrio desulfuricans G20, Methanobacterium formicicum, Methanobacterium thermoautotrophicum	https://doi.org/10.1016/j.chemosphere.2005.04.016	"Chemosphere 62 (2006) 121–127
+
+Short Communication
+
+www.elsevier.com/locate/chemosphere
+
+Toxicity of..."	10 µM	Chromatium okenii, Desulfococcus multivorans, Desulfovibrio desulfuricans, Desulfovibrio desulfuricans G20, Methanobacterium formicicum, Methanobacterium thermoautotrophicum	https://doi.org/10.1016/j.chemosphere.2005.04.016	"The sludge
+was stored under nitrogen gas at 4 (cid:2)C. The maximum
+methanogenic activity of the slu..."	E. coli: 0.6 μM optimal; Cu+Zn 0.25 mM inhibitory	Acinetobacter baumannii, Bacillus subtilis, E. coli, E. coli MG1655, Escherichia coli, Helicobacter pylori, M. tuberculosis, Mycobacterium smegmatis, Mycobacterium tuberculosis, Saccharomyces cerevisiae, Streptococcus pneumoniae	https://doi.org/10.1074/jbc.RA119.010023	"ARTICLE
+
+cro
+
+Zinc excess increases cellular demand for iron and decreases
+tolerance to copper in..."	1300 mM		https://doi.org/10.1021/je60002a003	"also of backflow surges of liquid from still
+to condensate
+The increased solubility of
+chamber at hi..."	100 µM (VBNC state)	Agrobacterium tumefaciens, E. coli, E. coli ED8739, Escherichia coli, Escherichia coli O157, Helicobacter pylori, Rhizobium leguminosarum, Rhizobium meliloti, Xanthomonas campestris	https://doi.org/10.1128/AEM.67.11.5325-5327.2001	"APPLIED AND ENVIRONMENTAL MICROBIOLOGY,
+0099-2240/01/$04.00(cid:1)0 DOI: 10.1128/AEM.67.11.5325–5327..."
+CoCl₂·6H₂O	CoCl2.6H2O	CHEBI:86134		2 µM	0.01 µM	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	Signiﬁcantly, independent metabolic perturbations could be detected at cobalt concentrations below t...	100 µM	B. subtilis, E. coli, E. coli RP523, E. faecalis, Escherichia coli, Paracoccus denitrificans, R. sphaeroides, Rhodobacter sphaeroides, Rhodobacter sphaeroides ETF, S. enterica, Salmonella enterica	https://doi.org/10.1007/s10534-010-9400-7	"...able for complex heme proteins
+with an additional coenzyme, such as human CBS.
+
+Keywords
+
+Cobalt ..."	Methanogens: 0.5-2 μM; E. coli: 0.42 μM	Desulfonema limicola, Escherichia coli, M. formicicum, M. subterraneum, Methanobacterium formicicum, Methanobacterium movens, Methanobacterium subterraneum, Methanococcus jannaschii, Methanopyrus kandleri, Methanothermus fervidus	https://doi.org/10.3389/fmicb.2012.00175	"ORIGINAL RESEARCH ARTICLE
+published: 10 May 2012
+doi: 10.3389/fmicb.2012.00175
+
+Trace elements af..."	2300 mM		https://doi.org/10.1021/je60046a012	"The solubility data  of  Seidell
+and  Linke  (9) were  used  for  the  diammonium  phosphate
+system"	400 µM (Fe-S cluster damage)	B. subtilis, E. coli, E. coli RP523, E. faecalis, Escherichia coli, Paracoccus denitrificans, R. sphaeroides, Rhodobacter sphaeroides, Rhodobacter sphaeroides ETF, S. enterica, Salmonella enterica	https://doi.org/10.1007/s10534-010-9400-7	"I
+
+-
+
+N
+H
+P
+A
+A
+u
+t
+h
+o
+r
+
+M
+a
+n
+u
+s
+c
+r
+i
+p
+t
+
+I
+
+-
+
+N
+H
+P
+A
+A
+u
+t
+h
+o
+r
+
+M
+a
+n
+u
+s
+c
+r
+i
+p
+t
+
+I
+
+-..."
+Na₂WO₄·2H₂O	Na2WO4.2H2O	CHEBI:86714		0.33 µM	0.01 µM		https://doi.org/10.1016/j.biortech.2004.11.001	"4
+The minimum concentration that gave over 93% TSA inhibition was 0.25 mM. However, intermediate con..."	1 µM		https://doi.org/10.1016/j.biortech.2004.11.001	"Data analysis and interpretation of results
+
+The maximum slope of the cumulative gas produc-
+tion cu..."	Sulfate reducers: 1-10 μM; Hyperthermophiles: WtpA Kd 17 pM	E. coli, E. coli VB13, Escherichia coli, Escherichia coli K-12	https://doi.org/10.1128/JB.00117-06	JOURNAL OF BACTERIOLOGY, June 2006, p	3000 mM		https://doi.org/10.1021/je60039a018	"The  lower
+results  may  be  attributable  to  the  presence  of  soluble
+(2)"	100 µM	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/jb.00962-07	"In E. coli, rcnA, which encodes a
+transporter involved in cobalt and nickel efﬂux (37), was found
+to..."
+Methanol	CH4O	CHEBI:17790	1.0	150 mM	1 mM	E. coli, Escherichia coli, Escherichia coli K-12, P. aeruginosa, P. syringae, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas putida, Pseudomonas putida BTP1, Pseudomonas syringae	https://doi.org/10.1128/AEM.02738-08	"The resulting threshold cycle (CT) values were calculated by the IQ5 software
+and analyzed using the..."	500 mM	E. coli, Escherichia coli, Escherichia coli K-12, P. aeruginosa, P. syringae, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas putida, Pseudomonas putida BTP1, Pseudomonas syringae	https://doi.org/10.1128/AEM.02738-08	"Figure 1 shows that
+both maximum growth yield and growth rate are reduced and
+that adaptation period..."	M. extorquens: 0.5-1% v/v; B. methanolicus: 200-500 mM	Acinetobacter calcoaceticus, Bacillus methanolicus, Corynebacterium glutamicum, E. coli, Escherichia coli, M. extorquens, M. extorquens AM1, Methylobacterium extorquens, Methylobacterium extorquens AM1, Saccharomyces cerevisiae, Thermus thermophilus, Wolinella succinogenes	https://doi.org/10.3389/fmicb.2019.01313	"fmicb-10-01313
+
+June 19, 2019
+
+Time: 15:18
+
+# 1
+
+ORIGINAL RESEARCH
+published: 20 June 2019
+doi: 1..."	24700 mM		https://doi.org/10.1021/je00001a006	"20
+
+J.  Chem. Eng. Data  lQS1, 36, 20-23
+
+sions  and  for  the  generous  supply  of  substrate  and..."	2000 mM (species-dependent)	E. coli, Escherichia coli, Escherichia coli K-12, P. aeruginosa, P. syringae, Pseudomonas aeruginosa, Pseudomonas aeruginosa PAO1, Pseudomonas putida, Pseudomonas putida BTP1, Pseudomonas syringae	https://doi.org/10.1128/AEM.02738-08	"Iron deﬁciency has been
+reported to alter respiration and energy coupling in E. coli,
+reducing respi..."
+Thiamin	C12H17N4OS+	CHEBI:49105	1.0	0 µM	0 µM (not essential for all)	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	Signiﬁcantly, independent metabolic perturbations could be detected at cobalt concentrations below t...	10 µM	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	...Cobalt is essential for growth of Salmonella enterica and other organisms, yet this metal can be ...	E. coli: 1 μg/mL; Pseudomonas/Bacillus: similar		https://doi.org/10.1007/s10858-018-0218-x	"Journal of Biomolecular NMR
+https://doi.org/10.1007/s10858-018-0218-x
+
+ARTICLE
+
+CONFINE-MAS: a ma..."	300 mM		https://doi.org/10.1021/je60009a027	"Automatic Recording Apparatus for Thermal
+
+Stability Determinations
+
+KURT  R.  FISCH
+Nonmetallic Mat..."	>1 mM (no toxicity expected)	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	"In E. coli, rcnA, which encodes a
+transporter involved in cobalt and nickel efﬂux (37), was found
+to..."
+Biotin	C10H16N2O3S	CHEBI:15956	1.0	0 µM	0 µM (not essential for all)	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	Signiﬁcantly, independent metabolic perturbations could be detected at cobalt concentrations below t...	1 µM	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	...Cobalt is essential for growth of Salmonella enterica and other organisms, yet this metal can be ...	E. coli: 1 μg/mL; C. glutamicum: µg/L for limitation		https://doi.org/10.1007/s10858-018-0218-x	"Journal of Biomolecular NMR
+https://doi.org/10.1007/s10858-018-0218-x
+
+ARTICLE
+
+CONFINE-MAS: a ma..."	0.9 mM		https://doi.org/10.1021/je60028a021	"Thermal  Conductivities  of  Organic Liquids-A  New Correlation
+
+V E N K A T A C H A L A M   PACHAIY..."	>100 µM (no toxicity expected)	E. coli, Escherichia coli, Escherichia coli K-12, Escherichia coli K12, S. enterica, S. enterica LT2, Saccharomyces cerevisiae, Salmonella enterica, Salmonella enterica LT2, Salmonella enterica serovar Typhimurium, Salmonella typhimurium, Thiobacillus thioparus	https://doi.org/10.1128/JB.00962-07	"In E. coli, rcnA, which encodes a
+transporter involved in cobalt and nickel efﬂux (37), was found
+to..."
+Dysprosium (III) chloride hexahydrate	Cl3Dy.6H2O	CHEBI:30443		1 µM	0.01 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	# Toxicity of Nine (Doped) Rare Earth Metal Oxides and Respective Individual Metals to Aquatic Micro...	10 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	...are earth elements (REEs) and oxides (REOs) in various technologies, the information on their eco...	Dy does NOT support growth; tested 2 μM without growth	M. extorquens, Methylobacterium extorquens, Methylobacterium extorquens AM1	https://doi.org/10.1128/JB.00937-15	# Lanthanide-Dependent Regulation of Methanol Oxidation Systems in Methylobacterium extorquens AM...	2600 mM		https://doi.org/10.1021/je60058a011	"Lithium  chlo-
+ride  is  quite  hygroscopic  and  has  a  molar  solubility  at
+25°C more  than  thr..."	50 µM (EC50 bacteria)	E. coli, Escherichia coli	https://doi.org/10.1039/C5EN00074B	"Environmental
+Science
+Nano
+
+PAPER
+
+Effects of dysprosium oxide nanoparticles on
+Escherichia coli†..."
+Neodymium (III) chloride hexahydrate	Cl3Nd.6H2O	CHEBI:52501		1 µM	0.01 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	# Toxicity of Nine (Doped) Rare Earth Metal Oxides and Respective Individual Metals to Aquatic Micro...	10 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	...are earth elements (REEs) and oxides (REOs) in various technologies, the information on their eco...	2 μM Nd supports wild-type growth in M. extorquens AM1	M. extorquens, Methylobacterium extorquens, Methylobacterium extorquens AM1	https://doi.org/10.1128/JB.00937-15	# Lanthanide-Dependent Regulation of Methanol Oxidation Systems in Methylobacterium extorquens AM...	2800 mM		https://doi.org/10.1021/je60058a011	"Lithium  chlo-
+ride  is  quite  hygroscopic  and  has  a  molar  solubility  at
+25°C more  than  thr..."	100 µM (MBC Vibrio fischeri)	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	# Toxicity of Nine (Doped) Rare Earth Metal Oxides and Respective Individual Metals to Aquatic Mi...
+Praseodymium (III) chloride hexahydrate	Cl3Pr.6H2O	CHEBI:52503		1 µM	0.01 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	# Toxicity of Nine (Doped) Rare Earth Metal Oxides and Respective Individual Metals to Aquatic Micro...	10 µM	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	...are earth elements (REEs) and oxides (REOs) in various technologies, the information on their eco...	2 μM Pr supports growth similar to La/Ce/Nd	M. extorquens, Methylobacterium extorquens, Methylobacterium extorquens AM1	https://doi.org/10.1128/JB.00937-15	# Lanthanide-Dependent Regulation of Methanol Oxidation Systems in Methylobacterium extorquens AM...	2800 mM		https://doi.org/10.1021/je60058a011	"Lithium  chlo-
+ride  is  quite  hygroscopic  and  has  a  molar  solubility  at
+25°C more  than  thr..."	100 µM (MBC Vibrio fischeri)	Tetrahymena thermophila, V. fischeri, Vibrio fischeri	https://doi.org/10.3390/ma10070754	# Toxicity of Nine (Doped) Rare Earth Metal Oxides and Respective Individual Metals to Aquatic Mi...

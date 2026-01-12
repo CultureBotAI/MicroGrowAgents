@@ -1,0 +1,21 @@
+Ingredient	Min	Max	Unit	Essential	Confidence	pH@Low	pH@High	pH Effect	Chemical_Formula	Database_ID	Solubility	Limit of Toxicity
+Methanol	1.0	500.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	CH4O	CHEBI:17790	24700 mM	2000 mM (species-dependent)
+Sodium citrate	0.0	10.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	C6H5O7.2H2O.3Na	CHEBI:32142	2800 mM	>50 mM (chelation effects)
+PIPES	10.0	100.0	mM	Yes	0.57	6.62	6.73	Buffer capacity effect (+0.11 pH units)	PIPES	CHEBI:39033	1000 mM	>100 mM (ionic strength effects)
+CaCl₂·2H₂O	0.0	1.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	CaCl2.2H2O	CHEBI:86158	5100 mM	100 mM (species-specific)
+FeSO₄·7H₂O	0.1	200.0	mM	Yes	0.57	6.74	6.7	Slight acidifying effect (-0.04 pH)	FeSO4.7H2O	CHEBI:75832	1800 mM	400 µM
+(NH₄)₂SO₄	1.0	100.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	(NH4)2SO4	CHEBI:62946	5600 mM	>500 mM (osmotic effects, not NH₄⁺ toxicity)
+MnSO4 x H2O	0.01	30.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium				
+CoCl₂·6H₂O	0.01	100.0	mM	Yes	0.57	6.73	6.71	Slight acidic salt effect (-0.02 pH)	CoCl2.6H2O	CHEBI:86134	2300 mM	400 µM (Fe-S cluster damage)
+NaH₂PO₄·H₂O	0.1	100.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	NaH2PO4.H2O	CHEBI:37586	3000 mM	>100 mM
+K₂HPO₄·3H₂O	0.1	100.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	K2HPO4.3H2O	CHEBI:131527	900 mM	>100 mM (high phosphate inhibits Mo uptake)
+ZnSO₄·7H₂O	0.01	100.0	mM	Yes	0.57	6.73	6.71	Slight acidifying effect (-0.02 pH)	ZnSO4.7H2O	CHEBI:32312	2000 mM	10 mM (E. coli)
+MgCl₂·6H₂O	0.02	6.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	MgCl2.6H2O	CHEBI:86345	2.5 mM	300 mM (species-dependent)
+Dysprosium (III) chloride hexahydrate	0.0	10.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	Cl3Dy.6H2O	CHEBI:30443	2600 mM	50 µM (EC50 bacteria)
+CuSO₄·5H₂O	0.0	10.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	CuSO4.5H2O	CHEBI:31440	1300 mM	100 µM (VBNC state)
+Neodymium (III) chloride hexahydrate	0.0	10.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	Cl3Nd.6H2O	CHEBI:52501	2800 mM	100 µM (MBC Vibrio fischeri)
+Praseodymium (III) chloride hexahydrate	0.0	10.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	Cl3Pr.6H2O	CHEBI:52503	2800 mM	100 µM (MBC Vibrio fischeri)
+MgCl₂·6H₂O	0.02	6.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	MgCl2.6H2O	CHEBI:86345	2.5 mM	300 mM (species-dependent)
+Na₂WO₄·2H₂O	0.01	1.0	mM	Yes	0.57	6.72	6.72	Minimal pH effect in buffered medium	Na2WO4.2H2O	CHEBI:86714	3000 mM	100 µM
+Thiamin	0.0	10.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	C12H17N4OS+	CHEBI:49105	300 mM	>1 mM (no toxicity expected)
+Biotin	0.0	1.0	mM	No	0.57	6.72	6.72	Minimal pH effect in buffered medium	C10H16N2O3S	CHEBI:15956	0.9 mM	>100 µM (no toxicity expected)
