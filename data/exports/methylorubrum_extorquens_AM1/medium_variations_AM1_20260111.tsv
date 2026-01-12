@@ -1,0 +1,11 @@
+Variation_Name	Optimization_Goal	Methanol_mM	Neodymium_uM	PQQ_nM	Calcium_uM	Iron_uM	Predicted_Growth_Rate	Predicted_Nd_Uptake	Rationale	Supporting_DOIs
+MP-Nd-01	Baseline MP + Minimal Nd	125	50	100	100	10.0	0.15	50	Optimized for Baseline MP + Minimal Nd	10.1073/pnas.1600776113
+MP-Nd-02	High Nd Optimized	188	50	100	100	10.0	0.25	50	Optimized for High Nd Optimized	10.1073/pnas.1600776113
+MP-Nd-03	Ultra-Low Ca (XoxF Exclusive)	125	50	100	5	10.0	0.15	80	Optimized for Ultra-Low Ca (XoxF Exclusive)	10.1073/pnas.1600776113
+MP-Nd-04	Low Fe (Methylolanthanin Inducer)	125	50	100	100	0.5	0.15	80	Optimized for Low Fe (Methylolanthanin Inducer)	10.1073/pnas.1600776113
+MP-Nd-05	High Methanol (Growth Optimized)	250	50	100	100	10.0	0.25	50	Optimized for High Methanol (Growth Optimized)	10.1073/pnas.1600776113
+MP-Nd-06	Low Methanol (Controlled Growth)	62	50	100	100	10.0	0.15	50	Optimized for Low Methanol (Controlled Growth)	10.1073/pnas.1600776113
+MP-Nd-07	PQQ-Supplemented (XoxF Activity Max)	125	50	200	100	10.0	0.15	50	Optimized for PQQ-Supplemented (XoxF Activity Max)	10.1073/pnas.1600776113
+MP-Nd-08	Citrate Buffer (Precipitation-Resistant)	125	50	100	100	10.0	0.15	50	Optimized for Citrate Buffer (Precipitation-Resistant)	10.1073/pnas.1600776113
+MP-Nd-09	Cost-Optimized Minimal	125	50	100	100	10.0	0.15	50	Optimized for Cost-Optimized Minimal	10.1073/pnas.1600776113
+MP-Nd-10	High-Performance Combined	188	50	100	100	10.0	0.25	50	Optimized for High-Performance Combined	10.1073/pnas.1600776113

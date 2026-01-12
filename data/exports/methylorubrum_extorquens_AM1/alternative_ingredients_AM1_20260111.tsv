@@ -1,0 +1,11 @@
+Primary_Ingredient	Alternative	Rationale	Cost_Factor	Compatibility_Score	KG_Node_ID	Evidence_DOI
+PIPES	HEPES	Good buffer at pH 6.8-8.2, lower cost	0.7	0.95	CHEBI:46756	10.1021/bi00866a011
+PIPES	MOPS	Effective buffer pH 6.5-7.9, minimal metal binding	0.8	0.92	CHEBI:39074	10.1021/bi00866a011
+Neodymium chloride	Lanthanum chloride	Alternative lanthanide for XoxF activation, lower cost	0.6	0.88	CHEBI:52501	10.1038/nature12883
+Neodymium chloride	Cerium chloride	Light lanthanide alternative, similar XoxF affinity	0.5	0.85	CHEBI:30454	10.1073/pnas.1600776113
+Iron sulfate	Ferric citrate	Chelated form prevents phosphate precipitation	1.5	0.98	PubChem:61300	10.1128/AEM.02738-08
+Iron sulfate	Fe-EDTA	Stable chelate across pH ranges, high solubility	2.0	0.99	mediadive.solution:6243	10.1128/AEM.02738-08
+Calcium chloride	Calcium acetate	Reduced lanthanide competition, better solubility	0.9	0.9	CHEBI:3312	10.1038/srep20628
+Ammonium sulfate	Ammonium chloride	Simple nitrogen source without sulfate	0.6	0.85	CHEBI:31206	10.1007/s00284-005-0370-x
+Methanol	Methylamine	Alternative C1 substrate for methylotrophs	1.8	0.75	CHEBI:16830	10.1128/AEM.00001-13
+Methanol	Formate	C1 substrate with different oxidation pathway	1.2	0.7	CHEBI:15740	10.1128/AEM.00001-13

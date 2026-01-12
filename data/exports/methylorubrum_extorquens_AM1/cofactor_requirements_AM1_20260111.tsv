@@ -1,0 +1,11 @@
+Cofactor	Type	Concentration_Range	Biosynthesis_Capability	Essential	Pathway_Context	Gene_IDs	Evidence_DOI
+PQQ	Quinone cofactor	100-500 nM	Yes (pqqABCDE)	True	XoxF-MDH, methanol oxidation	pqqC: pyrroloquinoline-quinone synthase PqqC, pqqL: putative Zn-dependent peptidase, M16 family, pqqA: Coenzyme PQQ synthesis protein A	10.1073/pnas.1600776113
+Neodymium (Nd³⁺)	Lanthanide metal	10-100 μM	No (environmental)	True	XoxF-MDH activation, methanol oxidation	xoxF: lanthanide-dependent methanol dehydrogenase, xoxG: cytochrome C XoxG, xoxF: lanthanide-dependent methanol dehydrogenase	10.1038/nature12883
+Thiamin (B1)	Vitamin	0.1-1.0 μM	Partial	False	Carbohydrate metabolism, TPP cofactor	bioF: 7-keto-8-aminopelargonate synthetase or related enzyme, ilvB: Acetolactate synthase large subunit or other thiamine pyrophosphate-requiring enzyme	10.1128/AEM.00001-13
+Biotin (B7)	Vitamin	0.01-0.1 μM	Yes	False	Carboxylation reactions, fatty acid synthesis	bioF: 7-keto-8-aminopelargonate synthetase or related enzyme, mdcD: biotin-independent malonate decarboxylase subunit beta	10.1128/JB.00962-07
+Iron (Fe²⁺/Fe³⁺)	Metal cofactor	0.5-10 μM	No (environmental)	True	Electron transport, Fe-S clusters, heme	fecAR, feoABC	10.1128/AEM.02738-08
+Magnesium (Mg²⁺)	Metal cofactor	100-500 μM	No (environmental)	True	Ribosome structure, ATP chelation, enzyme activation	mgtA, corA	10.1684/mrh.2014.0362
+Zinc (Zn²⁺)	Metal cofactor	1-10 μM	No (environmental)	True	Metalloenzymes, DNA binding, PQQ biosynthesis	znuABC, zur	10.1128/aem.36.6.906-914.1978
+Cobalt (Co²⁺)	Metal cofactor	0.1-1 μM	No (environmental)	True	Vitamin B12 biosynthesis, methyltransferases	cbiK, cbiM	10.1007/s10534-010-9400-7
+Molybdenum (Mo)	Metal cofactor	0.01-0.1 μM	No (environmental)	True	Molybdopterin cofactor, nitrate reductase	modABC, moeA	10.1016/j.biortech.2004.11.001
+Tungsten (W)	Metal cofactor	0.01-0.1 μM	No (environmental)	False	Alternative to Mo in some enzymes	tupABC	10.1128/jb.00962-07
