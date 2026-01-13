@@ -1,0 +1,115 @@
+# Fixed Component Concentrations for MP Latin Hypercube Design
+# Date: 2026-01-12
+# Version: 2.1 FINAL
+#
+# These components are present in ALL samples at the SAME concentration.
+# They are NOT varied in the Latin Hypercube sampling design.
+#
+# For varied components, see: MP_latinhypercube_list_ranges_REVISED_FINAL.txt
+
+Component	Fixed_Concentration	Unit	Role	Notes
+PIPES	20	mM	pH buffer	Non-metal-binding, pKa 6.8
+MgCl₂·6H₂O	0.5	mM	Essential cofactor	Ribosome, ATP, enzymes
+CaCl₂·2H₂O	0	µM	Excluded	Ca-free design forces XoxF pathway
+ZnSO₄·7H₂O	5	µM	Essential trace	PQQ biosynthesis, metalloenzymes
+MnCl₂·4H₂O	2	µM	Essential trace	Superoxide dismutase, amino acids
+FeSO₄·7H₂O	8	µM	Essential trace	Electron transport, Fe-S clusters, heme
+(NH₄)₆Mo₇O₂₄·4H₂O	0.05	µM	Trace element	Molybdopterin cofactor
+CuSO₄·5H₂O	0.5	µM	Trace element	Oxidases, electron transport
+Na₂WO₄·2H₂O	0.05	µM	Trace element	Alternative to molybdenum
+Thiamin·HCl	0.5	µM	Vitamin	TPP cofactor, carbohydrate metabolism
+Biotin	0.05	µM	Vitamin	Carboxylase cofactor (organism biosynthesizes)
+
+# Total fixed components: 11 (was 12 - CoCl₂ moved to varied set)
+
+# CHANGE FROM PREVIOUS VERSION:
+# - CoCl₂·6H₂O REMOVED from fixed set (now in VARIED set)
+
+# RATIONALE FOR FIXED CONCENTRATIONS:
+#
+# PIPES (20 mM):
+# - Standard buffer concentration for pH 6.8-7.2
+# - Non-chelating (doesn't interfere with metal availability)
+# - Widely used in methylotroph studies
+#
+# MgCl₂ (0.5 mM):
+# - Standard MP medium concentration
+# - Essential for ribosome function (no growth below ~0.1 mM)
+# - Toxicity only at very high concentrations (>10 mM)
+#
+# CaCl₂ (0 - EXCLUDED):
+# - Ca-free design forces XoxF-dependent growth
+# - MxaF (Ca-dependent MDH) cannot function without Ca²⁺
+# - Lanthanides (Nd³⁺, in varied set) replace Ca²⁺ role in this design
+#
+# ZnSO₄ (5 µM):
+# - Required for PQQ biosynthesis (pqq genes encode Zn-dependent enzymes)
+# - Metalloenzymes throughout metabolism
+# - Standard trace metal concentration
+#
+# MnCl₂ (2 µM):
+# - Superoxide dismutase cofactor (ROS protection)
+# - Amino acid biosynthesis
+# - Standard trace metal concentration
+#
+# FeSO₄ (8 µM):
+# - Electron transport chain (cytochromes, Fe-S clusters)
+# - Could be varied (low Fe induces lanthanophore production)
+# - Fixed at moderate level for this design
+# - Note: If studying Fe-lanthanide interactions, move this to varied set
+#
+# Molybdenum (0.05 µM):
+# - Molybdopterin cofactor biosynthesis
+# - Narrow optimal range, not typically varied
+#
+# Copper (0.5 µM):
+# - Oxidases, electron transport
+# - Minor trace metal, narrow optimal range
+#
+# Tungsten (0.05 µM):
+# - Can substitute for molybdenum in some enzymes
+# - Optional, included at low level
+#
+# Thiamin (0.5 µM):
+# - TPP cofactor (pyruvate dehydrogenase, α-ketoglutarate dehydrogenase)
+# - M. extorquens has partial biosynthesis, benefits from supplementation
+#
+# Biotin (0.05 µM):
+# - Carboxylase cofactor (ACC, PC, PCC)
+# - M. extorquens has complete biosynthesis capability
+# - Low level supplementation for robustness
+
+# DESIGN PHILOSOPHY:
+# - Fix components with narrow optimal ranges
+# - Fix components not central to experimental questions
+# - Vary components relevant to lanthanide metabolism, methylotrophy, and growth
+# - Keep LHS dimensions manageable (9 varied components)
+
+# VARIED COMPONENTS (in other file):
+# - C sources: Methanol, Succinate
+# - N source: (NH₄)₂SO₄
+# - P sources: K₂HPO₄, NaH₂PO₄
+# - Chelator: Sodium citrate
+# - Lanthanide: NdCl₃ (XoxF cofactor)
+# - Trace metal: CoCl₂ (B12 biosynthesis)
+# - Cofactor: PQQ (XoxF cofactor)
+
+# ALTERNATIVE CONFIGURATIONS:
+# If studying Fe-lanthanide interactions, consider:
+#   - Move FeSO₄ to varied set (0.5-20 µM)
+#   - Reason: Low Fe induces methylolanthanin (lanthanophore)
+#   - Increases LHS dimensions to 10 components
+#   - Sample size: 50-100 samples
+
+# QUALITY CONTROL:
+# Verify these concentrations by:
+# 1. Checking stock solution preparations
+# 2. ICP-MS analysis of prepared medium
+# 3. Growth tests with fixed-concentration medium (no LHS variation)
+# 4. Comparing to published MP medium formulations
+
+# References:
+# - Standard MP medium: Multiple publications on M. extorquens cultivation
+# - Lanthanide studies: DOI: 10.1073/pnas.1600776113
+# - XoxF-MDH: DOI: 10.1038/nature12883
+# - MP variations: outputs/media/MP/mp_medium_variations_documentation.md
