@@ -1,0 +1,39 @@
+Component	Level	Working_Concentration	Stock_10x_Concentration	Unit
+K₂HPO₄·3H₂O	1	0.5	5.0	mM
+K₂HPO₄·3H₂O	2	1.709976	17.09976	mM
+K₂HPO₄·3H₂O	3	5.848035	58.48035	mM
+K₂HPO₄·3H₂O	4	20.0	200.0	mM
+NaH₂PO₄·H₂O	1	0.5	5.0	mM
+NaH₂PO₄·H₂O	2	1.709976	17.09976	mM
+NaH₂PO₄·H₂O	3	5.848035	58.48035	mM
+NaH₂PO₄·H₂O	4	20.0	200.0	mM
+(NH₄)₂SO₄	1	1.0	10.0	mM
+(NH₄)₂SO₄	2	4.641589	46.41589	mM
+(NH₄)₂SO₄	3	21.544347	215.44347	mM
+(NH₄)₂SO₄	4	100.0	1000.0	mM
+Sodium citrate	1	0.01	0.1	mM
+Sodium citrate	2	0.1	1.0	mM
+Sodium citrate	3	1.0	10.0	mM
+Sodium citrate	4	10.0	100.0	mM
+CoCl₂·6H₂O	1	0.01	0.1	µM
+CoCl₂·6H₂O	2	0.215443	2.15443	µM
+CoCl₂·6H₂O	3	4.641589	46.41589	µM
+CoCl₂·6H₂O	4	100.0	1000.0	µM
+NdCl₃·6H₂O	1	0.5	5.0	µM
+NdCl₃·6H₂O	2	1.057371	10.57371	µM
+NdCl₃·6H₂O	3	2.236068	22.36068	µM
+NdCl₃·6H₂O	4	4.728708	47.28708	µM
+NdCl₃·6H₂O	5	10.0	100.0	µM
+Succinate	1	0.0	0.0	mM
+Succinate	2	1.5	15.0	mM
+Succinate	3	150.0	1500.0	mM
+Methanol	1	15.0	150.0	mM
+Methanol	2	36.042171	360.42171	mM
+Methanol	3	86.60254	866.0254	mM
+Methanol	4	208.089573	2080.89573	mM
+Methanol	5	500.0	5000.0	mM
+PQQ	1	0.0	0.0	nM
+PQQ	2	10.0	100.0	nM
+PQQ	3	46.415888	464.15888	nM
+PQQ	4	215.443469	2154.43469	nM
+PQQ	5	1000.0	10000.0	nM

@@ -1,0 +1,57 @@
+# CORRECTED Latin Hypercube Design - VARIED Components Only
+# MP Medium for M. extorquens AM-1 (Ca-free, XoxF-dependent growth)
+# Date: 2026-01-12
+# Version: 2.0
+#
+# IMPORTANT: This file contains ONLY the components whose concentrations
+# will be VARIED in the Latin Hypercube sampling design.
+#
+# All other components from the full ingredient list will be held at
+# FIXED concentrations (see fixed_concentrations.txt for values).
+#
+# Critical fixes from original:
+# 1. PQQ range corrected: 0-100 µM → 0-1000 nM (1000× reduction)
+# 2. Lanthanides ADDED: NdCl₃·6H₂O (ESSENTIAL for Ca-free medium)
+# 3. Phosphate upper bounds reduced: 100 mM → 20 mM
+# 4. Citrate lower bound raised: 0 mM → 0.01 mM
+
+Component	Baseline_Concentration	Lower_Bound	Upper_Bound	Unit	Notes
+K₂HPO₄·3H₂O	1.45	0.5	20	mM	P source + buffer (upper bound REDUCED)
+NaH₂PO₄·H₂O	1.88	0.5	20	mM	P source + buffer (upper bound REDUCED)
+(NH₄)₂SO₄	10	1	100	mM	N source (unchanged - good range)
+Sodium citrate	0.5	0.01	10	mM	Chelator + buffer (lower bound RAISED from 0)
+NdCl₃·6H₂O	2	0.5	10	µM	XoxF-MDH cofactor (ADDED - CRITICAL!)
+Succinate	15	0	150	mM	Alternative C source (unchanged)
+Methanol	125	15	500	mM	Primary C source (unchanged)
+PQQ	0	0	1000	nM	XoxF cofactor (CORRECTED - was 100 µM!)
+
+# Total varied components: 8
+# Expected LHS sample size: 40-80 (5-10× component count)
+
+# CRITICAL NOTES:
+# - NdCl₃ is ESSENTIAL: Without lanthanides, Ca-free medium will NOT support growth
+# - PQQ range corrected: Organism biosynthesizes PQQ; 0-1 µM supplementation range
+# - Phosphate reduced: Prevents lanthanide phosphate precipitation
+# - Citrate >0: Required for lanthanide chelation (prevents precipitation)
+
+# REPLACED COMPONENT:
+# - CoCl₂·6H₂O REMOVED from varied set → moved to fixed at 2 µM
+# - NdCl₃·6H₂O ADDED to varied set → ESSENTIAL for XoxF-MDH function
+
+# DESIGN CONSTRAINTS (apply when generating LHS samples):
+# 1. IF [Total_Phosphate] > 10 mM AND [Nd³⁺] > 5 µM: Require [Citrate] > 1 mM
+# 2. IF [Total_Phosphate] < 2 mM AND [Citrate] < 0.1 mM: Insufficient buffering
+# 3. Total osmolarity < 500 mOsm
+# 4. C:N ratio: 5 < (Methanol + Succinate)/NH₄⁺ < 50
+# 5. pH target: 6.8-7.2 (maintained by PIPES + citrate + phosphate)
+
+# KEY EXPERIMENTAL FACTORS:
+# - Nd³⁺ concentration: Controls XoxF-MDH activity
+# - Nd³⁺ × Citrate: Chelation vs. bioavailability trade-off
+# - Nd³⁺ × Phosphate: Precipitation risk at high P + high Nd
+# - PQQ × Nd³⁺: Synergistic effect on XoxF activity
+# - Methanol × Succinate: Metabolic flexibility
+
+# Target organism: Methylorubrum extorquens AM-1
+# Genome: SAMN31331780 (xoxFG genes, pqqABCDE operon)
+# Growth mode: XoxF-dependent (Ca-free forces lanthanide dependence)

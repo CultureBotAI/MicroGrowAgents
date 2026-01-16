@@ -1,0 +1,39 @@
+# REVISED Latin Hypercube Design for MP Medium (M. extorquens AM-1)
+# Date: 2026-01-11
+# Version: 2.0 - Enhanced Minimal Design (14 components)
+# Includes: Tier 1 essentials + Tier 2 high-value components
+# Based on: Genome analysis (SAMN31331780) + MP medium optimization
+
+Component	Baseline_Concentration	Lower_Bound	Upper_Bound	Unit	Notes
+K₂HPO₄·3H₂O	1.45	0.5	20	mM	Phosphorus source + pH buffer (reduced upper bound)
+NaH₂PO₄·H₂O	1.88	0.5	20	mM	Phosphorus source + pH buffer (reduced upper bound)
+(NH₄)₂SO₄	10	1	100	mM	Nitrogen source
+Sodium citrate	0.5	0.01	10	mM	Buffer + chelator (raised lower bound)
+Methanol	125	15	500	mM	Primary carbon source (MDH substrate)
+Succinate	15	0	150	mM	Alternative carbon source (optional)
+MgCl₂·6H₂O	0.5	0.1	2	mM	ESSENTIAL: Ribosome function, ATP chelation
+CaCl₂·2H₂O	10	1	100	µM	MxaF cofactor, XoxF/MxaF switch regulator
+NdCl₃·6H₂O	2	0.5	10	µM	XoxF-MDH cofactor (lanthanide-dependent growth)
+FeSO₄·7H₂O	8	0.5	20	µM	Electron transport, Fe-S clusters, heme
+ZnSO₄·7H₂O	5	1	20	µM	PQQ biosynthesis, metalloenzymes
+MnCl₂·4H₂O	2	0.5	10	µM	Superoxide dismutase, amino acid biosynthesis
+CoCl₂·6H₂O	2	0.01	100	µM	Vitamin B12 biosynthesis
+PQQ	0	0	1000	nM	XoxF cofactor (CORRECTED: was 100 µM, now 1 µM max)
+Thiamin·HCl	0.5	0.1	2	µM	TPP cofactor for carbohydrate metabolism
+
+# Design constraints to prevent precipitation and maintain viability:
+# 1. If [Phosphate_total] > 10 mM AND [Nd³⁺] > 5 µM: Risk of LnPO₄ precipitation
+# 2. If [Ca²⁺] > 50 µM: XoxF pathway suppressed, MxaF-dominant growth
+# 3. If [Mg²⁺] < 0.1 mM: Growth inhibition (ribosome deficiency)
+# 4. Maintain pH 6.5-7.5 with citrate/phosphate buffering
+# 5. Total osmolarity should not exceed 500 mOsm
+
+# Key experimental factors:
+# - Ca²⁺/Nd³⁺ ratio: Controls XoxF vs. MxaF pathway expression
+# - Fe limitation: Induces methylolanthanin (lanthanophore) production
+# - PQQ supplementation: Enhances XoxF activity (organism biosynthesizes PQQ)
+# - Phosphate concentration: Affects lanthanide bioavailability
+
+# Expected LHS sample size: 70-140 samples (5-10× component count)
+# Target organism: Methylorubrum extorquens AM-1 (NCBITaxon:272630)
+# Genome: SAMN31331780 (10,820 annotations, complete pqqABCDE + xoxFG)

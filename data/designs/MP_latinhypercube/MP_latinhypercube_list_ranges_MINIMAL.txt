@@ -1,0 +1,34 @@
+# MINIMAL Latin Hypercube Design for MP Medium (M. extorquens AM-1)
+# Date: 2026-01-11
+# Version: 2.0 - Tier 1 Essentials Only (11 components)
+# Use this design if resource-constrained or for initial screening
+# WARNING: Omits lanthanides - cannot study XoxF-specific metabolism
+
+Component	Baseline_Concentration	Lower_Bound	Upper_Bound	Unit	Notes
+K₂HPO₄·3H₂O	1.45	0.5	20	mM	Phosphorus source + pH buffer
+NaH₂PO₄·H₂O	1.88	0.5	20	mM	Phosphorus source + pH buffer
+(NH₄)₂SO₄	10	1	100	mM	Nitrogen source (essential)
+Sodium citrate	0.5	0.01	10	mM	Buffer + metal chelator
+Methanol	125	15	500	mM	Primary carbon source (MDH substrate)
+MgCl₂·6H₂O	0.5	0.1	2	mM	ESSENTIAL: Ribosome, ATP, enzymes
+CaCl₂·2H₂O	10	1	100	µM	MxaF cofactor (essential for MxaF pathway)
+FeSO₄·7H₂O	8	0.5	20	µM	Electron transport, Fe-S clusters
+ZnSO₄·7H₂O	5	1	20	µM	Metalloenzymes, PQQ biosynthesis
+MnCl₂·4H₂O	2	0.5	10	µM	Superoxide dismutase
+CoCl₂·6H₂O	2	0.01	100	µM	Vitamin B12 biosynthesis
+
+# Expected LHS sample size: 55-110 samples (5-10× component count)
+
+# Limitations of this minimal design:
+# - No lanthanides (Nd³⁺): Cannot explore XoxF-dependent growth
+# - No PQQ supplementation: Relies on endogenous biosynthesis only
+# - No thiamin: May limit growth rate (partial biosynthesis in genome)
+# - Limited trace metals: No Cu, Mo, W (minor but beneficial)
+
+# This design ensures VIABILITY but misses key M. extorquens features
+# For M. extorquens-specific studies, use REVISED design instead
+
+# Design constraints:
+# 1. [Mg²⁺] must be ≥ 0.1 mM for growth
+# 2. pH maintained 6.5-7.5 with citrate/phosphate
+# 3. Total osmolarity < 500 mOsm
