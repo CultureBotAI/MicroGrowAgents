@@ -1,0 +1,9 @@
+Component	Concentration_MP_media	Lower bound 	Upper bound 
+K₂HPO₄·3H₂O 	1.45 mM	0.1 mM	100 mM
+NaH₂PO₄·H₂O	1.88 mM	0.1 mM	100 mM
+(NH₄)₂SO₄	8 mM	1 mM	100 mM
+Sodium citrate	45.6 µM	0	10 mM
+CoCl₂·6H₂O	2 µM	0.01 µM	100 µM
+Succinate 	15mM 	0	150mM 
+Methanol	150mM	15mM 	500mM 
+PQQ	0	0	100uM

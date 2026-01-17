@@ -1,0 +1,12 @@
+Component	Fixed_Concentration	Unit	Role	Notes
+PIPES	20.0	mM	pH buffer	Non-metal-binding, pKa 6.8
+MgCl₂·6H₂O	0.5	mM	Essential cofactor	Ribosome, ATP, enzymes
+CaCl₂·2H₂O	0.0	µM	Excluded	Ca-free design forces XoxF pathway
+ZnSO₄·7H₂O	5.0	µM	Essential trace	PQQ biosynthesis, metalloenzymes
+MnCl₂·4H₂O	2.0	µM	Essential trace	Superoxide dismutase, amino acids
+FeSO₄·7H₂O	8.0	µM	Essential trace	Electron transport, Fe-S clusters, heme
+(NH₄)₆Mo₇O₂₄·4H₂O	0.05	µM	Trace element	Molybdopterin cofactor
+CuSO₄·5H₂O	0.5	µM	Trace element	Oxidases, electron transport
+Na₂WO₄·2H₂O	0.05	µM	Trace element	Alternative to molybdenum
+Thiamin·HCl	0.5	µM	Vitamin	TPP cofactor, carbohydrate metabolism
+Biotin	0.05	µM	Vitamin	Carboxylase cofactor (organism biosynthesizes)

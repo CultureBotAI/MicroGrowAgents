@@ -1,0 +1,122 @@
+[
+  {
+    "condition_id": "LHS_102",
+    "pH_estimate": 7.09,
+    "osmolarity_mOsm": 59.0,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_118",
+    "pH_estimate": 6.77,
+    "osmolarity_mOsm": 23.1,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_077",
+    "pH_estimate": 6.77,
+    "osmolarity_mOsm": 22.7,
+    "valid": false,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": false
+    }
+  },
+  {
+    "condition_id": "LHS_106",
+    "pH_estimate": 6.67,
+    "osmolarity_mOsm": 69.1,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_014",
+    "pH_estimate": 7.2,
+    "osmolarity_mOsm": 61.5,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_091",
+    "pH_estimate": 7.09,
+    "osmolarity_mOsm": 65.2,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_034",
+    "pH_estimate": 6.99,
+    "osmolarity_mOsm": 22.7,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_074",
+    "pH_estimate": 6.67,
+    "osmolarity_mOsm": 105.1,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_108",
+    "pH_estimate": 6.77,
+    "osmolarity_mOsm": 6.7,
+    "valid": true,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": true,
+      "nd_present": true
+    }
+  },
+  {
+    "condition_id": "LHS_125",
+    "pH_estimate": 6.88,
+    "osmolarity_mOsm": 75.1,
+    "valid": false,
+    "checks": {
+      "pH_in_range": true,
+      "osmolarity_ok": true,
+      "methanol_adequate": false,
+      "nd_present": true
+    }
+  }
+]
