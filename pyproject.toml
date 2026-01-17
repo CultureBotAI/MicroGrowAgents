@@ -34,7 +34,9 @@ dependencies = [
   "lxml >= 4.9.0",
   "fuzzywuzzy >= 0.18.0",
   "python-Levenshtein >= 0.21.0",
-  "grape >= 0.1.0",  # GRAPE: Graph Representation leArning (Rust-backed, optimized for large biological networks)
+  "grape >= 0.1.0", # GRAPE: Graph Representation leArning (Rust-backed, optimized for large biological networks)
+  "pypdf2>=3.0.1",
+  "markitdown>=0.1.4",
 ]
 
 [dependency-groups]

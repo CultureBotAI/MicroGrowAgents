@@ -11,4 +11,9 @@ Modules:
 - hydration: Hydration state parsing and correction
 - api_clients: PubChem, ChEBI, CAS, OLS API clients
 - mappings: ChEBI mapping integration
+- element_extractor: Extract key elements from chemical formulas
 """
+
+from microgrowagents.chemistry.element_extractor import ElementExtractor
+
+__all__ = ["ElementExtractor"]

@@ -1,0 +1,975 @@
+id: https://w3id.org/microgrow/mp-medium
+name: mp-medium-schema
+title: MP Medium Data Schema
+description: >-
+  LinkML schema for MP (Methylotroph) medium ingredient properties and predictions.
+  Covers ingredient properties, concentration predictions, and alternate recommendations.
+
+  This schema models four main data tables:
+  1. MP Medium Ingredient Properties (49 columns with DOI citations)
+  2. MP Medium Concentration Predictions (9 columns)
+  3. Alternate Ingredients Table (7 columns)
+  4. Media formulations and compositions
+
+license: MIT
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  microgrow: https://w3id.org/microgrow/
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  schema: http://schema.org/
+  biolink: https://w3id.org/biolink/vocab/
+
+default_prefix: microgrow
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  MPMediumDataset:
+    tree_root: true
+    description: >-
+      Complete MP medium dataset including ingredient properties,
+      concentration predictions, alternate recommendations, and detailed
+      concentration ranges with provenance.
+    attributes:
+      ingredients:
+        description: Full ingredient properties (68 columns with all DOI citations)
+        range: MPMediumIngredient
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Most comprehensive view with all properties and citations
+      ingredient_properties:
+        description: Core ingredient properties (32-33 columns, focused view)
+        range: IngredientProperty
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Simplified view for ingredient_properties.tsv export
+      concentration_ranges:
+        description: Detailed concentration measurements with organism evidence
+        range: ConcentrationRangeDetailed
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Granular provenance for each concentration measurement
+      solubility_toxicity:
+        description: Solubility and toxicity summary
+        range: SolubilityToxicitySummary
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Simplified summary table
+      predictions:
+        description: Basic concentration predictions (9 columns)
+        range: ConcentrationPrediction
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Original prediction model outputs
+      predictions_extended:
+        description: Predictions with extended properties (13 columns)
+        range: MediumPredictionExtended
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Predictions merged with ingredient chemical properties
+      alternates:
+        description: Alternate ingredient recommendations
+        range: AlternateIngredient
+        multivalued: true
+        inlined_as_list: true
+        comments:
+          - Alternative ingredient substitutions
+
+  MPMediumIngredient:
+    description: >-
+      A chemical component of MP medium with comprehensive properties including
+      concentrations, stability data, toxicity, biological roles, and literature citations.
+      Maps to: mp_medium_ingredient_properties.csv (68 columns with organism context)
+    slots:
+      # Basic identification (columns 1-5)
+      - priority
+      - component
+      - chemical_formula
+      - kg_node_id
+      - concentration
+      # Media role (columns 6-7) - NEW
+      - media_role
+      - media_role_doi
+      # Concentration properties (columns 8-17)
+      - solubility
+      - solubility_citation_doi
+      - solubility_citation_organism
+      - lower_bound
+      - lower_bound_citation
+      - lower_bound_citation_organism
+      - upper_bound
+      - upper_bound_citation
+      - upper_bound_citation_organism
+      - limit_of_toxicity
+      - toxicity_citation
+      - toxicity_citation_organism
+      # Chemical stability properties (columns 18-33)
+      - ph_effect
+      - ph_effect_doi
+      - ph_effect_organism
+      - pka
+      - pka_doi
+      - pka_organism
+      - oxidation_state_stability
+      - oxidation_stability_doi
+      - oxidation_stability_organism
+      - light_sensitivity
+      - light_sensitivity_doi
+      - light_sensitivity_organism
+      - autoclave_stability
+      - autoclave_stability_doi
+      - autoclave_stability_organism
+      - stock_concentration
+      - stock_concentration_doi
+      - stock_concentration_organism
+      # Chemical interaction properties (columns 34-45)
+      - precipitation_partners
+      - precipitation_partners_doi
+      - precipitation_partners_organism
+      - antagonistic_ions
+      - antagonistic_ions_doi
+      - antagonistic_ions_organism
+      - chelator_sensitivity
+      - chelator_sensitivity_doi
+      - chelator_sensitivity_organism
+      - redox_contribution
+      - redox_contribution_doi
+      - redox_contribution_organism
+      # Biological properties (columns 46-61)
+      - cellular_role
+      - cellular_role_doi
+      - cellular_role_organism
+      - essential_conditional
+      - essential_conditional_doi
+      - essential_conditional_organism
+      - uptake_transporter
+      - uptake_transporter_doi
+      - uptake_transporter_organism
+      - regulatory_effects
+      - regulatory_effects_doi
+      - regulatory_effects_organism
+      # Organism-specific properties (columns 62-68)
+      - gram_differential
+      - gram_differential_doi
+      - gram_differential_organism
+      - aerobe_anaerobe_differential
+      - aerobe_anaerobe_doi
+      - aerobe_anaerobe_organism
+      - optimal_concentration_model_organisms
+      - optimal_concentration_doi
+      - optimal_concentration_organism
+
+  ConcentrationPrediction:
+    description: >-
+      Predicted concentration ranges for a media ingredient with pH effects.
+      Maps to: mp_medium_predictions.tsv (9 columns)
+    attributes:
+      ingredient:
+        description: Ingredient name
+        required: true
+        identifier: true
+      min_concentration:
+        description: Minimum predicted concentration
+        range: float
+      max_concentration:
+        description: Maximum predicted concentration
+        range: float
+      unit:
+        description: Concentration unit (mM, g/L, etc.)
+        range: ConcentrationUnitEnum
+      essential:
+        description: Whether ingredient is essential
+        range: boolean
+      confidence:
+        description: Prediction confidence score (0-1)
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+      ph_at_low:
+        description: pH at minimum concentration
+        range: float
+        minimum_value: 0.0
+        maximum_value: 14.0
+      ph_at_high:
+        description: pH at maximum concentration
+        range: float
+        minimum_value: 0.0
+        maximum_value: 14.0
+      ph_effect:
+        description: Description of pH effect
+        range: string
+
+  AlternateIngredient:
+    description: >-
+      Alternative ingredient recommendation with rationale and evidence.
+      Maps to: alternate_ingredients_table.csv (7 columns)
+    attributes:
+      original_ingredient:
+        description: Original ingredient being replaced
+        required: true
+      alternate_ingredient:
+        description: Recommended alternative ingredient
+        required: true
+      rationale:
+        description: Explanation for the substitution
+        range: string
+      alternate_role:
+        description: Media role of the alternate ingredient
+        range: MediaRoleEnum
+      doi_citation:
+        description: DOI supporting the substitution
+        range: DOI
+      kg_node_id:
+        description: Knowledge graph node ID (ChEBI, PubChem, etc.)
+        range: string
+        pattern: "^(CHEBI|PubChem|CAS):[A-Za-z0-9_-]+$"
+      kg_node_label:
+        description: Human-readable label for KG node
+        range: string
+
+  IngredientProperty:
+    description: >-
+      Core ingredient properties including media role, cellular role,
+      concentration ranges, and chemical properties.
+      Maps to: ingredient_properties_YYYYMMDD.tsv (20 rows, 32-33 columns)
+    slots:
+      - component
+      - chemical_formula
+      - kg_node_id
+      - priority
+      - media_role
+      - concentration
+      - lower_bound
+      - upper_bound
+      - optimal_concentration_model_organisms
+      - solubility
+      - limit_of_toxicity
+      - ph_effect
+      - pka
+      - oxidation_state_stability
+      - light_sensitivity
+      - autoclave_stability
+      - stock_concentration
+      - precipitation_partners
+      - antagonistic_ions
+      - chelator_sensitivity
+      - redox_contribution
+      - cellular_role_specific
+      - cellular_role_broad
+      - essential_conditional
+      - uptake_transporter
+      - regulatory_effects
+      - gram_differential
+      - aerobe_anaerobe_differential
+      - solubility_citation_organism
+      - lower_bound_citation_organism
+      - upper_bound_citation_organism
+      - toxicity_citation_organism
+      - optimal_concentration_organism
+
+  ConcentrationRangeDetailed:
+    description: >-
+      Detailed concentration measurements with organism-specific evidence
+      and DOI citations for each measurement type.
+      Maps to: concentration_ranges_detailed_YYYYMMDD.tsv (288 rows, 24 columns)
+    attributes:
+      ingredient:
+        description: Ingredient name
+        required: true
+        identifier: true
+      formula:
+        description: Chemical formula
+        range: string
+      kg_node_id:
+        description: Knowledge graph identifier
+        range: string
+        pattern: "^(CHEBI|PubChem|CAS|mediadive\\.(ingredient|solution)):[A-Za-z0-9_.-]+$"
+      priority:
+        description: Priority ranking
+        range: float
+      standard_concentration:
+        description: Standard working concentration
+        range: string
+      lower_bound:
+        description: Minimum concentration
+        range: string
+      lower_bound_organism:
+        description: Organism(s) for measurement
+        range: string
+      lower_bound_doi:
+        description: DOI citation
+        range: DOI
+        multivalued: true
+      lower_bound_evidence:
+        description: Evidence snippet (100 chars)
+        range: string
+      upper_bound:
+        description: Maximum concentration
+        range: string
+      upper_bound_organism:
+        description: Organism(s) for measurement
+        range: string
+      upper_bound_doi:
+        description: DOI citation
+        range: DOI
+        multivalued: true
+      upper_bound_evidence:
+        description: Evidence snippet (100 chars)
+        range: string
+      optimal_concentration:
+        description: Optimal concentration
+        range: string
+      optimal_conc_organism:
+        description: Organism(s) for measurement
+        range: string
+      optimal_conc_doi:
+        description: DOI citation
+        range: DOI
+        multivalued: true
+      optimal_conc_evidence:
+        description: Evidence snippet (100 chars)
+        range: string
+      solubility:
+        description: Solubility value
+        range: string
+      solubility_organism:
+        description: Organism(s) for measurement
+        range: string
+      solubility_doi:
+        description: DOI citation
+        range: DOI
+        multivalued: true
+      solubility_evidence:
+        description: Evidence snippet (100 chars)
+        range: string
+      toxicity_limit:
+        description: Toxicity threshold
+        range: string
+      toxicity_organism:
+        description: Organism(s) for measurement
+        range: string
+      toxicity_doi:
+        description: DOI citation
+        range: DOI
+        multivalued: true
+      toxicity_evidence:
+        description: Evidence snippet (100 chars)
+        range: string
+
+  SolubilityToxicitySummary:
+    description: >-
+      Simplified summary of solubility and toxicity properties.
+      Maps to: solubility_toxicity_YYYYMMDD.tsv (20 rows, 9 columns)
+    attributes:
+      ingredient:
+        description: Ingredient name
+        required: true
+        identifier: true
+      formula:
+        description: Chemical formula
+        range: string
+      kg_node_id:
+        description: Knowledge graph identifier
+        range: string
+        pattern: "^(CHEBI|PubChem|CAS|mediadive\\.(ingredient|solution)):[A-Za-z0-9_.-]+$"
+      solubility_mM:
+        description: Solubility in millimolar
+        range: string
+      solubility_organism:
+        description: Organism context
+        range: string
+      solubility_doi:
+        description: DOI citation
+        range: DOI
+      toxicity_limit:
+        description: Toxicity limit concentration
+        range: string
+      toxicity_organism:
+        description: Organism context
+        range: string
+      toxicity_doi:
+        description: DOI citation
+        range: DOI
+
+  MediumPredictionExtended:
+    description: >-
+      Medium concentration predictions with extended ingredient properties.
+      Maps to: medium_predictions_extended_YYYYMMDD.tsv (20 rows, 13 columns)
+    attributes:
+      ingredient:
+        description: Ingredient name
+        required: true
+        identifier: true
+      min_concentration:
+        description: Minimum predicted concentration (mM)
+        range: float
+      max_concentration:
+        description: Maximum predicted concentration (mM)
+        range: float
+      unit:
+        description: Concentration unit
+        range: ConcentrationUnitEnum
+      essential:
+        description: Whether ingredient is essential
+        range: boolean
+      confidence:
+        description: Prediction confidence (0-1)
+        range: float
+        minimum_value: 0.0
+        maximum_value: 1.0
+      ph_at_low:
+        description: pH at minimum concentration
+        range: float
+        minimum_value: 0.0
+        maximum_value: 14.0
+      ph_at_high:
+        description: pH at maximum concentration
+        range: float
+        minimum_value: 0.0
+        maximum_value: 14.0
+      ph_effect:
+        description: Description of pH effect
+        range: string
+      chemical_formula:
+        description: Chemical formula
+        range: string
+      kg_node_id:
+        description: Knowledge graph identifier
+        range: string
+        pattern: "^(CHEBI|PubChem|CAS|mediadive\\.(ingredient|solution)):[A-Za-z0-9_.-]+$"
+      solubility:
+        description: Solubility characteristics
+        range: string
+      limit_of_toxicity:
+        description: Toxicity threshold
+        range: string
+
+slots:
+  # ========== Basic Identification ==========
+  priority:
+    description: Priority ranking of the ingredient (1=highest)
+    range: float
+
+  component:
+    description: Name of the chemical component
+    required: true
+
+  chemical_formula:
+    description: Chemical formula (e.g., K₂HPO₄·3H₂O)
+
+  kg_node_id:
+    description: Knowledge graph node identifier from KG-Microbe lookup (e.g., CHEBI:131527, PubChem:61300, mediadive.ingredient:1861)
+    identifier: true
+    pattern: "^(CHEBI|PubChem|CAS|mediadive\\.(ingredient|solution)):[A-Za-z0-9_.-]+$"
+
+  concentration:
+    description: Standard concentration used in MP medium (e.g., "1.45 mM")
+
+  # ========== Media Role (NEW) ==========
+  media_role:
+    description: Functional role(s) of ingredient in media
+    range: MediaRoleEnum
+    required: true
+    multivalued: true
+
+  media_role_doi:
+    description: DOI citation for media role classification
+    range: DOI
+    multivalued: true
+
+  # ========== Concentration Properties ==========
+  solubility:
+    description: Solubility characteristics (e.g., "900 mM at 25°C")
+
+  solubility_citation_doi:
+    description: DOI citation for solubility data
+    range: DOI
+    multivalued: true
+
+  solubility_citation_organism:
+    description: Organism context for solubility citation (scientific name, strain, taxonomy, or 'general')
+    comments:
+      - 'Allowed values: scientific names (e.g., Escherichia coli), strain names (e.g., E. coli K-12), taxonomy names (e.g., Enterobacteriaceae), or "general" for broadly applicable data'
+
+  lower_bound:
+    description: Lower concentration bound for growth
+
+  lower_bound_citation:
+    description: DOI citation for lower bound
+    range: DOI
+    multivalued: true
+
+  lower_bound_citation_organism:
+    description: Organism context for lower bound citation (scientific name, strain, taxonomy, or 'general')
+
+  upper_bound:
+    description: Upper concentration bound before toxicity
+
+  upper_bound_citation:
+    description: DOI citation for upper bound
+    range: DOI
+    multivalued: true
+
+  upper_bound_citation_organism:
+    description: Organism context for upper bound citation (scientific name, strain, taxonomy, or 'general')
+
+  limit_of_toxicity:
+    description: Concentration at which toxicity occurs
+
+  toxicity_citation:
+    description: DOI citation for toxicity data
+    range: DOI
+    multivalued: true
+
+  toxicity_citation_organism:
+    description: Organism context for toxicity citation (scientific name, strain, taxonomy, or 'general')
+
+  # ========== Chemical Stability ==========
+  ph_effect:
+    description: Effect of pH on ingredient stability
+
+  ph_effect_doi:
+    description: DOI citation for pH effect
+    range: DOI
+    multivalued: true
+
+  ph_effect_organism:
+    description: Organism context for pH effect citation (scientific name, strain, taxonomy, or 'general')
+
+  pka:
+    description: Acid dissociation constant (pKa values)
+
+  pka_doi:
+    description: DOI citation for pKa value
+    range: DOI
+    multivalued: true
+
+  pka_organism:
+    description: Organism context for pKa citation (scientific name, strain, taxonomy, or 'general')
+
+  oxidation_state_stability:
+    description: Stability of oxidation states
+
+  oxidation_stability_doi:
+    description: DOI citation for oxidation stability
+    range: DOI
+    multivalued: true
+
+  oxidation_stability_organism:
+    description: Organism context for oxidation stability citation (scientific name, strain, taxonomy, or 'general')
+
+  light_sensitivity:
+    description: Sensitivity to light exposure
+    range: LightSensitivityEnum
+
+  light_sensitivity_doi:
+    description: DOI citation for light sensitivity
+    range: DOI
+    multivalued: true
+
+  light_sensitivity_organism:
+    description: Organism context for light sensitivity citation (scientific name, strain, taxonomy, or 'general')
+
+  autoclave_stability:
+    description: Stability during autoclaving
+    range: AutoclaveStabilityEnum
+
+  autoclave_stability_doi:
+    description: DOI citation for autoclave stability
+    range: DOI
+    multivalued: true
+
+  autoclave_stability_organism:
+    description: Organism context for autoclave stability citation (scientific name, strain, taxonomy, or 'general')
+
+  stock_concentration:
+    description: Recommended stock solution concentration
+
+  stock_concentration_doi:
+    description: DOI citation for stock concentration
+    range: DOI
+    multivalued: true
+
+  stock_concentration_organism:
+    description: Organism context for stock concentration citation (scientific name, strain, taxonomy, or 'general')
+
+  # ========== Chemical Interactions ==========
+  precipitation_partners:
+    description: Compounds that may precipitate with this ingredient
+
+  precipitation_partners_doi:
+    description: DOI citation for precipitation data
+    range: DOI
+    multivalued: true
+
+  precipitation_partners_organism:
+    description: Organism context for precipitation partners citation (scientific name, strain, taxonomy, or 'general')
+
+  antagonistic_ions:
+    description: Ions that antagonize this ingredient
+
+  antagonistic_ions_doi:
+    description: DOI citation for antagonistic ions
+    range: DOI
+    multivalued: true
+
+  antagonistic_ions_organism:
+    description: Organism context for antagonistic ions citation (scientific name, strain, taxonomy, or 'general')
+
+  chelator_sensitivity:
+    description: Sensitivity to chelating agents
+
+  chelator_sensitivity_doi:
+    description: DOI citation for chelator sensitivity
+    range: DOI
+    multivalued: true
+
+  chelator_sensitivity_organism:
+    description: Organism context for chelator sensitivity citation (scientific name, strain, taxonomy, or 'general')
+
+  redox_contribution:
+    description: Contribution to redox potential
+
+  redox_contribution_doi:
+    description: DOI citation for redox contribution
+    range: DOI
+    multivalued: true
+
+  redox_contribution_organism:
+    description: Organism context for redox contribution citation (scientific name, strain, taxonomy, or 'general')
+
+  # ========== Biological Properties ==========
+  cellular_role:
+    description: Role in cellular metabolism and function
+
+  cellular_role_doi:
+    description: DOI citation for cellular role
+    range: DOI
+    multivalued: true
+
+  cellular_role_organism:
+    description: Organism context for cellular role citation (scientific name, strain, taxonomy, or 'general')
+
+  cellular_role_specific:
+    description: Specific cellular/metabolic role from detailed functional characterization
+    range: CellularRoleEnum
+    comments:
+      - Use this for precise functional annotation based on literature
+
+  cellular_role_broad:
+    description: Broad functional category for high-level classification
+    range: BroadCellularRoleEnum
+    multivalued: true
+    comments:
+      - One specific role may map to multiple broad categories
+      - Enables hierarchical queries and simplified analysis
+
+  essential_conditional:
+    description: Whether ingredient is essential or conditionally essential
+    range: EssentialityEnum
+
+  essential_conditional_doi:
+    description: DOI citation for essentiality status
+    range: DOI
+    multivalued: true
+
+  essential_conditional_organism:
+    description: Organism context for essentiality citation (scientific name, strain, taxonomy, or 'general')
+
+  uptake_transporter:
+    description: Transporter proteins for ingredient uptake
+
+  uptake_transporter_doi:
+    description: DOI citation for transporter info
+    range: DOI
+    multivalued: true
+
+  uptake_transporter_organism:
+    description: Organism context for uptake transporter citation (scientific name, strain, taxonomy, or 'general')
+
+  regulatory_effects:
+    description: Regulatory effects on gene expression
+
+  regulatory_effects_doi:
+    description: DOI citation for regulatory effects
+    range: DOI
+    multivalued: true
+
+  regulatory_effects_organism:
+    description: Organism context for regulatory effects citation (scientific name, strain, taxonomy, or 'general')
+
+  # ========== Organism-Specific Properties ==========
+  gram_differential:
+    description: Differential effects on Gram-positive vs Gram-negative bacteria
+
+  gram_differential_doi:
+    description: DOI citation for Gram differential
+    range: DOI
+    multivalued: true
+
+  gram_differential_organism:
+    description: Organism context for Gram differential citation (scientific name, strain, taxonomy, or 'general')
+
+  aerobe_anaerobe_differential:
+    description: Differential effects on aerobic vs anaerobic organisms
+
+  aerobe_anaerobe_doi:
+    description: DOI citation for aerobe/anaerobe differential
+    range: DOI
+    multivalued: true
+
+  aerobe_anaerobe_organism:
+    description: Organism context for aerobe/anaerobe differential citation (scientific name, strain, taxonomy, or 'general')
+
+  optimal_concentration_model_organisms:
+    description: 'Optimal concentrations for model organisms (e.g., E. coli: 50-100 mM)'
+
+  optimal_concentration_doi:
+    description: DOI citation for optimal concentration
+    range: DOI
+    multivalued: true
+
+  optimal_concentration_organism:
+    description: Organism context for optimal concentration citation (scientific name, strain, taxonomy, or 'general')
+
+types:
+  DOI:
+    typeof: uriorcurie
+    description: Digital Object Identifier
+    pattern: "^https://doi\\.org/10\\.\\d{4,9}/[-._;()/:A-Za-z0-9]+$"
+    uri: schema:identifier
+
+enums:
+  MediaRoleEnum:
+    description: >-
+      Functional roles of ingredients in microbial growth media.
+      Based on actual roles in MP medium ingredient properties.
+    permissible_values:
+      CARBON_SOURCE:
+        description: Primary carbon and energy source
+        meaning: CHEBI:33284  # carbon source
+      NITROGEN_SOURCE:
+        description: Nitrogen source for amino acids and nucleotides
+        meaning: CHEBI:33273  # nitrogen source
+      SULFUR_SOURCE:
+        description: Sulfur source for cysteine and methionine
+        meaning: CHEBI:33261  # sulfur source
+      PHOSPHATE_SOURCE:
+        description: Phosphate source for nucleotides and ATP
+        meaning: CHEBI:26020  # phosphate
+      PH_BUFFER:
+        description: pH buffering agent (6.0-8.0 range)
+        meaning: CHEBI:35225  # buffer
+      TRACE_ELEMENT_FE:
+        description: Iron trace element (Fe²⁺/Fe³⁺)
+        meaning: CHEBI:18248  # iron atom
+      TRACE_ELEMENT_ZN:
+        description: Zinc trace element
+        meaning: CHEBI:27363  # zinc atom
+      TRACE_ELEMENT_MN:
+        description: Manganese trace element
+        meaning: CHEBI:18291  # manganese atom
+      TRACE_ELEMENT_CU:
+        description: Copper trace element
+        meaning: CHEBI:28694  # copper atom
+      TRACE_ELEMENT_CO:
+        description: Cobalt trace element (B12 cofactor)
+        meaning: CHEBI:27638  # cobalt atom
+      TRACE_ELEMENT_MO:
+        description: Molybdenum trace element
+        meaning: CHEBI:28685  # molybdenum atom
+      ESSENTIAL_MACRONUTRIENT_MG:
+        description: Magnesium - enzyme cofactor, ribosome stabilization
+        meaning: CHEBI:18420  # magnesium atom
+      ESSENTIAL_MACRONUTRIENT_CA:
+        description: Calcium - cell wall stability, signaling
+        meaning: CHEBI:22984  # calcium atom
+      VITAMIN_COFACTOR_PRECURSOR:
+        description: Vitamin or cofactor precursor (biotin, thiamin)
+        meaning: CHEBI:27027  # micronutrient
+      CHELATOR_METAL_BUFFER:
+        description: Chelating agent for metal buffering (citrate, EDTA)
+        meaning: CHEBI:38161  # chelator
+      RARE_EARTH_ELEMENT:
+        description: Rare earth element (Dy, Nd, Pr for methanol dehydrogenase)
+        meaning: CHEBI:33319  # lanthanoid atom
+      NITROGEN_SULFUR_SOURCE:
+        description: Combined nitrogen and sulfur source (e.g., ammonium sulfate)
+      PHOSPHATE_PH_BUFFER:
+        description: Combined phosphate source and pH buffer (e.g., K₂HPO₄)
+
+  CellularRoleEnum:
+    description: >-
+      Specific cellular and metabolic roles of media ingredients.
+      Based on detailed functional characterization from literature.
+    permissible_values:
+      NUCLEOTIDE_PHOSPHOLIPID_METABOLISM:
+        description: ATP/GTP, DNA/RNA, phospholipids, signaling
+        meaning: CHEBI:26020
+      CARBOXYLASE_COFACTOR:
+        description: Carboxylase cofactor for ACC, PC, PCC enzymes
+        meaning: CHEBI:27638
+      COPPER_OXIDASE_SOD:
+        description: Cytochrome c oxidase, Cu/Zn-SOD (SodC), CueO oxidase
+        meaning: CHEBI:28694
+      VITAMIN_B12_COBALAMIN:
+        description: Essential B12 (cobalamin) for methionine synthase, methylmalonyl-CoA mutase
+        meaning: CHEBI:27638
+      PHOSPHATE_SOURCE:
+        description: Essential phosphate source for all bacteria
+        meaning: CHEBI:26020
+      IRON_SULFUR_CLUSTERS:
+        description: Fe-S clusters, cytochromes, ribonucleotide reductase
+        meaning: CHEBI:18248
+      LANTHANIDE_HEAVY_LOW_ACTIVITY:
+        description: Heavy lanthanides with greatly reduced XoxF-MDH activity
+        meaning: CHEBI:33319
+      METHANOL_DEHYDROGENASE_SUBSTRATE:
+        description: MDH substrate for PQQ-dependent oxidation in C1 metabolism
+        meaning: CHEBI:17790
+      MANGANESE_SOD_PHOTOSYSTEM:
+        description: Mn-SOD (SodA) and photosystem II (Mn₄CaO₅)
+        meaning: CHEBI:18291
+      MOLYBDENUM_COFACTOR:
+        description: Moco required for nitrogenase, nitrate reductase, DMSO reductase
+        meaning: CHEBI:28685
+      NEODYMIUM_EFFECTIVE_MDH:
+        description: Nd is highly effective XoxF-MDH cofactor with highest activity
+        meaning: CHEBI:33319
+      PH_BUFFER_NON_METABOLIZED:
+        description: Non-metabolized pH buffer
+        meaning: CHEBI:35225
+      PRASEODYMIUM_MDH_SUPPORT:
+        description: Pr supports XoxF-MDH activity in methylotrophs
+        meaning: CHEBI:33319
+      NITROGEN_SOURCE_PRIMARY:
+        description: Primary N source via glutamine synthetase to all N compounds
+        meaning: CHEBI:33273
+      RIBOSOME_STABILIZATION_ATP:
+        description: Ribosome stabilization (≥170 Mg²⁺/ribosome) and ATP neutralization
+        meaning: CHEBI:18420
+      SIGNALING_CELL_DIVISION:
+        description: Signaling, cell division, transformation competency, sporulation
+        meaning: CHEBI:22984
+      TCA_INTERMEDIATE_CHELATOR:
+        description: TCA intermediate, C source, Fe-citrate uptake
+        meaning: CHEBI:30769
+      THIAMIN_PYROPHOSPHATE_COFACTOR:
+        description: TPP cofactor for pyruvate dehydrogenase, α-KG dehydrogenase, transketolase
+        meaning: CHEBI:49105
+      TUNGSTEN_SPECIFIC_ENZYMES:
+        description: W-specific enzymes (aldehyde oxidoreductases, W-formate dehydrogenase)
+        meaning: CHEBI:27998
+      ZINC_PROTEOME:
+        description: ~5-6% proteome Zn-binding (zinc fingers, proteases, RNAP)
+        meaning: CHEBI:27363
+
+  BroadCellularRoleEnum:
+    description: >-
+      Broad functional categories for cellular roles.
+      Enables hierarchical organization and simplified queries.
+    permissible_values:
+      ENERGY_METABOLISM:
+        description: ATP/GTP synthesis, electron transport, energy generation
+      NUCLEIC_ACID_METABOLISM:
+        description: DNA/RNA synthesis, nucleotide metabolism
+      PROTEIN_SYNTHESIS:
+        description: Ribosome function, translation, protein folding
+      MEMBRANE_STRUCTURE:
+        description: Phospholipid synthesis, membrane integrity
+      ENZYMATIC_COFACTOR:
+        description: Metal cofactors, vitamin cofactors for enzymes
+      REDOX_CHEMISTRY:
+        description: Oxidation-reduction reactions, electron transport
+      ANTIOXIDANT_DEFENSE:
+        description: Superoxide dismutase, oxidative stress response
+      CARBON_METABOLISM:
+        description: C1 metabolism, TCA cycle, carbon source utilization
+      NITROGEN_METABOLISM:
+        description: Nitrogen assimilation, amino acid synthesis
+      METAL_HOMEOSTASIS:
+        description: Metal chelation, metal buffering, uptake regulation
+      PH_REGULATION:
+        description: pH buffering, proton balance
+      CELL_SIGNALING:
+        description: Signal transduction, second messengers
+      CELL_DIVISION:
+        description: Cell cycle regulation, division machinery
+      METHYLOTROPHY_SPECIFIC:
+        description: Specialized functions in methylotrophic bacteria
+      STRUCTURAL_PROTEIN:
+        description: Structural roles in proteins (zinc fingers, DNA binding)
+      TRANSCRIPTION_REGULATION:
+        description: Gene expression, RNA polymerase function
+
+  ConcentrationUnitEnum:
+    description: Units for ingredient concentrations
+    permissible_values:
+      MILLIMOLAR:
+        description: Millimolar (mM)
+      MOLAR:
+        description: Molar (M)
+      GRAMS_PER_LITER:
+        description: Grams per liter (g/L)
+      MILLIGRAMS_PER_LITER:
+        description: Milligrams per liter (mg/L)
+      MICROGRAMS_PER_LITER:
+        description: Micrograms per liter (μg/L)
+      PERCENT:
+        description: Percent (%, w/v or v/v)
+
+  LightSensitivityEnum:
+    description: Categories of light sensitivity
+    permissible_values:
+      STABLE:
+        description: Stable under light exposure
+      SENSITIVE:
+        description: Degrades under light exposure (store protected)
+      HIGHLY_SENSITIVE:
+        description: Rapidly degrades under light (must store dark)
+      NOT_SENSITIVE:
+        description: Not sensitive to light
+      UNKNOWN:
+        description: Sensitivity not characterized
+
+  AutoclaveStabilityEnum:
+    description: Stability during autoclaving (121°C, 15 psi, 15-20 min)
+    permissible_values:
+      STABLE:
+        description: Stable during autoclaving
+      UNSTABLE:
+        description: Degrades during autoclaving - do not autoclave
+      PARTIALLY_STABLE:
+        description: Partially degrades during autoclaving
+      FILTER_STERILIZE:
+        description: Must be filter sterilized (0.22 μm)
+      AUTOCLAVE_SEPARATELY:
+        description: Stable but autoclave separately to prevent precipitation
+      UNKNOWN:
+        description: Stability not characterized
+
+  EssentialityEnum:
+    description: Essentiality classification for microbial growth
+    permissible_values:
+      ESSENTIAL:
+        description: Required for all bacteria (e.g., phosphate, nitrogen)
+      CONDITIONALLY_ESSENTIAL:
+        description: Required under specific conditions
+      NON_ESSENTIAL:
+        description: Not required for growth (growth factor)
+      ORGANISM_SPECIFIC:
+        description: Varies by organism (e.g., vitamins)
+      METHYLOTROPH_SPECIFIC:
+        description: Specific to methylotrophic bacteria
+      UNKNOWN:
+        description: Essentiality not characterized

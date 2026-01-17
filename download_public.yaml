@@ -1,0 +1,18 @@
+## Public data sources (no Google Drive authentication required)
+---
+
+#
+# MicroMediaParam Chemical Mappings
+# Comprehensive table of media ingredient chemical properties with ChEBI mappings
+#
+-
+  url: https://github.com/CultureBotAI/MicroMediaParam/raw/main/pipeline_output/merge_mappings/compound_mappings_strict_final.tsv
+  local_name: compound_mappings_strict_final.tsv
+
+#
+# MP Medium Ingredient Properties and Concentration Effects
+# Detailed table of ingredient properties for the MP medium
+#
+-
+  url: https://docs.google.com/spreadsheets/d/1_H04dWlfpX0052mxugJzMV6yfjLWvDsqIJnK4ML4NpQ/export?format=csv
+  local_name: mp_medium_ingredient_properties.csv

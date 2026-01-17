@@ -244,6 +244,20 @@ def gen_media_conc(query: str, mode: str, organism: str, unit: str, db_path: str
                 "Confidence": f"{pred['confidence']:.2f}",
             }
 
+            # Add cellular role columns if available
+            if "cellular_role" in pred:
+                row["Cellular Role"] = pred["cellular_role"]
+            if "cellular_requirements" in pred:
+                row["Requirements"] = pred["cellular_requirements"]
+
+            # Add toxicity columns if available
+            if "toxicity" in pred:
+                tox = pred["toxicity"]
+                row["Toxicity"] = f"{tox['value']:.2f} {tox.get('unit', '')}"
+                row["Species-Specific"] = "Yes" if tox.get("species_specific") else "No"
+                if tox.get("cellular_effects"):
+                    row["Toxic Effects"] = tox["cellular_effects"]
+
             # Add pH columns if available
             if "ph_at_low" in pred and pred["ph_at_low"] is not None:
                 row["pH@Low"] = f"{pred['ph_at_low']:.2f}"

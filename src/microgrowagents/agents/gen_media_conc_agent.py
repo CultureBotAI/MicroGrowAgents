@@ -20,9 +20,11 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
+import pandas as pd
 
 from microgrowagents.agents.base_agent import BaseAgent
 from microgrowagents.agents.chemistry_agent import ChemistryAgent
+from microgrowagents.agents.genome_function_agent import GenomeFunctionAgent
 from microgrowagents.agents.literature_agent import LiteratureAgent
 from microgrowagents.agents.media_ph_calculator import MediaPhCalculator
 from microgrowagents.agents.sql_agent import SQLAgent
@@ -101,6 +103,7 @@ class GenMediaConcAgent(BaseAgent):
             chebi_owl_file=chebi_owl_file,
             pubchem_email=pubchem_email,
         )
+        self.genome_agent = GenomeFunctionAgent(db_path)  # NEW: genome-based refinement
         self.literature_agent = LiteratureAgent(db_path)
         self.ph_calculator = MediaPhCalculator()
 
@@ -407,8 +410,8 @@ class GenMediaConcAgent(BaseAgent):
         self.log(f"Predicting concentration range for: {ingredient_name}")
 
         # Initialize evidence collectors
-        evidence_sources = []
-        concentration_ranges = []
+        evidence_sources: List[Dict[str, Any]] = []
+        concentration_ranges: List[Dict[str, Any]] = []
 
         # Step 1: Check database ingredient_effects table
         db_ranges = self._get_database_ranges(ingredient, organism_info)
@@ -438,10 +441,32 @@ class GenMediaConcAgent(BaseAgent):
             conc_low = 0.0 if not is_essential else 0.1
             conc_high = self._estimate_toxicity_threshold(ingredient)
 
+        # NEW Step 3b: Refine concentrations based on transporter presence
+        transporter_adjustment = None
+        if organism_info:
+            conc_low, conc_high, transporter_adjustment = self._refine_concentration_with_transporters(
+                ingredient_name, conc_low, conc_high, organism_info
+            )
+            if transporter_adjustment:
+                self.log(f"Transporter adjustment for {ingredient_name}: {transporter_adjustment}")
+
         # Step 4: Calculate confidence score
         confidence = self._calculate_confidence(evidence_sources, concentration_ranges)
 
-        # Step 5: Format result
+        # Step 5: Extract cellular role and toxicity from ranges
+        cellular_roles: List[str] = []
+        cellular_requirements: List[str] = []
+        toxicity_info: List[Dict[str, Any]] = []
+
+        for range_data in concentration_ranges:
+            if range_data.get("cellular_role"):
+                cellular_roles.append(range_data["cellular_role"])
+            if range_data.get("cellular_requirements"):
+                cellular_requirements.append(range_data["cellular_requirements"])
+            if range_data.get("toxicity"):
+                toxicity_info.append(range_data["toxicity"])
+
+        # Step 6: Format result
         prediction = {
             "name": ingredient_name,
             "ingredient_id": ingredient.get("id"),
@@ -452,6 +477,22 @@ class GenMediaConcAgent(BaseAgent):
             "confidence": round(confidence, 3),
             "is_essential": is_essential,
         }
+
+        # Add cellular role information if available
+        if cellular_roles:
+            # Use the most common role or first if all unique
+            prediction["cellular_role"] = cellular_roles[0]
+        if cellular_requirements:
+            # Combine all requirements
+            prediction["cellular_requirements"] = "; ".join(
+                set(cellular_requirements)
+            )
+
+        # Add toxicity information if available
+        if toxicity_info:
+            # Use the lowest toxicity value (most restrictive)
+            min_tox = min(toxicity_info, key=lambda x: x.get("value", float("inf")))
+            prediction["toxicity"] = min_tox
 
         if include_evidence:
             prediction["evidence"] = evidence_sources
@@ -482,11 +523,15 @@ class GenMediaConcAgent(BaseAgent):
         if not ingredient.get("id"):
             return []
 
-        # Query ingredient_effects table
+        # Query ingredient_effects table with enhanced evidence fields
         result = self.sql_agent.run(
             """
             SELECT concentration_low, concentration_high, unit,
-                   effect_type, effect_description, evidence, source
+                   effect_type, effect_description,
+                   evidence, evidence_organism, evidence_snippet,
+                   source, cellular_role, cellular_requirements,
+                   toxicity_value, toxicity_unit, toxicity_species_specific,
+                   toxicity_cellular_effects, toxicity_evidence, toxicity_evidence_snippet
             FROM ingredient_effects
             WHERE ingredient_id = ?
             """,
@@ -499,16 +544,31 @@ class GenMediaConcAgent(BaseAgent):
 
         ranges = []
         for _, row in result["data"].iterrows():
-            ranges.append(
-                {
-                    "low": row["concentration_low"],
-                    "high": row["concentration_high"],
-                    "unit": row["unit"],
-                    "effect_type": row.get("effect_type", ""),
-                    "source": row.get("source", "database"),
-                    "evidence": row.get("evidence", ""),
+            range_dict = {
+                "low": row["concentration_low"],
+                "high": row["concentration_high"],
+                "unit": row["unit"],
+                "effect_type": row.get("effect_type", ""),
+                "source": row.get("source", "database"),
+                "evidence": row.get("evidence", ""),
+                "evidence_organism": row.get("evidence_organism", ""),
+                "evidence_snippet": row.get("evidence_snippet", ""),
+                "cellular_role": row.get("cellular_role", ""),
+                "cellular_requirements": row.get("cellular_requirements", ""),
+            }
+
+            # Add toxicity information if present
+            if pd.notna(row.get("toxicity_value")):
+                range_dict["toxicity"] = {
+                    "value": row["toxicity_value"],
+                    "unit": row.get("toxicity_unit", ""),
+                    "species_specific": row.get("toxicity_species_specific", False),
+                    "cellular_effects": row.get("toxicity_cellular_effects", ""),
+                    "evidence": row.get("toxicity_evidence", ""),
+                    "evidence_snippet": row.get("toxicity_evidence_snippet", ""),
                 }
-            )
+
+            ranges.append(range_dict)
 
         return ranges
 
@@ -527,7 +587,7 @@ class GenMediaConcAgent(BaseAgent):
         Returns:
             List of ranges extracted from literature
         """
-        ranges = []
+        ranges: List[Dict[str, Any]] = []
 
         # Build search query
         if organism_info:
@@ -560,7 +620,7 @@ class GenMediaConcAgent(BaseAgent):
 
         return ranges
 
-    def _extract_concentration_from_text(self, text: str) -> List[Dict[str, float]]:
+    def _extract_concentration_from_text(self, text: str) -> List[Dict[str, Any]]:
         """
         Extract concentration ranges from text using regex.
 
@@ -610,7 +670,7 @@ class GenMediaConcAgent(BaseAgent):
         Returns:
             List of ranges based on chemical properties
         """
-        ranges = []
+        ranges: List[Dict[str, Any]] = []
         # Placeholder for future implementation
         return ranges
 
@@ -668,6 +728,81 @@ class GenMediaConcAgent(BaseAgent):
 
         # Default: not essential
         return False
+
+    def _refine_concentration_with_transporters(
+        self,
+        ingredient_name: str,
+        conc_low: float,
+        conc_high: float,
+        organism_info: Optional[Dict[str, Any]]
+    ) -> Tuple[float, float, Optional[str]]:
+        """
+        Refine concentration range based on transporter gene presence.
+
+        Logic:
+        - No transporter found → increase by 50% (passive diffusion, need higher conc)
+        - Low-affinity transporter → use default range
+        - High-affinity transporter → decrease by 25% (efficient uptake)
+
+        Args:
+            ingredient_name: Name of ingredient/substrate
+            conc_low: Initial low concentration
+            conc_high: Initial high concentration
+            organism_info: Organism information dict
+
+        Returns:
+            Tuple of (refined_conc_low, refined_conc_high, adjustment_reason)
+
+        Example:
+            >>> agent = GenMediaConcAgent()
+            >>> low, high, reason = agent._refine_concentration_with_transporters(
+            ...     "glucose", 1.0, 10.0, {"name": "E. coli"}
+            ... )
+            >>> reason is not None
+            True
+        """
+        if not organism_info:
+            return conc_low, conc_high, None
+
+        organism_name = organism_info.get("name") or organism_info.get("label")
+        if not organism_name:
+            return conc_low, conc_high, None
+
+        try:
+            # Query for transporters
+            transporter_result = self.genome_agent.find_transporters(
+                query=f"find transporters for {ingredient_name}",
+                organism=organism_name,
+                substrate=ingredient_name
+            )
+
+            if not transporter_result.get("success"):
+                return conc_low, conc_high, None
+
+            transporters = transporter_result["data"].get("transporters", [])
+
+            if not transporters:
+                # No transporter → increase concentrations (passive diffusion)
+                self.log(f"No transporter for {ingredient_name}, increasing concentrations by 50%")
+                return conc_low * 1.5, conc_high * 1.5, "increased_no_transporter"
+
+            else:
+                # Check transporter affinity
+                high_affinity = any(
+                    t.get("affinity") == "high" for t in transporters
+                )
+
+                if high_affinity:
+                    # High-affinity transporter → decrease concentrations
+                    self.log(f"High-affinity transporter for {ingredient_name}, decreasing by 25%")
+                    return conc_low * 0.75, conc_high * 0.75, "decreased_high_affinity"
+                else:
+                    # Low/medium affinity → keep default
+                    return conc_low, conc_high, "default_low_affinity"
+
+        except Exception as e:
+            self.log(f"Error in transporter refinement: {str(e)}", level="warning")
+            return conc_low, conc_high, None
 
     def _aggregate_ranges(
         self,

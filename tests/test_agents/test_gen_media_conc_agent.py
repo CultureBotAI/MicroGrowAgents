@@ -41,12 +41,21 @@ def test_db(tmp_path):
         (4, 'test:mp', 'CHEBI:49583', 0.5, 'g/L', 0.5, 4.2, 'metal_ion')
     """)
 
-    # Insert ingredient_effects
+    # Insert ingredient_effects with new columns
     conn.execute("""
         INSERT INTO ingredient_effects VALUES
-        (1, 'CHEBI:17234', 'test:mp', 1.0, 100.0, 'mM', 'growth', 'Supports growth', 'Test literature', 'database'),
-        (2, 'CHEBI:26710', NULL, 10.0, 500.0, 'mM', 'osmotic', 'Osmotic regulation', 'Test data', 'database'),
-        (3, 'CHEBI:9754', NULL, 5.0, 50.0, 'mM', 'pH_buffering', 'pH buffer', 'Test data', 'database')
+        (1, 'CHEBI:17234', 'test:mp', 1.0, 100.0, 'mM', 'growth', 'Supports growth',
+         'DOI:10.1234/test1', 'E. coli', 'Glucose supports robust growth in minimal medium', 'database',
+         'Primary carbon source', 'Central carbon metabolism',
+         500.0, 'mM', FALSE, 'Osmotic stress at high concentrations', 'DOI:10.1234/tox1', 'High glucose caused osmotic stress'),
+        (2, 'CHEBI:26710', NULL, 10.0, 500.0, 'mM', 'osmotic', 'Osmotic regulation',
+         'DOI:10.1234/test2', 'General', 'NaCl maintains osmotic balance', 'database',
+         'Osmotic regulator', 'Maintains cell turgor pressure',
+         1000.0, 'mM', FALSE, 'Cell plasmolysis', 'DOI:10.1234/tox2', 'Excessive NaCl leads to plasmolysis'),
+        (3, 'CHEBI:9754', NULL, 5.0, 50.0, 'mM', 'pH_buffering', 'pH buffer',
+         'DOI:10.1234/test3', 'General', 'Tris provides effective pH buffering in physiological range', 'database',
+         'pH buffer', 'Maintains pH 7.0-8.0',
+         NULL, NULL, NULL, NULL, NULL, NULL)
     """)
 
     # Insert test organism
@@ -568,3 +577,154 @@ class TestErrorHandling:
         # Should still succeed but organism will be None
         assert result["success"] is True
         assert result["organism"] is None
+
+
+class TestNewEvidenceFields:
+    """Test new evidence tracking fields (organisms, snippets, cellular role)."""
+
+    def test_database_ranges_include_evidence_organism(self, gen_media_conc_agent):
+        """Test that database ranges include evidence_organism."""
+        ingredient = {
+            "id": "CHEBI:17234",
+            "name": "glucose",
+            "chebi_id": "CHEBI:17234",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "evidence_organism" in ranges[0]
+        assert ranges[0]["evidence_organism"] == "E. coli"
+
+    def test_database_ranges_include_evidence_snippet(self, gen_media_conc_agent):
+        """Test that database ranges include evidence_snippet."""
+        ingredient = {
+            "id": "CHEBI:17234",
+            "name": "glucose",
+            "chebi_id": "CHEBI:17234",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "evidence_snippet" in ranges[0]
+        assert "Glucose supports robust growth" in ranges[0]["evidence_snippet"]
+
+    def test_database_ranges_include_cellular_role(self, gen_media_conc_agent):
+        """Test that database ranges include cellular_role."""
+        ingredient = {
+            "id": "CHEBI:17234",
+            "name": "glucose",
+            "chebi_id": "CHEBI:17234",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "cellular_role" in ranges[0]
+        assert ranges[0]["cellular_role"] == "Primary carbon source"
+
+    def test_database_ranges_include_cellular_requirements(self, gen_media_conc_agent):
+        """Test that database ranges include cellular_requirements."""
+        ingredient = {
+            "id": "CHEBI:17234",
+            "name": "glucose",
+            "chebi_id": "CHEBI:17234",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "cellular_requirements" in ranges[0]
+        assert ranges[0]["cellular_requirements"] == "Central carbon metabolism"
+
+    def test_database_ranges_include_toxicity_structure(self, gen_media_conc_agent):
+        """Test that database ranges include structured toxicity data."""
+        ingredient = {
+            "id": "CHEBI:17234",
+            "name": "glucose",
+            "chebi_id": "CHEBI:17234",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "toxicity" in ranges[0]
+
+        tox = ranges[0]["toxicity"]
+        assert "value" in tox
+        assert tox["value"] == 500.0
+        assert tox["unit"] == "mM"
+        assert tox["species_specific"] is False
+        assert "cellular_effects" in tox
+        assert "Osmotic stress" in tox["cellular_effects"]
+        assert "evidence" in tox
+        assert tox["evidence"] == "DOI:10.1234/tox1"
+        assert "evidence_snippet" in tox
+        assert "osmotic stress" in tox["evidence_snippet"].lower()
+
+    def test_prediction_includes_cellular_role(self, gen_media_conc_agent):
+        """Test that predictions include cellular_role when available."""
+        result = gen_media_conc_agent.run("glucose", mode="ingredients")
+
+        assert result["success"] is True
+        pred = result["data"][0]
+
+        assert "cellular_role" in pred
+        assert pred["cellular_role"] == "Primary carbon source"
+
+    def test_prediction_includes_cellular_requirements(self, gen_media_conc_agent):
+        """Test that predictions include cellular_requirements when available."""
+        result = gen_media_conc_agent.run("glucose", mode="ingredients")
+
+        assert result["success"] is True
+        pred = result["data"][0]
+
+        assert "cellular_requirements" in pred
+        assert "Central carbon metabolism" in pred["cellular_requirements"]
+
+    def test_prediction_includes_toxicity(self, gen_media_conc_agent):
+        """Test that predictions include toxicity when available."""
+        result = gen_media_conc_agent.run("glucose", mode="ingredients")
+
+        assert result["success"] is True
+        pred = result["data"][0]
+
+        assert "toxicity" in pred
+        tox = pred["toxicity"]
+        assert tox["value"] == 500.0
+        assert tox["unit"] == "mM"
+        assert tox["species_specific"] is False
+        assert "cellular_effects" in tox
+
+    def test_toxicity_value_without_inequality(self, gen_media_conc_agent):
+        """Test that toxicity value is minimal concentration without inequality symbols."""
+        ingredient = {
+            "id": "CHEBI:26710",
+            "name": "NaCl",
+            "chebi_id": "CHEBI:26710",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        assert "toxicity" in ranges[0]
+
+        # Toxicity value should be a plain number (1000.0), not a string with inequality
+        tox = ranges[0]["toxicity"]
+        assert isinstance(tox["value"], (int, float))
+        assert tox["value"] == 1000.0
+
+    def test_ingredient_without_toxicity(self, gen_media_conc_agent):
+        """Test that ingredients without toxicity data don't have toxicity field."""
+        ingredient = {
+            "id": "CHEBI:9754",
+            "name": "tris",
+            "chebi_id": "CHEBI:9754",
+        }
+
+        ranges = gen_media_conc_agent._get_database_ranges(ingredient, None)
+
+        assert len(ranges) > 0
+        # Tris has NULL toxicity values, so shouldn't have toxicity dict
+        assert "toxicity" not in ranges[0]

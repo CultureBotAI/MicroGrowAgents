@@ -1,0 +1,98 @@
+ingredients:
+  - database_id: CHEBI:17790
+    component: Methanol
+    chemical_formula: CH4O
+    priority: 1
+    concentration: "0.5% v/v"
+    solubility: "Miscible with water"
+    lower_bound: 0.1
+    lower_bound_citation:
+      - "https://doi.org/10.1128/AEM.02738-08"
+    upper_bound: 2.0
+    upper_bound_citation:
+      - "https://doi.org/10.1128/AEM.02738-08"
+    limit_of_toxicity: 5.0
+    toxicity_citation:
+      - "https://doi.org/10.1128/AEM.02738-08"
+    ph_effect: "Stable across pH 4-9"
+    pka: 15.5
+    oxidation_state_stability: "Oxidizes readily in presence of oxygen"
+    light_sensitivity: STABLE
+    autoclave_stability: STABLE
+    metabolic_role: "Carbon and energy source for methylotrophs"
+    essential_conditional: CONDITIONALLY_ESSENTIAL
+    uptake_transporter: "Methanol dehydrogenase"
+    regulatory_effects: "Induces methanol utilization genes"
+    gram_differential: BOTH
+    aerobe_anaerobe_differential: "Primarily aerobic metabolism"
+    optimal_concentration_model_organisms: "0.5% for Methylobacterium extorquens"
+
+  - database_id: CHEBI:16811
+    component: Methane
+    chemical_formula: CH4
+    priority: 2
+    concentration: "20% v/v headspace"
+    solubility: "Low aqueous solubility (1.4 mM at 25°C)"
+    lower_bound: 0.5
+    upper_bound: 50.0
+    limit_of_toxicity: null
+    ph_effect: "No pH effect (non-ionizable)"
+    light_sensitivity: STABLE
+    autoclave_stability: STABLE
+    metabolic_role: "Carbon and energy source for methanotrophs"
+    essential_conditional: CONDITIONALLY_ESSENTIAL
+    uptake_transporter: "Methane monooxygenase"
+    gram_differential: BOTH
+    aerobe_anaerobe_differential: "Aerobic metabolism only"
+
+  - database_id: CHEBI:29105
+    component: Zinc sulfate
+    chemical_formula: ZnSO4
+    priority: 3
+    concentration: "0.1 mM"
+    solubility: "Highly soluble in water"
+    lower_bound: 0.001
+    lower_bound_citation:
+      - "https://doi.org/10.1007/s10534-004-5769-5"
+    upper_bound: 1.0
+    upper_bound_citation:
+      - "https://doi.org/10.1007/s10534-004-5769-5"
+    limit_of_toxicity: 10.0
+    toxicity_citation:
+      - "https://doi.org/10.1007/s10534-004-5769-5"
+    stock_concentration: "100 mM"
+    ph_effect: "Precipitation above pH 8"
+    ph_effect_citation:
+      - "https://doi.org/10.1007/BF00125087"
+    oxidation_state_stability: "Stable as Zn(II)"
+    light_sensitivity: STABLE
+    autoclave_stability: STABLE
+    precipitation_partners:
+      - "Phosphate"
+      - "Carbonate"
+    antagonistic_ions:
+      - "Calcium"
+      - "Copper"
+    chelator_sensitivity: "Readily chelated by EDTA"
+    metabolic_role: "Cofactor for >300 enzymes"
+    essential_conditional: ESSENTIAL
+    uptake_transporter: "ZnuABC, ZupT"
+    regulatory_effects: "Zur transcriptional regulator"
+    gram_differential: BOTH
+
+  - database_id: CHEBI:30145
+    component: Lithium chloride
+    chemical_formula: LiCl
+    priority: 4
+    concentration: "5 mM"
+    solubility: "Very soluble in water"
+    lower_bound: 0.1
+    upper_bound: 20.0
+    limit_of_toxicity: 50.0
+    ph_effect: "No significant pH effect"
+    light_sensitivity: STABLE
+    autoclave_stability: STABLE
+    metabolic_role: "Selective agent, not metabolically utilized"
+    essential_conditional: NON_ESSENTIAL
+    regulatory_effects: "Inhibits inositol monophosphatase"
+    gram_differential: BOTH

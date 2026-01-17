@@ -1,0 +1,67 @@
+## This file is a list of things to be downloaded using the command:
+#   run.py download
+
+# To add a new item to be download, add a block like this - must have 'url',
+# 'local_name' is optional, use to avoid name collisions
+
+#  #
+#  # Description of source
+#  #
+#  -
+#    # brief comment about file, and optionally a local_name:
+#    url: http://curefordisease.org/some_data.txt
+#    local_name: some_data_more_chars_prevent_name_collision.pdf
+#
+#  For downloading from Google Drive, use the gdrive: prefix with the file ID:
+#  gdrive:<file_id>
+#
+#  For downloading from S3 buckets, see here for information about what URL to use:
+#  https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro
+#  Amazon S3 virtual hosted style URLs follow the format shown below:
+#  https://bucket-name.s3.Region.amazonaws.com/key_name
+#
+---
+
+# **** KG-Microbe Data Sources ****
+
+#
+# KG-Microbe-Core merged nodes and edges
+# Complete knowledge graph data with merged nodes and edges from KG-Microbe-Core
+#
+-
+  url: gdrive:1DRwmttCcrZIx46pXrGpcON_vc6Zmfc8p
+  local_name: kg_microbe_core_merged.tar.gz
+
+#
+# MediaDive Transform
+# Transformed MediaDive data for microbial growth predictions
+#
+-
+  url: gdrive:1U9uewAsQDqX3U4zAeowMpdg9mS-4i0hX
+  local_name: mediadive_transform.tar.gz
+
+#
+# MediaDive Ingredient Concentrations
+# Detailed ingredient concentration data from MediaDive
+#
+-
+  url: gdrive:1Gew4PqFfO492Y1eFmH3iOqIa_7dOxH8_
+  local_name: mediadive_ingredient_concentrations.tar.gz
+
+#
+# MicroMediaParam Chemical Mappings
+# Comprehensive table of media ingredient chemical properties with ChEBI mappings,
+# hydration states, concentration data, and molecular weights
+#
+-
+  url: https://github.com/CultureBotAI/MicroMediaParam/raw/main/pipeline_output/merge_mappings/compound_mappings_strict_final.tsv
+  local_name: compound_mappings_strict_final.tsv
+
+#
+# MP Medium Ingredient Properties and Concentration Effects
+# Detailed table of ingredient properties and concentration effects for the MP medium
+# Exported from Google Sheets as CSV
+#
+-
+  url: https://docs.google.com/spreadsheets/d/1_H04dWlfpX0052mxugJzMV6yfjLWvDsqIJnK4ML4NpQ/export?format=csv
+  local_name: mp_medium_ingredient_properties.csv

@@ -1,0 +1,451 @@
+id: https://w3id.org/microgrow/media-ingredient
+name: media-ingredient-schema
+title: Media Ingredient Properties Schema
+description: >-
+  LinkML schema for microbial growth media ingredient properties,
+  including concentration data, chemical effects, and biological roles.
+  Each media ingredient is modeled as a comprehensive object with
+  concentration limits, toxicity data, stability information, and
+  metabolic context.
+
+license: MIT
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  microgrow: https://w3id.org/microgrow/
+  CHEBI: http://purl.obolibrary.org/obo/CHEBI_
+  schema: http://schema.org/
+
+default_prefix: microgrow
+default_range: string
+
+imports:
+  - linkml:types
+
+classes:
+
+  MediaIngredientCollection:
+    tree_root: true
+    description: >-
+      A collection of media ingredients with their properties.
+    attributes:
+      ingredients:
+        description: List of media ingredients
+        range: MediaIngredient
+        multivalued: true
+        inlined_as_list: true
+
+  MediaIngredient:
+    description: >-
+      A chemical component used in microbial growth media, with comprehensive
+      data on concentrations, stability, toxicity, and biological effects.
+    slots:
+      - priority
+      - component
+      - chemical_formula
+      - database_id
+      # Concentration properties
+      - concentration
+      - solubility
+      - lower_bound
+      - lower_bound_citation
+      - upper_bound
+      - upper_bound_citation
+      - limit_of_toxicity
+      - toxicity_citation
+      - stock_concentration
+      - stock_concentration_citation
+      # Chemical stability properties
+      - ph_effect
+      - ph_effect_citation
+      - pka
+      - pka_citation
+      - oxidation_state_stability
+      - oxidation_stability_citation
+      - light_sensitivity
+      - light_sensitivity_citation
+      - autoclave_stability
+      - autoclave_stability_citation
+      # Chemical interaction properties
+      - precipitation_partners
+      - precipitation_partners_citation
+      - antagonistic_ions
+      - antagonistic_ions_citation
+      - chelator_sensitivity
+      - chelator_sensitivity_citation
+      - redox_contribution
+      - redox_contribution_citation
+      # Biological properties
+      - metabolic_role
+      - metabolic_role_citation
+      - essential_conditional
+      - essential_conditional_citation
+      - uptake_transporter
+      - uptake_transporter_citation
+      - regulatory_effects
+      - regulatory_effects_citation
+      # Organism-specific properties
+      - gram_differential
+      - gram_differential_citation
+      - aerobe_anaerobe_differential
+      - aerobe_anaerobe_citation
+      - optimal_concentration_model_organisms
+      - optimal_concentration_citation
+
+  ConcentrationData:
+    description: >-
+      Concentration-related properties for a media ingredient.
+    attributes:
+      concentration:
+        description: Standard concentration used in media
+        range: string
+      solubility:
+        description: Solubility characteristics
+        range: string
+      lower_bound:
+        description: Lower concentration bound
+        range: float
+      lower_bound_citation:
+        description: DOI citation for lower bound
+        range: DOI
+      upper_bound:
+        description: Upper concentration bound
+        range: float
+      upper_bound_citation:
+        description: DOI citation for upper bound
+        range: DOI
+      limit_of_toxicity:
+        description: Concentration at which toxicity occurs
+        range: float
+      toxicity_citation:
+        description: DOI citation for toxicity data
+        range: DOI
+
+  StabilityData:
+    description: >-
+      Chemical stability properties under various conditions.
+    attributes:
+      ph_effect:
+        description: Effect of pH on ingredient stability
+        range: string
+      ph_effect_citation:
+        description: DOI citation for pH effect
+        range: DOI
+      pka:
+        description: Acid dissociation constant
+        range: float
+      pka_citation:
+        description: DOI citation for pKa value
+        range: DOI
+      oxidation_state_stability:
+        description: Stability of oxidation states
+        range: string
+      oxidation_stability_citation:
+        description: DOI citation for oxidation stability
+        range: DOI
+      light_sensitivity:
+        description: Sensitivity to light exposure
+        range: LightSensitivityEnum
+      light_sensitivity_citation:
+        description: DOI citation for light sensitivity
+        range: DOI
+      autoclave_stability:
+        description: Stability during autoclaving
+        range: AutoclaveStabilityEnum
+      autoclave_stability_citation:
+        description: DOI citation for autoclave stability
+        range: DOI
+
+  BiologicalProperties:
+    description: >-
+      Biological roles and effects of the ingredient.
+    attributes:
+      metabolic_role:
+        description: Role in cellular metabolism
+        range: string
+      metabolic_role_citation:
+        description: DOI citation for metabolic role
+        range: DOI
+      essential_conditional:
+        description: Whether ingredient is essential or conditionally essential
+        range: EssentialityEnum
+      essential_conditional_citation:
+        description: DOI citation for essentiality status
+        range: DOI
+      uptake_transporter:
+        description: Transporter proteins for ingredient uptake
+        range: string
+      uptake_transporter_citation:
+        description: DOI citation for transporter info
+        range: DOI
+      regulatory_effects:
+        description: Regulatory effects on gene expression
+        range: string
+      regulatory_effects_citation:
+        description: DOI citation for regulatory effects
+        range: DOI
+
+slots:
+  # Basic identification
+  priority:
+    description: Priority ranking of the ingredient
+    range: integer
+
+  component:
+    description: Name of the chemical component
+    required: true
+
+  chemical_formula:
+    description: Chemical formula
+
+  database_id:
+    description: Database identifier (e.g., ChEBI ID)
+    identifier: true
+    pattern: "^CHEBI:\\d+$"
+
+  # Concentration slots
+  concentration:
+    description: Standard concentration used in media
+
+  solubility:
+    description: Solubility characteristics
+
+  lower_bound:
+    description: Lower concentration bound
+    range: float
+    unit:
+      ucum_code: mM
+
+  lower_bound_citation:
+    description: DOI citation for lower bound
+    range: DOI
+    multivalued: true
+
+  upper_bound:
+    description: Upper concentration bound
+    range: float
+    unit:
+      ucum_code: mM
+
+  upper_bound_citation:
+    description: DOI citation for upper bound
+    range: DOI
+    multivalued: true
+
+  limit_of_toxicity:
+    description: Concentration at which toxicity occurs
+    range: float
+    unit:
+      ucum_code: mM
+
+  toxicity_citation:
+    description: DOI citation for toxicity data
+    range: DOI
+    multivalued: true
+
+  stock_concentration:
+    description: Recommended stock solution concentration
+
+  stock_concentration_citation:
+    description: DOI citation for stock concentration
+    range: DOI
+    multivalued: true
+
+  # Chemical stability slots
+  ph_effect:
+    description: Effect of pH on ingredient stability
+
+  ph_effect_citation:
+    description: DOI citation for pH effect
+    range: DOI
+    multivalued: true
+
+  pka:
+    description: Acid dissociation constant
+    range: float
+
+  pka_citation:
+    description: DOI citation for pKa value
+    range: DOI
+    multivalued: true
+
+  oxidation_state_stability:
+    description: Stability of oxidation states
+
+  oxidation_stability_citation:
+    description: DOI citation for oxidation stability
+    range: DOI
+    multivalued: true
+
+  light_sensitivity:
+    description: Sensitivity to light exposure
+    range: LightSensitivityEnum
+
+  light_sensitivity_citation:
+    description: DOI citation for light sensitivity
+    range: DOI
+    multivalued: true
+
+  autoclave_stability:
+    description: Stability during autoclaving
+    range: AutoclaveStabilityEnum
+
+  autoclave_stability_citation:
+    description: DOI citation for autoclave stability
+    range: DOI
+    multivalued: true
+
+  # Chemical interaction slots
+  precipitation_partners:
+    description: Compounds that may precipitate with this ingredient
+    multivalued: true
+
+  precipitation_partners_citation:
+    description: DOI citation for precipitation data
+    range: DOI
+    multivalued: true
+
+  antagonistic_ions:
+    description: Ions that antagonize this ingredient
+    multivalued: true
+
+  antagonistic_ions_citation:
+    description: DOI citation for antagonistic ions
+    range: DOI
+    multivalued: true
+
+  chelator_sensitivity:
+    description: Sensitivity to chelating agents
+
+  chelator_sensitivity_citation:
+    description: DOI citation for chelator sensitivity
+    range: DOI
+    multivalued: true
+
+  redox_contribution:
+    description: Contribution to redox potential
+
+  redox_contribution_citation:
+    description: DOI citation for redox contribution
+    range: DOI
+    multivalued: true
+
+  # Biological slots
+  metabolic_role:
+    description: Role in cellular metabolism
+
+  metabolic_role_citation:
+    description: DOI citation for metabolic role
+    range: DOI
+    multivalued: true
+
+  essential_conditional:
+    description: Whether ingredient is essential or conditionally essential
+    range: EssentialityEnum
+
+  essential_conditional_citation:
+    description: DOI citation for essentiality status
+    range: DOI
+    multivalued: true
+
+  uptake_transporter:
+    description: Transporter proteins for ingredient uptake
+
+  uptake_transporter_citation:
+    description: DOI citation for transporter info
+    range: DOI
+    multivalued: true
+
+  regulatory_effects:
+    description: Regulatory effects on gene expression
+
+  regulatory_effects_citation:
+    description: DOI citation for regulatory effects
+    range: DOI
+    multivalued: true
+
+  # Organism-specific slots
+  gram_differential:
+    description: Differential effects on Gram-positive vs Gram-negative bacteria
+    range: GramDifferentialEnum
+
+  gram_differential_citation:
+    description: DOI citation for Gram differential
+    range: DOI
+    multivalued: true
+
+  aerobe_anaerobe_differential:
+    description: Differential effects on aerobic vs anaerobic organisms
+
+  aerobe_anaerobe_citation:
+    description: DOI citation for aerobe/anaerobe differential
+    range: DOI
+    multivalued: true
+
+  optimal_concentration_model_organisms:
+    description: Optimal concentrations for model organisms
+
+  optimal_concentration_citation:
+    description: DOI citation for optimal concentration
+    range: DOI
+    multivalued: true
+
+types:
+  DOI:
+    typeof: uriorcurie
+    description: Digital Object Identifier
+    pattern: "^https://doi\\.org/10\\.\\d{4,9}/[-._;()/:A-Za-z0-9]+$"
+    uri: schema:identifier
+
+enums:
+  LightSensitivityEnum:
+    description: Categories of light sensitivity
+    permissible_values:
+      STABLE:
+        description: Stable under light exposure
+      SENSITIVE:
+        description: Degrades under light exposure
+      HIGHLY_SENSITIVE:
+        description: Rapidly degrades under light
+      UNKNOWN:
+        description: Sensitivity not characterized
+
+  AutoclaveStabilityEnum:
+    description: Stability during autoclaving
+    permissible_values:
+      STABLE:
+        description: Stable during autoclaving
+      UNSTABLE:
+        description: Degrades during autoclaving
+      PARTIALLY_STABLE:
+        description: Partially degrades during autoclaving
+      FILTER_STERILIZE:
+        description: Must be filter sterilized
+      UNKNOWN:
+        description: Stability not characterized
+
+  EssentialityEnum:
+    description: Essentiality classification
+    permissible_values:
+      ESSENTIAL:
+        description: Required for all organisms
+      CONDITIONALLY_ESSENTIAL:
+        description: Required under specific conditions
+      NON_ESSENTIAL:
+        description: Not required
+      ORGANISM_SPECIFIC:
+        description: Varies by organism
+      UNKNOWN:
+        description: Essentiality not characterized
+
+  GramDifferentialEnum:
+    description: Differential effects on Gram stain types
+    permissible_values:
+      GRAM_POSITIVE_SPECIFIC:
+        description: Primarily affects Gram-positive bacteria
+      GRAM_NEGATIVE_SPECIFIC:
+        description: Primarily affects Gram-negative bacteria
+      BOTH:
+        description: Affects both equally
+      UNKNOWN:
+        description: Differential not characterized

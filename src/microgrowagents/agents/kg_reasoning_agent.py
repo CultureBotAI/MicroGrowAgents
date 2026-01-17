@@ -28,6 +28,7 @@ from typing import Any, Dict, List, Optional, Set
 import duckdb
 
 from microgrowagents.agents.base_agent import BaseAgent
+from microgrowagents.agents.genome_function_agent import GenomeFunctionAgent
 from microgrowagents.kg.graph_builder import GraphBuilder, GRAPE_AVAILABLE
 from microgrowagents.kg.query_patterns import QueryPatterns
 from microgrowagents.kg.algorithms import GraphAlgorithms
@@ -90,6 +91,7 @@ class KGReasoningAgent(BaseAgent):
         self.graph_builder = GraphBuilder(self.db_path)
         self.patterns = QueryPatterns(self.db_path)
         self.algorithms = GraphAlgorithms()
+        self.genome_agent = GenomeFunctionAgent(self.db_path)  # NEW: genome queries
 
         # Optional ontology reasoner (future feature)
         self.ontology_reasoner = None
@@ -191,12 +193,19 @@ class KGReasoningAgent(BaseAgent):
                 return self._handle_centrality(args, **kwargs)
             elif query_type == "subgraph":
                 return self._handle_subgraph(args, **kwargs)
+            elif query_type == "genome_enzymes":
+                return self._handle_genome_enzymes(args, **kwargs)
+            elif query_type == "genome_auxotrophies":
+                return self._handle_genome_auxotrophies(args, **kwargs)
+            elif query_type == "genome_transporters":
+                return self._handle_genome_transporters(args, **kwargs)
             else:
                 return {
                     "success": False,
                     "error": f"Unknown query type: {query_type}. "
                             f"Supported: lookup, neighbors, path, filter, enzymes_using, "
-                            f"media_ingredients, phenotype_media, centrality, subgraph"
+                            f"media_ingredients, phenotype_media, centrality, subgraph, "
+                            f"genome_enzymes, genome_auxotrophies, genome_transporters"
                 }
 
         except Exception as e:
@@ -573,6 +582,103 @@ class KGReasoningAgent(BaseAgent):
 
         except ImportError as e:
             return {"success": False, "error": str(e)}
+
+    def _handle_genome_enzymes(self, args: List[str], **kwargs) -> Dict[str, Any]:
+        """
+        Handle genome_enzymes query - find enzymes in organism's genome.
+
+        Args:
+            args: [organism_name, ec_pattern]
+            **kwargs: Additional parameters (limit, etc.)
+
+        Returns:
+            {success: bool, query_type: str, data: dict with enzymes}
+
+        Example:
+            >>> agent.run("genome_enzymes E.coli 1.1.*.*")
+        """
+        if len(args) < 2:
+            return {"success": False, "error": "Usage: genome_enzymes <organism> <ec_pattern>"}
+
+        organism = args[0]
+        ec_pattern = args[1]
+
+        result = self.genome_agent.find_enzymes(
+            query=f"find enzymes {ec_pattern} in {organism}",
+            organism=organism,
+            ec_number=ec_pattern
+        )
+
+        return {
+            "success": result.get("success", False),
+            "query_type": "genome_enzymes",
+            "data": result.get("data", {}),
+            "error": result.get("error")
+        }
+
+    def _handle_genome_auxotrophies(self, args: List[str], **kwargs) -> Dict[str, Any]:
+        """
+        Handle genome_auxotrophies query - detect auxotrophies from genome.
+
+        Args:
+            args: [organism_name]
+            **kwargs: Additional parameters
+
+        Returns:
+            {success: bool, query_type: str, data: dict with auxotrophies}
+
+        Example:
+            >>> agent.run("genome_auxotrophies Methylococcus_capsulatus")
+        """
+        if not args:
+            return {"success": False, "error": "Usage: genome_auxotrophies <organism>"}
+
+        organism = args[0]
+
+        result = self.genome_agent.detect_auxotrophies(
+            query=f"detect auxotrophies in {organism}",
+            organism=organism
+        )
+
+        return {
+            "success": result.get("success", False),
+            "query_type": "genome_auxotrophies",
+            "data": result.get("data", {}),
+            "error": result.get("error")
+        }
+
+    def _handle_genome_transporters(self, args: List[str], **kwargs) -> Dict[str, Any]:
+        """
+        Handle genome_transporters query - find transporter genes.
+
+        Args:
+            args: [organism_name, substrate]
+            **kwargs: Additional parameters
+
+        Returns:
+            {success: bool, query_type: str, data: dict with transporters}
+
+        Example:
+            >>> agent.run("genome_transporters E.coli glucose")
+        """
+        if len(args) < 2:
+            return {"success": False, "error": "Usage: genome_transporters <organism> <substrate>"}
+
+        organism = args[0]
+        substrate = args[1]
+
+        result = self.genome_agent.find_transporters(
+            query=f"find {substrate} transporters in {organism}",
+            organism=organism,
+            substrate=substrate
+        )
+
+        return {
+            "success": result.get("success", False),
+            "query_type": "genome_transporters",
+            "data": result.get("data", {}),
+            "error": result.get("error")
+        }
 
     def close(self) -> None:
         """Close database connection and cleanup resources."""
